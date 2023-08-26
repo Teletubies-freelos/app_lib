@@ -19,6 +19,7 @@
     "test": {
       "outputs": ["coverage/**"],
       "dependsOn": []
-    }
+    },
+    "compile":{}
   }
 }

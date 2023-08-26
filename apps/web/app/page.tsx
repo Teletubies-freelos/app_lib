@@ -1,10 +1,9 @@
-import { Button, Header } from "ui";
+import { CustomButton } from "ui";
 
 export default function Page(): JSX.Element {
   return (
     <>
-      <Header text="Web" />
-      <Button />
+      <CustomButton text="Hola" />
     </>
   );
 }
