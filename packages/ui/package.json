@@ -5,7 +5,7 @@
   "types": "./index.tsx",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint --cache --fix",
     "generate:component": "turbo gen react-component"
   },
   "devDependencies": {
