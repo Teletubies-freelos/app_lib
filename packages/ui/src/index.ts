@@ -1,1 +1,1 @@
-export { default as CustomButton } from './atoms/Button'
+export { default as Button } from './atoms/Button'
