@@ -30,26 +30,11 @@ jobs:
           pnpm install
           pnpm build
 
-      - name: Upload production-ready build files
-        uses: actions/upload-artifact@v3
-        with:
-          name: production-files
-          path: ./packages/ui/storybook-static
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: production-files
-          path: ./storybook-static
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./storybook-static
+          publish_dir: ./packages/ui/storybook-static
 
 
   
