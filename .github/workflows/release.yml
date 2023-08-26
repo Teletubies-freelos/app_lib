@@ -25,7 +25,7 @@ jobs:
           version: 8
           run_install: false
       - name: Build
-        working-directory: ./packages/ui
+        working-directory: ./apps/docs
         run: |
           pnpm install
           pnpm build
@@ -34,7 +34,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./packages/ui/storybook-static
+          publish_dir: ./apps/docs/storybook-static
 
 
   
