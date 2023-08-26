@@ -3,13 +3,13 @@ import { createTheme }  from '@mui/material/styles'
 export const defaultTheme = createTheme({
   typography:{
     h1: {
-      fontSize: '1.75rem',
+      fontSize: '2rem',
     },
     h2: {
-      fontSize: '1.25rem'
+      fontSize: '1.3rem'
     },
     h3:{
-      fontSize: '0.75rem'
+      fontSize: '1rem'
     }
   },
   palette:{
