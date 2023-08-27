@@ -13,7 +13,7 @@ interface SearchBarProps {
   onSubmit: SubmitHandler<ISearch>;
 }
 
-export default function SearchBar({ placeHolder,  searchButtonContent, onSubmit }:SearchBarProps){
+export default function SearchBar({ placeHolder,  searchButtonContent, onSubmit }: SearchBarProps){
   const { register, handleSubmit } = useForm<ISearch>()
 
   
