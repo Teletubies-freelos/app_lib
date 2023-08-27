@@ -1,9 +1,9 @@
-import { CustomButton } from "ui";
+import { Button } from "ui";
 
-export default function Page(): JSX.Element {
+export default function Page() {
   return (
     <>
-      <CustomButton text="Hola" />
+      <Button label="Hola" />
     </>
   );
 }
