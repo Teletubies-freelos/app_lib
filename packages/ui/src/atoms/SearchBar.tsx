@@ -13,10 +13,9 @@ interface SearchBarProps {
   onSubmit: SubmitHandler<ISearch>;
 }
 
-export default function SearchBar({ placeHolder,  searchButtonContent, onSubmit }: SearchBarProps){
+export default function SearchBar({ placeHolder, searchButtonContent, onSubmit }: SearchBarProps){
   const { register, handleSubmit } = useForm<ISearch>()
 
-  
   return(
     <Stack direction='row' gap='1rem' component='form' onSubmit={handleSubmit(onSubmit)}>
       <TextField
