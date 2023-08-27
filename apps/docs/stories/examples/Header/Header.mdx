@@ -1,0 +1,19 @@
+import { Meta, Source, Story, Canvas } from '@storybook/blocks';
+import { WithTheme } from '../../../../../packages/ui/src/themeHelpers'
+import Header from './Header.example.tsx'
+import data  from './Header.example.tsx?raw'
+
+<Meta
+  title="Organisms/Header"
+  component={Header}
+/>
+
+Ejemplo de Header
+
+<div style={{display: 'grid', placeItems: 'center'}}>
+  <WithTheme>
+    <Header />
+  </WithTheme>
+</div>
+
+<Source code={data} dark />
