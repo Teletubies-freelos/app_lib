@@ -50,8 +50,8 @@ const Hero = () => (
   <Box sx={{ width: '80vw' }}>
     <Carousel sx={{display:{md: 'block', xs: 'none'}}}>
       {
-        HeroItemsGroup.map((items, index)=><Stack spacing={1} direction='row' key={index}>
-        {items}
+        HeroItemsGroup.map((items, index)=><Stack spacing={1} direction='row' key={index} justifyContent='center'>
+          {items}
         </Stack>)
       }
     </Carousel>
