@@ -47,7 +47,7 @@ for(let i = 0; i < HeroItems.length; i+=3)
 
 
 const Hero = () => (
-  <Box sx={{ width: '80vw' }}>
+  <Box sx={{ width: '100%' }}>
     <Carousel sx={{display:{md: 'block', xs: 'none'}}}>
       {
         HeroItemsGroup.map((items, index)=><Stack spacing={1} direction='row' key={index} justifyContent='center'>
