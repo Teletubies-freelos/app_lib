@@ -20,7 +20,8 @@ const ItemContent = (_index: number, product: CardProductProps)=> <CardProduct {
 //@ts-ignore
 const ListContainer: any = styled('div')({
   display: 'flex',
-  flexWrap: 'wrap'
+  flexWrap: 'wrap',
+  gap: '2rem'
 })
 
 //@ts-ignore
@@ -29,7 +30,7 @@ const ItemContainer: any = styled('div')(({theme})=>({
     width:'unset'
   },
   [theme.breakpoints.up('md')]:{
-    width: '50%'
+    width: 'calc(50% - 1rem)'
   }
 }))
 
