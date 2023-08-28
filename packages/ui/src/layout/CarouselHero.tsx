@@ -1,3 +1,5 @@
+'use client'
+
 import Carousel from "react-material-ui-carousel";
 import { tss } from "tss-react/mui";
 import { SxProps } from "..";
