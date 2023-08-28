@@ -1,0 +1,16 @@
+import { Meta, Source, Story, Canvas } from "@storybook/blocks";
+import { WithTheme } from "../../../../../packages/ui/src/themeHelpers";
+import OrderSearch from "./OrderSearch.page.tsx";
+import data from "./OrderSearch.page.tsx?raw";
+
+<Meta title="Organisms/OrderSearch" component={OrderSearch} />
+
+Ejemplo de OrderSearch
+
+<div style={{ display: "grid", placeItems: "center" }}>
+  <WithTheme>
+    <OrderSearch />
+  </WithTheme>
+</div>
+
+<Source code={data} dark />
