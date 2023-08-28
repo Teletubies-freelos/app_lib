@@ -32,7 +32,7 @@ const Hero = () => (
       sx={{display:{md: 'block', xs: 'none'}}}
       >
       {
-        HeroItemsGroup.map((items, index)=><Stack spacing={1} direction='row' key={index} justifyContent='center'>
+        HeroItemsGroup.map((items, index)=><Stack gap={2} direction='row' key={index} justifyContent='center'>
           {items}
         </Stack>)
       }
