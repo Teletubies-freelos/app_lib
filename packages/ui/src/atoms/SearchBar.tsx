@@ -10,8 +10,8 @@ export interface ISearch {
 interface SearchBarProps {
   placeHolder?: string;
   searchButtonContent?: ReactNode;
-  direction: "row" | "column";
-  btnVariant: "text" | "outlined" | "contained";
+  direction?: "row" | "column";
+  btnVariant?: "text" | "outlined" | "contained";
   stylesButton?: string;
   onSubmit: SubmitHandler<ISearch>;
 }
