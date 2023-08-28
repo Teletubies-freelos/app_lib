@@ -1,0 +1,21 @@
+import { Meta, Source, Story, Canvas } from '@storybook/blocks';
+import { WithTheme } from '../../../../../packages/ui/src/themeHelpers'
+import ProductsList from './ProductsList.example.tsx'
+import data  from './ProductsList.example.tsx?raw'
+
+<Meta
+  title="Organisms/Products"
+  component={ProductsList}
+/>
+
+Ejemplo de Infinite list responsivo
+
+<Source code={data} dark />
+
+<div style={{display: 'grid', placeItems: 'center'}}>
+  <WithTheme>
+    <ProductsList />
+  </WithTheme>
+</div>
+
+
