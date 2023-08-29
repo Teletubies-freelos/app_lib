@@ -1,55 +1,66 @@
-import { Box, List, ListItem, ListItemText, Typography } from "..";
+import { Box, List, ListItem, Typography } from "..";
 
-export default function CardStateOrder() {
+interface CardStateOrderProps {
+  img: JSX.Element;
+  title: string;
+  price: string;
+  quantity?: JSX.Element;
+}
+
+export default function CardStateOrder({
+  img,
+  title,
+  price,
+  quantity,
+}: CardStateOrderProps) {
   return (
-    <List sx={{ paddingLeft: "0 ", width: "100%" }}>
+    <List
+      sx={{
+        background: "#fff",
+        padding: "0 ",
+        width: "100%",
+        borderRadius: ".5rem",
+      }}
+    >
       <ListItem
         sx={{
           height: "auto",
           maxHeight: "4.75rem",
-          padding: "0 !important",
-          alignItems: { xs: "flex-start", sm: "center" },
+          alignItems: "center",
         }}
       >
-        <Box
-          height={"4.75rem"}
-          alignItems={"center"}
-          sx={{ display: { xs: "none", sm: "flex" } }}
-        >
-          <img
-            src={"https://m.media-amazon.com/images/I/815aKWcEkEL.jpg"}
-            srcSet={`https://m.media-amazon.com/images/I/815aKWcEkEL.jpg`}
-            alt={"image"}
-            style={{
-              height: "80%",
+        {img}
+        <Box width="100%" display="flex" alignItems="center">
+          <Box
+            sx={{
               width: "100%",
-              objectFit: "contain",
+              display: "flex",
+              flexDirection: { xs: "column", sm: "row" },
+              justifyContent: "space-between",
+              alignItems: { xs: "flex-start", sm: "center" },
+              marginLeft: "1rem",
+              position: "relative",
             }}
-            loading="lazy"
-          />
-        </Box>
-        <ListItemText
-          primary="Spidermaan Marvel PS4"
-          sx={{
-            height: "100%",
-            display: "flex",
-            flexDirection: { xs: "column", sm: "row" },
-            justifyContent: "space-between",
-            alignItems: { xs: "flex-start", sm: "center" },
-            marginLeft: "1rem",
-            fontSize: "1rem !important",
-          }}
-          secondary={
+          >
+            <Typography
+              sx={{
+                height: "100%",
+                fontSize: "1rem !important",
+              }}
+            >
+              {title}
+            </Typography>
+            {quantity}
             <Typography
               component="span"
               variant="body2"
               color="text.primary"
               sx={{ fontSize: "1.075rem" }}
             >
-              S/ 120.00
+              {price}
             </Typography>
-          }
-        />
+          </Box>
+        </Box>
       </ListItem>
     </List>
   );

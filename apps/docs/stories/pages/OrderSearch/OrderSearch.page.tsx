@@ -28,7 +28,7 @@ export default function OrderSearch() {
           direction="column"
         />
       </Box>
-      <Box display='flex' justifyContent='center' sx={{width:'100%'}}>
+      <Box justifyContent='center' sx={{display:{xs:'none',sm:'flex'},width:'100%'}}>
       <MainLogo />
       </Box>
     </Stack>
