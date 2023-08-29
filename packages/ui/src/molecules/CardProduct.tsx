@@ -22,7 +22,6 @@ export interface CardProductProps {
 
 const cardStyles = {
   backgroundColor: "#fff",
-  margin: 2,
   minWidth: "20rem",
   boxShadow: "none",
   borderRadius: "1rem",

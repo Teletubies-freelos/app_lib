@@ -1,3 +1,5 @@
+'use client'
+
 import { Box, Toolbar } from "@mui/material";
 import { MainLogo, SearchBar } from "..";
 import { SubmitHandler } from "react-hook-form";
@@ -21,7 +23,12 @@ const sxMainBar = {
 
 export default function NavBar({ onSearch, cartComponent }: NavBarProps){
   const Search = useCallback(
-    ()=> <SearchBar searchButtonContent='Buscar' onSubmit={onSearch as SubmitHandler<ISearch>} />, [onSearch])
+    ()=> <SearchBar 
+      searchButtonContent='Buscar' 
+      onSubmit={onSearch as SubmitHandler<ISearch>} 
+    />, 
+    [onSearch]
+  )
 
   return (
     <Toolbar sx={{flexDirection: 'column'}}>
