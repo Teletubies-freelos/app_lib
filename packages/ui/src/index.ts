@@ -1,5 +1,3 @@
-export * from "@mui/material";
-export { ArrowDropDown as ArrowDropDownIcon } from '@mui/icons-material';
 export { default as Button } from "./atoms/Button";
 export { default as CartIcon } from "./atoms/CartIcon";
 export { default as MainLogo } from "./atoms/MainLogo";
@@ -14,5 +12,8 @@ export { default as NavBar } from "./molecules/NavBar";
 export { default as Carousel } from "react-material-ui-carousel";
 export { default as CardProduct } from "./molecules/CardProduct";
 export { default as CardHero } from "./molecules/CardHero";
-export { default as DropDown } from './atoms/Select'
+export { default as DropDown } from "./atoms/Select";
 export { default as StepStatus } from "./molecules/StepStatus";
+export { default as CardStateOrder } from "./molecules/CardStateOrder";
+export { default as Quantity } from "./molecules/Quantity";
+export { default as HeaderModal } from "./molecules/HeaderModal";

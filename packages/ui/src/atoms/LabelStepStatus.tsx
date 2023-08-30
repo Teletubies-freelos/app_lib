@@ -13,6 +13,7 @@ const LabelStatusStyles = tss.create(({ theme }) => ({
   },
   valueStyle: {
     color: theme.palette.text.secondary,
+    fontSize: "1rem",
   },
 }));
 

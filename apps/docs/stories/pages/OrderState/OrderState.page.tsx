@@ -1,14 +1,10 @@
 import DetailOrderState from "../../../../../packages/ui/src/molecules/DetailOrderState";
+import { Box, Stack, Typography } from "@mui/material";
 import {
-  SearchBar,
   NavBar,
   CartIcon,
-  Typography,
-  Stack,
-  Box,
   MainLogo,
   StepStatus,
-  LabelStepStatus,
 } from "../../../../../packages/ui/src";
 
 export default function OrderState() {
@@ -23,9 +19,13 @@ export default function OrderState() {
       <Typography variant="h2" sx={{ margin: " 0 auto", border: "none" }}>
         Estado de pedido
       </Typography>
-      <StepStatus />
+      <StepStatus steps={["En tienda", "En camino", "Entregado"]} />
       <DetailOrderState />
-      <Box display="flex" justifyContent="center" sx={{ width: "100%" }}>
+      <Box
+        display={{ xs: "none", sm: "flex" }}
+        justifyContent="center"
+        sx={{ width: "100%" }}
+      >
         <MainLogo />
       </Box>
     </Stack>
