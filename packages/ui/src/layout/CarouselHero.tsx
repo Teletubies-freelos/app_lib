@@ -1,8 +1,6 @@
-'use client'
-
+import { SxProps } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 import { tss } from "tss-react/mui";
-import { SxProps } from "..";
 
 interface CarouselHeroProps {
   children: JSX.Element[];

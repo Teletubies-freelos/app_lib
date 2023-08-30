@@ -1,4 +1,4 @@
-import { Box, Typography, SxProps } from "..";
+import { Box, Typography, SxProps } from "@mui/material";
 import { tss } from "tss-react/mui";
 
 export interface LabelStepStatusProps {

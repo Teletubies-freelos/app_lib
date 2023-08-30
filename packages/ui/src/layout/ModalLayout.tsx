@@ -1,4 +1,4 @@
-import { Box, Stack } from "..";
+import { Box, Stack } from "@mui/material";
 
 interface ModalLayoutProps {
   headerModal: JSX.Element;

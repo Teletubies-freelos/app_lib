@@ -1,4 +1,4 @@
-import { Box } from "..";
+import { Box } from "@mui/material";
 
 export default function Quantity() {
   return (

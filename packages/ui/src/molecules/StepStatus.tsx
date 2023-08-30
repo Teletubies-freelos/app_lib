@@ -1,5 +1,5 @@
 import { Check } from "@mui/icons-material";
-import { Box, Step, StepLabel, Stepper } from "..";
+import { Box, Step, StepLabel, Stepper } from "@mui/material";
 
 const StepIcon = () => (
   <Check
