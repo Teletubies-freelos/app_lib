@@ -1,10 +1,8 @@
 import DetailOrderState from "../../../../../packages/ui/src/molecules/DetailOrderState";
+import { Box, Stack, Typography } from "@mui/material";
 import {
   NavBar,
   CartIcon,
-  Typography,
-  Stack,
-  Box,
   MainLogo,
   StepStatus,
 } from "../../../../../packages/ui/src";

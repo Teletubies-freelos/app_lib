@@ -1,10 +1,8 @@
+import { Box, Stack, Typography } from "@mui/material";
 import {
   SearchBar,
   NavBar,
   CartIcon,
-  Typography,
-  Stack,
-  Box,
   MainLogo,
 } from "../../../../../packages/ui/src";
 
@@ -16,7 +14,7 @@ export default function OrderSearch() {
       sx={{ height: "40rem" }}
     >
       <NavBar cartComponent={<CartIcon />} onSearch={console.log} />
-      <Box sx={{width:{xs:'100%',sm:'25rem'},margin:'auto'}}>
+      <Box sx={{ width: { xs: "100%", sm: "25rem" }, margin: "auto" }}>
         <Typography variant="h3" sx={{ marginBottom: "2rem" }}>
           Ingresa tu número de pedido
         </Typography>
@@ -28,8 +26,11 @@ export default function OrderSearch() {
           direction="column"
         />
       </Box>
-      <Box justifyContent='center' sx={{display:{xs:'none',sm:'flex'},width:'100%'}}>
-      <MainLogo />
+      <Box
+        justifyContent="center"
+        sx={{ display: { xs: "none", sm: "flex" }, width: "100%" }}
+      >
+        <MainLogo />
       </Box>
     </Stack>
   );

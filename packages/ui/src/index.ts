@@ -1,7 +1,3 @@
-export * from "@mui/material";
-export { default as ShoppingCartIcon } from "@mui/icons-material/ShoppingCart";
-export { default as CloseIcon } from "@mui/icons-material/Close";
-export { ArrowDropDown as ArrowDropDownIcon } from "@mui/icons-material";
 export { default as Button } from "./atoms/Button";
 export { default as CartIcon } from "./atoms/CartIcon";
 export { default as MainLogo } from "./atoms/MainLogo";

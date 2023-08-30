@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Box, CardStateOrder } from "../../../../packages/ui/src";
+import { CardStateOrder } from "../../../../packages/ui/src";
+import { Box } from "@mui/material";
 
 const meta = {
   title: "Molecules/CardStateOrder",

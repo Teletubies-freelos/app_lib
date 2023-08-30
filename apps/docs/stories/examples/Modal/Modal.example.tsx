@@ -1,10 +1,7 @@
-import {
-  Box,
-  CloseIcon,
-  ShoppingCartIcon,
-  HeaderModal,
-  Quantity,
-} from "../../../../../packages/ui/src";
+import { Box } from "@mui/material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import CloseIcon from "@mui/icons-material/Close";
+import { HeaderModal, Quantity } from "../../../../../packages/ui/src";
 import ModalLayout from "../../../../../packages/ui/src/layout/ModalLayout";
 import CardStateOrder from "../../../../../packages/ui/src/molecules/CardStateOrder";
 
