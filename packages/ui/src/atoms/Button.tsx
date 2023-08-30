@@ -1,3 +1,4 @@
+'use client'
 import { Button as MUIButton, type ButtonProps }  from '@mui/material'
 export interface CustomButtonProps extends ButtonProps {
   label: string;

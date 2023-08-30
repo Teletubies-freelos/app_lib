@@ -1,0 +1,16 @@
+import { Meta, Source, Story, Canvas } from "@storybook/blocks";
+import { WithTheme } from "../../../../packages/ui/src/themeHelpers";
+import LogoWhatsapp from "./LogoWhatsapp.layout.tsx";
+import data from "./LogoWhatsapp.layout.tsx?raw";
+
+<Meta title="Layout/LogoWhatsapp" component={LogoWhatsapp} />
+
+Ejemplo de LogoWhatsapp
+
+<div style={{ display: "grid", placeItems: "center" }}>
+  <WithTheme>
+    <LogoWhatsapp />
+  </WithTheme>
+</div>
+
+<Source code={data} dark />
