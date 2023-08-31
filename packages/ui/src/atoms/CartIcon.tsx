@@ -1,7 +1,7 @@
-import { MouseEvent } from 'react'
+import { MouseEvent } from "react";
 
-import { IconButton, Badge } from '@mui/material';
-import { ShoppingCartOutlined } from '@mui/icons-material'
+import { IconButton, Badge } from "@mui/material";
+import { ShoppingCartOutlined } from "@mui/icons-material";
 
 export interface CartIconProps {
   qty?: number;
@@ -9,21 +9,21 @@ export interface CartIconProps {
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    * @default 'medium'
    */
-  size?: 'inherit' | 'large' | 'medium' | 'small';
+  size?: "inherit" | "large" | "medium" | "small";
 
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
 /**
- * 
+ *
  * @param {CartIconProps}
  */
-const CartIcon = ({ qty, onClick, size }: CartIconProps)=> (
+const CartIcon = ({ qty, onClick, size }: CartIconProps) => (
   <IconButton onClick={onClick}>
-    <Badge color='primary' badgeContent={qty}>
+    <Badge color="primary" badgeContent={qty}>
       <ShoppingCartOutlined fontSize={size} />
     </Badge>
   </IconButton>
-)
+);
 
-export default CartIcon
+export default CartIcon;

@@ -25,7 +25,7 @@ const cardStyles = {
   minWidth: "20rem",
   boxShadow: "none",
   borderRadius: "1rem",
-}
+};
 
 export default function CardProduct({
   alt,
@@ -35,16 +35,12 @@ export default function CardProduct({
   title,
   previousPrice,
   onAdd,
-  className
+  className,
 }: CardProductProps) {
-
   return (
-    <Card
-      sx={cardStyles}
-      className={className}
-    >
+    <Card sx={cardStyles} className={className}>
       <Box display={"flex"}>
-        <Box width={"30%"} sx={{display:'grid',placeItems:'center'}}>
+        <Box width={"30%"} sx={{ display: "grid", placeItems: "center" }}>
           <CardMedia
             component="img"
             alt={alt}
@@ -52,7 +48,7 @@ export default function CardProduct({
             height={"80%"}
             width={"100%"}
             sx={{
-             objectFit: 'contain'
+              objectFit: "contain",
             }}
           />
         </Box>
@@ -65,19 +61,21 @@ export default function CardProduct({
           }}
         >
           <Box>
-            <Typography variant="h3" >{title}</Typography>
-            <Typography variant='body1'>{description}</Typography>
+            <Typography variant="h3">{title}</Typography>
+            <Typography variant="body1">{description}</Typography>
           </Box>
           <Box>
             {!!previousPrice && (
               <Typography
-              variant='body2'
+                variant="body2"
                 sx={{ textDecoration: "line-through" }}
               >
                 S/ {previousPrice}
               </Typography>
             )}
-            <Typography variant='body2' sx={{fontSize:'1.1em'}}>S/ {price}</Typography>
+            <Typography variant="body2" sx={{ fontSize: "1.1em" }}>
+              S/ {price}
+            </Typography>
           </Box>
         </CardContent>
       </Box>
@@ -95,8 +93,8 @@ export default function CardProduct({
             position: "relative",
             bottom: "3.2rem",
             right: "2rem",
-            height: '2.4rem',
-            minWidth:"unset",
+            height: "2.4rem",
+            minWidth: "unset",
             aspectRatio: 1,
             padding: 0,
           }}

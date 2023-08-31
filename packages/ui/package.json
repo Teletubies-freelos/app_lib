@@ -47,6 +47,7 @@
     "react-hook-form": "^7.45.4",
     "react-material-ui-carousel": "^3.4.2",
     "react-virtuoso": "^4.5.0",
-    "tss-react": "^4.9.0"
+    "tss-react": "^4.9.0",
+    "vite-plugin-no-bundle": "^3.0.0"
   }
 }

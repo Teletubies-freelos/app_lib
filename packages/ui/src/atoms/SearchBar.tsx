@@ -1,5 +1,3 @@
-'use client'
-
 import { ReactNode } from "react";
 import { SearchOutlined } from "@mui/icons-material";
 import { Button, InputAdornment, Stack, TextField } from "@mui/material";

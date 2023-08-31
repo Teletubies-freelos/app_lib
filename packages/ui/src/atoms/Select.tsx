@@ -1,16 +1,14 @@
-'use client'
-
-import { PropsWithChildren, useCallback, useState } from 'react'
+import { PropsWithChildren, useCallback, useState } from "react";
 import {
   Select as MUISelect,
   FormControl,
   Box,
   MenuItem,
   SxProps,
-  SelectChangeEvent
-} from '@mui/material'
+  SelectChangeEvent,
+} from "@mui/material";
 
-import { ArrowDropDown as ArrowDropDownIcon } from '@mui/icons-material'
+import { ArrowDropDown as ArrowDropDownIcon } from "@mui/icons-material";
 
 export interface IOption {
   value: string | number;
@@ -21,47 +19,54 @@ export interface SelectFilterProps<T extends IOption = IOption> {
   items?: T[];
   sxForm?: SxProps;
   sxSelect?: SxProps;
-  onChange?: (event: SelectChangeEvent) => void
+  onChange?: (event: SelectChangeEvent) => void;
 }
 
-export default function SelectFilter({ 
-  items, 
-  sxForm, 
-  sxSelect, 
-  children, 
-  onChange 
+export default function SelectFilter({
+  items,
+  sxForm,
+  sxSelect,
+  children,
+  onChange,
 }: PropsWithChildren<SelectFilterProps>) {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
-  const ArrowDown = useCallback(() => (
-    <Box onClick={() => setIsOpen(prev => !prev)} sx={{
-      cursor: 'pointer',
-      marginRight: 1,
-      paddingLeft: 1,
-      borderLeftStyle: 'solid',
-      borderLeftWidth: 0.5
-    }}>
-      <ArrowDropDownIcon />
-    </Box>
-  ), [])
+  const ArrowDown = useCallback(
+    () => (
+      <Box
+        onClick={() => setIsOpen((prev) => !prev)}
+        sx={{
+          cursor: "pointer",
+          marginRight: 1,
+          paddingLeft: 1,
+          borderLeftStyle: "solid",
+          borderLeftWidth: 0.5,
+        }}
+      >
+        <ArrowDropDownIcon />
+      </Box>
+    ),
+    [],
+  );
 
-  return (<FormControl sx={sxForm}>
-    <MUISelect
-      onChange={onChange}
-      onOpen={() => setIsOpen(true)}
-      onClose={() => setIsOpen(false)}
-      open={isOpen}
-      defaultValue={String(1)}
-      IconComponent={ArrowDown}
-      sx={{ backgroundColor: 'white', ...sxSelect }}>
-      {
-        items?.map(({ label, value }) =>
+  return (
+    <FormControl sx={sxForm}>
+      <MUISelect
+        onChange={onChange}
+        onOpen={() => setIsOpen(true)}
+        onClose={() => setIsOpen(false)}
+        open={isOpen}
+        defaultValue={String(1)}
+        IconComponent={ArrowDown}
+        sx={{ backgroundColor: "white", ...sxSelect }}
+      >
+        {items?.map(({ label, value }) => (
           <MenuItem value={value} key={label + value}>
             {label}
           </MenuItem>
-        )
-      }
-      {children}
-    </MUISelect>
-  </FormControl>)
+        ))}
+        {children}
+      </MUISelect>
+    </FormControl>
+  );
 }

@@ -1,4 +1,4 @@
-import { Box, List, ListItem, Typography } from "..";
+import { Box, List, ListItem, Typography } from "@mui/material";
 
 interface CardStateOrderProps {
   img: JSX.Element;

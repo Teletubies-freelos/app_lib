@@ -1,3 +1,4 @@
+"use client";
 export { default as Button } from "./atoms/Button";
 export { default as CartIcon } from "./atoms/CartIcon";
 export { default as MainLogo } from "./atoms/MainLogo";

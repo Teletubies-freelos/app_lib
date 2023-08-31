@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Box } from "..";
+import { Box } from "@mui/material";
 
 interface HeaderModalProps {
   textHeader: string;

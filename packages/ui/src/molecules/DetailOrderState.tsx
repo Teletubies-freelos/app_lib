@@ -1,5 +1,5 @@
-import { Button } from "@mui/material";
-import { Box, LabelStepStatus, Stack } from "..";
+import { Box, Stack, Button } from "@mui/material";
+import LabelStepStatus from "../atoms/LabelStepStatus";
 import CardStateOrder from "./CardStateOrder";
 
 export default function DetailOrderState() {
