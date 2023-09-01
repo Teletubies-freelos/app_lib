@@ -9,11 +9,12 @@ import { MouseEventHandler } from "react";
 
 export interface CardHeroProps {
   image: string;
+  description: string;
   alt: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-const CardHero = ({ image, alt, onClick }: CardHeroProps) => (
+const CardHero = ({ image, alt, onClick, description }: CardHeroProps) => (
   <MUICard
     sx={{
       background: "white",
@@ -29,10 +30,7 @@ const CardHero = ({ image, alt, onClick }: CardHeroProps) => (
       sx={{ borderRadius: ".5rem" }}
       alt={alt}
     />
-    <CardContent sx={{ padding: "8px" }}>
-      sit voluptatem accusantium doloremque laudantium, totam rem aperiam
-      magni...
-    </CardContent>
+    <CardContent sx={{ padding: "8px" }}>{description}</CardContent>
     <CardActions sx={{ padding: 0 }}>
       <Button
         fullWidth
