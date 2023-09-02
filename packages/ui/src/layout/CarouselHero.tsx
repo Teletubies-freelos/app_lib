@@ -1,43 +1,37 @@
-import { SxProps } from "@mui/material";
+import { SxProps, useTheme } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
-import { tss } from "tss-react/mui";
 
 interface CarouselHeroProps {
   children: JSX.Element[];
   sx: SxProps;
 }
 
-const carouselStyles = tss.create(({ theme }) => ({
-  navButtons: {
-    background: "none !important",
-    color: theme.palette.text.primary,
-  },
-  activeIndicator: {
-    color: theme.palette.primary.main,
-  },
-  indicator: {
-    color: theme.palette.background.paper,
-    "&:hover": {
-      color: theme.palette.primary.main,
-    },
-  },
-}));
-
 const CarouselHero = ({ children, sx }: CarouselHeroProps) => {
-  const { classes } = carouselStyles();
+  const theme = useTheme();
 
   return (
     <Carousel
-      sx={sx}
-      navButtonsProps={{
-        className: classes.navButtons,
+      sx={{
+        "& .navButtonsClassName": {
+          background: "none !important",
+          color: theme.palette.text.primary,
+        },
+        "& .activeIndicatorClassName": {
+          color: `${theme.palette.primary.main} !important`,
+        },
+        "& .indicatorClassName": {
+          color: theme.palette.background.paper,
+          "&:hover": {
+            color: `${theme.palette.primary.main} !important`,
+          },
+        },
+        ...sx,
       }}
+      navButtonsProps={{ className: "navButtonsClassName" }}
       activeIndicatorIconButtonProps={{
-        className: classes.activeIndicator,
+        className: "activeIndicatorClassName",
       }}
-      indicatorIconButtonProps={{
-        className: classes.indicator,
-      }}
+      indicatorIconButtonProps={{ className: "indicatorClassName" }}
     >
       {children}
     </Carousel>

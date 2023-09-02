@@ -6,7 +6,7 @@ export function useGames() {
   const { gamesClient } = useContext(DataContext);
   const queryData = useQuery({
     queryKey: ["games"],
-    queryFn: gamesClient.getMainOffers,
+    queryFn: () => gamesClient.getMainOffers(),
   });
 
   return queryData;

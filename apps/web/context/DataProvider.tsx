@@ -1,11 +1,13 @@
 import { PropsWithChildren } from "react";
 import { DataContext, IDataContext } from "./DataContext";
-import { games } from "../modules";
 
-const DataProvider = ({ children }: PropsWithChildren<IDataContext>) => {
+const DataProvider = ({
+  children,
+  gamesClient,
+}: PropsWithChildren<IDataContext>) => {
   return (
     <>
-      <DataContext.Provider value={{ gamesClient: games }}>
+      <DataContext.Provider value={{ gamesClient }}>
         {children}
       </DataContext.Provider>
     </>
