@@ -16,7 +16,14 @@ const getRandomImageSonic = () =>
 
 const HeroItems = Array.from({ length: 6 })
   .map((_, index) => ({ id: index }))
-  .map(({ id }) => <CardHero key={id} alt="" image={getRandomImageSonic()} />);
+  .map(({ id }) => (
+    <CardHero
+      key={id}
+      alt=""
+      image={getRandomImageSonic()}
+      description="Sonic the Hedgehog"
+    />
+  ));
 
 const HeroItemsGroup: JSX.Element[][] = [];
 
