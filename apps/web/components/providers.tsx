@@ -5,7 +5,7 @@ import { useState } from "react";
 import DataProvider from "../context/DataProvider";
 import { fakeGameClient } from "../mockers/services/games";
 import { ThemeProvider } from "@mui/material";
-import { defaultTheme } from "../../../packages/ui/src/theme/appGames";
+import { defaultTheme } from "../../../packages/ui/src";
 
 export default function Providers({ children }) {
   const [queryClient] = useState(() => new QueryClient());
