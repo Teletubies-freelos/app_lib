@@ -1,5 +1,13 @@
 import { faker } from "@faker-js/faker";
 
-export const fakeImageCarousel = faker.image.urlPicsumPhotos();
-export const fakeDescriptionCarousel = faker.lorem.paragraphs();
-export const fakePrice = faker.commerce.price();
+function cardFactory() {
+  return {
+    imgUrl: faker.image.urlPicsumPhotos(),
+    description: faker.lorem.paragraphs(),
+    price: faker.commerce.price(),
+  };
+}
+
+export function seedCard(count) {
+  return Array.from({ length: count }, () => cardFactory());
+}
