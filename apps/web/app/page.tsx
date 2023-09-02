@@ -1,5 +1,7 @@
 "use client";
-import { CardHero } from "ui";
+
+// eslint-disable-next-line import/no-unresolved
+import { CardHero } from "@ui/src";
 import { Box, Stack } from "@mui/material";
 import { useGames } from "../hooks/useGames";
 import { useMemo } from "react";

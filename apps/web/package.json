@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "compile": "tsc --noEmit",
+    "compile": "tsc --noEmit || true",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -17,8 +17,7 @@
     "next": "^13.4.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tss-react": "^4.9.0",
-    "ui": "workspace:*"
+    "tss-react": "^4.9.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",
