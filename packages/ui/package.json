@@ -6,9 +6,10 @@
   "scripts": {
     "compile": "tsc --noEmit",
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && node scripts/useClient.js",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:client": "node scripts/useClient.js"
   },
   "peerDependencies": {
     "@emotion/react": "^11.11.1",
@@ -45,6 +46,9 @@
   "dependencies": {
     "@mui/icons-material": "^5.14.6",
     "react-hook-form": "^7.45.4",
-    "react-material-ui-carousel": "^3.4.2"
+    "react-material-ui-carousel": "^3.4.2",
+    "react-virtuoso": "^4.5.0",
+    "tss-react": "^4.9.0",
+    "vite-plugin-no-bundle": "^3.0.0"
   }
 }

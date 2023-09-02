@@ -1,0 +1,16 @@
+import { Meta, Source, Story, Canvas } from "@storybook/blocks";
+import { WithTheme } from "../../../../../packages/ui/src/themeHelpers";
+import Modal from "./Modal.example.tsx";
+import data from "./Modal.example.tsx?raw";
+
+<Meta title="Organisms/Modal" component={Modal} />
+
+Ejemplo de Modal
+
+<div style={{ display: "grid", placeItems: "center" }}>
+  <WithTheme>
+    <Modal />
+  </WithTheme>
+</div>
+
+<Source code={data} dark />

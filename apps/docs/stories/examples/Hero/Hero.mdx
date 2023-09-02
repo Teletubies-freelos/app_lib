@@ -1,0 +1,19 @@
+import { Meta, Source, Story, Canvas } from '@storybook/blocks';
+import { WithTheme } from '../../../../../packages/ui/src/themeHelpers'
+import Hero from './Hero.example.tsx'
+import data  from './Hero.example.tsx?raw'
+
+<Meta
+  title="Organisms/Hero"
+  component={Hero}
+/>
+
+Ejemplo de carusel responsivo
+
+<div style={{display: 'grid', placeItems: 'center'}}>
+  <WithTheme>
+    <Hero />
+  </WithTheme>
+</div>
+
+<Source code={data} dark />

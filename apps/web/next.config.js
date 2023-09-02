@@ -4,7 +4,8 @@
 const options = {
   reactStrictMode: true,
   transpilePackages: ["ui"],
-  output: 'export'
+  output: "export",
+  assetPrefix: "./",
 };
 
-module.exports = options
+module.exports = options;

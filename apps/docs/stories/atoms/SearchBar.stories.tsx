@@ -22,6 +22,8 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args:{
     placeHolder: 'Ingresa tu busqueda',
-    searchButtonContent: 'Buscar'
+    searchButtonContent: 'Buscar',
+    direction: 'row',
+    btnVariant: 'outlined',
   }
 };

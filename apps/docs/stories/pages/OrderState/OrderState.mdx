@@ -1,0 +1,16 @@
+import { Meta, Source, Story, Canvas } from "@storybook/blocks";
+import { WithTheme } from "../../../../../packages/ui/src/themeHelpers";
+import OrderState from "./OrderState.page.tsx";
+import data from "./OrderState.page.tsx?raw";
+
+<Meta title="Pages/OrderState" component={OrderState} />
+
+Ejemplo de OrderState
+
+<div style={{ display: "grid", placeItems: "center" }}>
+  <WithTheme>
+    <OrderState />
+  </WithTheme>
+</div>
+
+<Source code={data} dark />
