@@ -25,7 +25,7 @@ jobs:
           version: 8
           run_install: false
       - name: Build ui
-        working-directory: ./apps/docs
+        working-directory: ./packages/ui
         run: |
           pnpm install
           pnpm build
