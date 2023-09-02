@@ -1,4 +1,3 @@
-"use client";
 export { default as Button } from "./atoms/Button";
 export { default as CartIcon } from "./atoms/CartIcon";
 export { default as MainLogo } from "./atoms/MainLogo";
@@ -10,7 +9,6 @@ export { default as Isotype } from "./atoms/Isotype";
 export { default as SearchBar } from "./atoms/SearchBar";
 export { default as LabelStepStatus } from "./atoms/LabelStepStatus";
 export { default as NavBar } from "./molecules/NavBar";
-export { default as Carousel } from "react-material-ui-carousel";
 export { default as CardProduct } from "./molecules/CardProduct";
 export { default as CardHero } from "./molecules/CardHero";
 export { default as DropDown } from "./atoms/Select";
