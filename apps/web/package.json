@@ -21,6 +21,7 @@
     "ui": "workspace:*"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
     "@next/eslint-plugin-next": "^13.4.19",
     "@types/node": "^17.0.12",
     "@types/react": "^18.0.22",

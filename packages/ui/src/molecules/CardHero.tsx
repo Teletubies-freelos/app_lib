@@ -30,7 +30,7 @@ const CardHero = ({ image, alt, onClick, description }: CardHeroProps) => (
       sx={{ borderRadius: ".5rem" }}
       alt={alt}
     />
-    <CardContent sx={{ padding: "8px" }}>{description}</CardContent>
+    <CardContent sx={{ padding: ".5rem" }}>{description}</CardContent>
     <CardActions sx={{ padding: 0 }}>
       <Button
         fullWidth
