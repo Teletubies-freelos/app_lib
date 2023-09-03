@@ -126,6 +126,9 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
+      react-virtuoso:
+        specifier: ^4.5.0
+        version: 4.5.0(react-dom@18.2.0)(react@18.2.0)
       tss-react:
         specifier: ^4.9.0
         version: 4.9.0(@emotion/react@11.11.1)(react@18.2.0)

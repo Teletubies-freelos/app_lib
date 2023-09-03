@@ -1,13 +1,30 @@
 import { useContext } from "react";
 import { DataContext } from "../context/DataContext";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { GamesFilter } from "../services/Games";
 
-export function useGames() {
+interface IOptions {
+  queryKey?: string[];
+  keepPreviousData?: boolean;
+}
+
+export function useGames(filter?: GamesFilter, options?: IOptions) {
   const { gamesClient } = useContext(DataContext);
   const queryData = useQuery({
-    queryKey: ["games"],
-    queryFn: () => gamesClient.getMainOffers(),
+    queryFn: () => gamesClient.getMainOffers(filter),
+    ...options,
   });
 
   return queryData;
+}
+
+export function useInfiniteGames() {
+  const { gamesClient } = useContext(DataContext);
+  const { data, ...rest } = useInfiniteQuery({
+    queryKey: ["products"],
+    queryFn: ({ pageParam = 1 }) =>
+      gamesClient.getMainOffers({ page: pageParam }),
+  });
+
+  return { ...rest, data: data?.pages?.flat() ?? [] };
 }

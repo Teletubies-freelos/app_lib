@@ -40,7 +40,10 @@ export default function CardProduct({
   return (
     <Card sx={cardStyles} className={className}>
       <Box display={"flex"}>
-        <Box width={"30%"} sx={{ display: "grid", placeItems: "center" }}>
+        <Box
+          width={"30%"}
+          sx={{ display: "grid", placeItems: "center", height: "10rem" }}
+        >
           <CardMedia
             component="img"
             alt={alt}

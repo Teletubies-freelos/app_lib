@@ -11,8 +11,9 @@ const axiosClient = axios.create({
 });
 
 const mock = new MockAdapter(axiosClient);
-const fakeDataCarousel = seedCard(5);
 
-mock.onGet(GamesPaths.OFFERS).reply(200, fakeDataCarousel);
+mock.onGet(GamesPaths.OFFERS).reply(({ params }) => {
+  return [200, seedCard(10)];
+});
 
 export const fakeGameClient = new Games(axiosClient);
