@@ -1,51 +1,24 @@
 "use client";
 import { CardHero } from "ui";
-import { Box, Stack } from "@mui/material";
+import { Box } from "@mui/material";
 import { useGames } from "../hooks/useGames";
-import { useMemo } from "react";
-import CarouselHero from "../../../packages/ui/src/layout/CarouselHero";
+import ResponsiveCarousel from "../components/responsiveCarousel";
 
-const groupBy = (items: JSX.Element[], groupSize: number) => {
-  const HeroItemsGroup: JSX.Element[][] = [];
-  for (let i = 0; i < items.length; i += groupSize)
-    HeroItemsGroup.push(items.slice(i, i + 3));
-
-  return HeroItemsGroup;
-};
+const render = ({ imgUrl, description }) => (
+  <CardHero
+    key={imgUrl}
+    alt=""
+    image={imgUrl}
+    description={description}
+  />
+)
 
 export default function Page() {
   const { data } = useGames();
 
-  const HeroItems = useMemo(
-    () =>
-      data?.map(({ imgUrl, description }) => (
-        <CardHero
-          key={imgUrl}
-          alt=""
-          image={imgUrl}
-          description={description}
-        />
-      )) ?? [],
-    [data],
-  );
-
-  const HeroItemsGroup = useMemo(
-    () => groupBy(HeroItems ?? [], 3),
-    [HeroItems],
-  );
-
   return (
     <Box sx={{ width: "100%" }}>
-      <CarouselHero sx={{ display: { md: "block", xs: "none" } }}>
-        {HeroItemsGroup.map((items, index) => (
-          <Stack gap={2} direction="row" key={index} justifyContent="center">
-            {items}
-          </Stack>
-        ))}
-      </CarouselHero>
-      <CarouselHero sx={{ display: { md: "none", xs: "block" } }}>
-        {HeroItems}
-      </CarouselHero>
+     <ResponsiveCarousel data={data ?? []} itemRender={render}/>
     </Box>
   );
 }
