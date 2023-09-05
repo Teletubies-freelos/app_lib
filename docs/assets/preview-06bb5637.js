@@ -1,0 +1,2 @@
+import{a as r}from"./jsx-runtime-692dcd6a.js";import{W as e}from"./WithTheme-7dfc2a91.js";import"./index-a8142830.js";import"./_commonjsHelpers-23102255.js";import"./appGames-4dcb3c69.js";import"./extends-eaf302a3.js";const c={decorators:[o=>r(e,{children:r(o,{})})],parameters:{actions:{argTypesRegex:"^on[A-Z].*"},controls:{expanded:!0,matchers:{color:/(background|color)$/i,date:/Date$/}}}};export{c as default};
+//# sourceMappingURL=preview-06bb5637.js.map
