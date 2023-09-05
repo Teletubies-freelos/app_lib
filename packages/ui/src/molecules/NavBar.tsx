@@ -3,7 +3,6 @@ import MainLogo from "../atoms/MainLogo";
 import SearchBar from "../atoms/SearchBar";
 import { SubmitHandler } from "react-hook-form";
 import type { ISearch } from "../atoms/SearchBar";
-import { useCallback } from "react";
 
 interface NavBarProps {
   onSearch?: SubmitHandler<ISearch>;
@@ -19,30 +18,26 @@ const sxMainBar = {
 };
 
 export default function NavBar({ onSearch, cartComponent }: NavBarProps) {
-  const Search = useCallback(
-    () => (
-      <SearchBar
-        searchButtonContent="Buscar"
-        onSubmit={onSearch as SubmitHandler<ISearch>}
-      />
-    ),
-    [onSearch],
-  );
-
   return (
     <Toolbar sx={{ flexDirection: "column" }}>
       <Box sx={sxMainBar}>
         <MainLogo />
         {onSearch && (
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            <Search />
+            <SearchBar
+              searchButtonContent="Buscar"
+              onSubmit={onSearch as SubmitHandler<ISearch>}
+            />
           </Box>
         )}
         {cartComponent}
       </Box>
       {onSearch && (
         <Box sx={{ display: { xs: "block", sm: "none" } }}>
-          <Search />
+          <SearchBar
+            searchButtonContent="Buscar"
+            onSubmit={onSearch as SubmitHandler<ISearch>}
+          />
         </Box>
       )}
     </Toolbar>
