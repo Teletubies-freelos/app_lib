@@ -1,16 +1,9 @@
-import { VirtuosoGrid } from "react-virtuoso";
+import type { SxProps } from "@mui/material";
+import { Box, MenuItem, Paper, Typography, styled } from "@mui/material";
+import type { MouseEventHandler } from "react";
 import { useState } from "react";
-
-import { CardProduct, DropDown, Isotype } from "../../../../../packages/ui/src";
-import { CardProductProps } from "ui/src/molecules/CardProduct";
-import {
-  Box,
-  MenuItem,
-  Paper,
-  SxProps,
-  Typography,
-  styled,
-} from "@mui/material";
+import { CardProduct, DropDown, Isotype } from "ui";
+import { VirtuosoGrid } from "react-virtuoso";
 
 const defaultProducts = Array.from({ length: 10 }).map(() => ({
   alt: "Spiderman",
@@ -21,28 +14,24 @@ const defaultProducts = Array.from({ length: 10 }).map(() => ({
   previousPrice: 189,
 }));
 
-const Loading = () => <Typography>Loading</Typography>;
+interface CardProductProps {
+  alt: string;
+  src: string;
+  title: string;
+  description: string;
+  price: number;
+  previousPrice?: number;
+  onAdd?: MouseEventHandler<HTMLButtonElement>;
+  className?: string;
+}
 
-const ItemContent = (_index: number, product: CardProductProps) => (
-  <CardProduct {...product} />
-);
+function Loading() {
+  return <Typography>Loading</Typography>;
+}
 
-//@ts-ignore
-const ListContainer: any = styled("div")({
-  display: "flex",
-  flexWrap: "wrap",
-  gap: "2rem",
-});
-
-//@ts-ignore
-const ItemContainer: any = styled("div")(({ theme }) => ({
-  [theme.breakpoints.down("md")]: {
-    width: "unset",
-  },
-  [theme.breakpoints.up("md")]: {
-    width: "calc(50% - 1rem)",
-  },
-}));
+function ItemContent(_index: number, product: CardProductProps) {
+  return <CardProduct {...product} />;
+}
 
 const sxProductListHeader: SxProps = {
   display: "flex",
@@ -52,6 +41,21 @@ const sxProductListHeader: SxProps = {
   gap: 2,
 };
 
+const ListContainer: any = styled("div")({
+  display: "flex",
+  flexWrap: "wrap",
+  gap: "2rem",
+});
+
+const ItemContainer: any = styled("div")(({ theme }) => ({
+  [theme.breakpoints.down("md")]: {
+    width: "unset",
+  },
+  [theme.breakpoints.up("md")]: {
+    width: "calc(50% - 1rem)",
+  },
+}));
+
 export default function ProductsList() {
   const [products, setProducts] = useState(defaultProducts);
 
@@ -60,6 +64,10 @@ export default function ProductsList() {
       setProducts((prev) => [...prev, ...defaultProducts]);
     }, 1000);
   };
+
+  if (typeof window === "undefined") {
+    return null;
+  }
 
   return (
     <Paper sx={{ width: "100%", padding: "1rem", marginTop: 10 }}>
@@ -73,17 +81,17 @@ export default function ProductsList() {
         </DropDown>
       </Box>
       <VirtuosoGrid
-        useWindowScroll
-        style={{ height: 300 }}
-        data={products}
-        endReached={loadMore}
-        overscan={10}
-        itemContent={ItemContent}
         components={{
           Footer: Loading,
           Item: ItemContainer,
           List: ListContainer,
         }}
+        data={products}
+        endReached={loadMore}
+        itemContent={ItemContent}
+        overscan={10}
+        style={{ height: 300 }}
+        useWindowScroll
       />
     </Paper>
   );
