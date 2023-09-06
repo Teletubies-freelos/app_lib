@@ -70,7 +70,7 @@ export default function ProductsList() {
   }
 
   return (
-    <Paper sx={{ width: "100%", padding: "1rem", marginTop: 10 }}>
+    <Paper sx={{ width: "100%", padding: "1rem" }}>
       <Box sx={sxProductListHeader}>
         <Isotype />
         <DropDown sxForm={{ width: { xs: "90%", md: "30%" } }}>
