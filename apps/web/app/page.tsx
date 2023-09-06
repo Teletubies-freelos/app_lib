@@ -8,7 +8,7 @@ import {
 } from "ui";
 import NavBar from "../../../packages/ui/src/molecules/NavBar";
 import CartIcon from "../../../packages/ui/src/atoms/CartIcon";
-import { Stack } from "@mui/material";
+import { Stack, SxProps } from "@mui/material";
 import { useGames } from "../hooks/useGames";
 import ResponsiveCarousel from "../components/responsiveCarousel";
 import ProductsList from "../components/productList";
@@ -22,7 +22,7 @@ const render = ({ imgUrl, description }) => (
 export default function Page() {
   const { data } = useGames();
 
-  const noMargin = { margin: "0 !important" };
+  const noMargin: SxProps = { margin: "0 !important" };
 
   return (
     <GeneralLayout
