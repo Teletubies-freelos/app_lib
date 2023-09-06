@@ -25,6 +25,7 @@ const cardStyles = {
   minWidth: "20rem",
   boxShadow: "none",
   borderRadius: "1rem",
+  height: "10rem",
 };
 
 export default function CardProduct({
@@ -39,25 +40,26 @@ export default function CardProduct({
 }: CardProductProps) {
   return (
     <Card sx={cardStyles} className={className}>
-      <Box display={"flex"}>
-        <Box width={"30%"} sx={{ display: "grid", placeItems: "center" }}>
-          <CardMedia
-            component="img"
-            alt={alt}
-            src={src}
-            height={"80%"}
-            width={"100%"}
-            sx={{
-              objectFit: "contain",
-            }}
-          />
-        </Box>
+      <Box display={"flex"} height="100%">
+        <CardMedia
+          component="img"
+          alt={alt}
+          src={src}
+          height={"100%"}
+          sx={{
+            objectFit: "contain",
+            margin: "auto 0",
+            padding: "1rem",
+            width: "unset",
+          }}
+        />
         <CardContent
           sx={{
             padding: "1rem !important",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
+            width: "70%",
           }}
         >
           <Box>

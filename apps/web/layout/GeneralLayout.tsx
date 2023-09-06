@@ -33,7 +33,7 @@ export function GeneralLayout({
           paddingRight: "1rem",
         }}
       >
-        <WhatsappLogo />
+        <WhatsappLogo sx={{ cursor: "pointer" }} />
       </Box>
     </Box>
   );

@@ -42,17 +42,19 @@ const sxProductListHeader: SxProps = {
 };
 
 const ListContainer: any = styled("div")({
+  width: "100%",
   display: "flex",
+  justifyContent: "space-between",
   flexWrap: "wrap",
   gap: "2rem",
 });
 
 const ItemContainer: any = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
-    width: "unset",
+    width: "100%",
   },
   [theme.breakpoints.up("md")]: {
-    width: "calc(50% - 1rem)",
+    width: "calc(48% - 1rem)",
   },
 }));
 
@@ -70,7 +72,17 @@ export default function ProductsList() {
   }
 
   return (
-    <Paper sx={{ width: "100%", padding: "1rem" }}>
+    <Paper
+      sx={{
+        width: "100%",
+        padding: {
+          xs: "2rem 1rem",
+          sm: "2rem 3.5rem",
+          md: "2rem 5.5rem",
+          lg: "2rem 7.5rem",
+        },
+      }}
+    >
       <Box sx={sxProductListHeader}>
         <Isotype />
         <DropDown sxForm={{ width: { xs: "90%", md: "30%" } }}>
