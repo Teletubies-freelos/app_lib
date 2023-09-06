@@ -40,7 +40,7 @@ export default function Modal() {
             img={image}
             title="Spidermaan Marvel PS4"
             price="S/ 120.00"
-            quantity={<Quantity />}
+            quantity={<Quantity quantity={10} changeQuantity={()=>4} onDelete={()=>5} />}
           />
         ))}
       </Box>

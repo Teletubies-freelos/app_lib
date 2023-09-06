@@ -19,7 +19,7 @@ const sxMainBar = {
 
 export default function NavBar({ onSearch, cartComponent }: NavBarProps) {
   return (
-    <Toolbar sx={{ flexDirection: "column" }}>
+    <Toolbar sx={{ flexDirection: "column", marginBottom: "3rem" }}>
       <Box sx={sxMainBar}>
         <MainLogo />
         {onSearch && (
