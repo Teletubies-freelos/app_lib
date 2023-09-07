@@ -13,7 +13,11 @@ export default function OrderSearch() {
       justifyContent={"space-between"}
       sx={{ height: "40rem" }}
     >
-      <NavBar cartComponent={<CartIcon />} onSearch={console.log} />
+      <NavBar
+        cartComponent={<CartIcon />}
+        onSearch={console.log}
+        mainLogo={<MainLogo />}
+      />
       <Box sx={{ width: { xs: "100%", sm: "25rem" }, margin: "auto" }}>
         <Typography variant="h3" sx={{ marginBottom: "2rem" }}>
           Ingresa tu número de pedido

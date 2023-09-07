@@ -15,9 +15,11 @@ const CarouselHero = ({ children, sx }: CarouselHeroProps) => {
         "& .navButtonsClassName": {
           background: "none !important",
           color: theme.palette.text.primary,
+          border: "none",
         },
         "& .activeIndicatorClassName": {
           color: `${theme.palette.primary.main} !important`,
+          border: "none",
         },
         "& .indicatorClassName": {
           color: theme.palette.background.paper,

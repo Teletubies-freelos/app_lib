@@ -1,3 +1,4 @@
+"use client";
 import { Box, Typography, SxProps } from "@mui/material";
 import { tss } from "tss-react/mui";
 
@@ -7,21 +8,21 @@ export interface LabelStepStatusProps {
   sx?: SxProps;
 }
 
-const LabelStatusStyles = tss.create(({ theme }) => ({
-  propertyStyle: {
-    fontWeight: 600,
-  },
-  valueStyle: {
-    color: theme.palette.text.secondary,
-    fontSize: "1rem",
-  },
-}));
-
 export default function LabelStepStatus({
   property,
   value,
   sx,
 }: LabelStepStatusProps) {
+  const LabelStatusStyles = tss.create(({ theme }) => ({
+    propertyStyle: {
+      fontWeight: 600,
+    },
+    valueStyle: {
+      color: theme.palette.text.secondary,
+      fontSize: "1rem",
+    },
+  }));
+
   const { classes } = LabelStatusStyles();
 
   return (

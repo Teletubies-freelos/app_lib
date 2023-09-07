@@ -1,12 +1,12 @@
 import { Box, Toolbar } from "@mui/material";
-import MainLogo from "../atoms/MainLogo";
 import SearchBar from "../atoms/SearchBar";
 import { SubmitHandler } from "react-hook-form";
 import type { ISearch } from "../atoms/SearchBar";
-
 interface NavBarProps {
-  onSearch?: SubmitHandler<ISearch>;
   cartComponent?: JSX.Element;
+  mainLogo?: JSX.Element;
+  navigatorLinks?: JSX.Element;
+  onSearch?: SubmitHandler<ISearch>;
 }
 
 const sxMainBar = {
@@ -17,23 +17,31 @@ const sxMainBar = {
   alignItems: "center",
 };
 
-export default function NavBar({ onSearch, cartComponent }: NavBarProps) {
+export default function NavBar({
+  cartComponent,
+  mainLogo,
+  navigatorLinks,
+  onSearch,
+}: NavBarProps) {
   return (
     <Toolbar sx={{ flexDirection: "column", marginBottom: "3rem" }}>
       <Box sx={sxMainBar}>
-        <MainLogo />
+        {mainLogo}
         {onSearch && (
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+          <Box sx={{ display: { xs: "none", md: "block" }, width: "40%" }}>
             <SearchBar
               searchButtonContent="Buscar"
               onSubmit={onSearch as SubmitHandler<ISearch>}
             />
           </Box>
         )}
-        {cartComponent}
+        <Box display="flex" justifyContent="end" alignItems="center" gap="1rem">
+          {navigatorLinks}
+          {cartComponent}
+        </Box>
       </Box>
       {onSearch && (
-        <Box sx={{ display: { xs: "block", sm: "none" } }}>
+        <Box sx={{ display: { xs: "block", md: "none" } }}>
           <SearchBar
             searchButtonContent="Buscar"
             onSubmit={onSearch as SubmitHandler<ISearch>}
