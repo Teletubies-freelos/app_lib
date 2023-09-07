@@ -1,16 +1,17 @@
 import { Box } from "@mui/material";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { WhatsappLogo } from "../../../packages/ui/src";
+import { useCart } from "../hooks/useCart";
+import CartFloat from "../components/CartFloat";
 
 interface GeneralLayoutProps {
-  navbar: JSX.Element;
+  isShowSearch?: boolean;
+  navBar: JSX.Element;
 }
 
-// component props with children
-
 export function GeneralLayout({
-  navbar,
   children,
+  navBar,
 }: PropsWithChildren<GeneralLayoutProps>) {
   return (
     <Box
@@ -21,7 +22,7 @@ export function GeneralLayout({
         height: "100vh",
       }}
     >
-      {navbar}
+      {navBar}
       {children}
       <Box
         display="flex"
@@ -35,6 +36,7 @@ export function GeneralLayout({
       >
         <WhatsappLogo sx={{ cursor: "pointer" }} />
       </Box>
+      <CartFloat />
     </Box>
   );
 }

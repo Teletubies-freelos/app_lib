@@ -1,35 +1,48 @@
 "use client";
 import {
   CardHero,
+  CartIcon,
+  MainLogo,
   NintendoLogo,
   PlayStation4Logo,
   PlayStation5Logo,
   XboxLogo,
 } from "ui";
 import NavBar from "../../../packages/ui/src/molecules/NavBar";
-import CartIcon from "../../../packages/ui/src/atoms/CartIcon";
-import { Stack, SxProps } from "@mui/material";
+import type { SxProps } from "@mui/material";
+import { Stack } from "@mui/material";
 import { useGames } from "../hooks/useGames";
 import ResponsiveCarousel from "../components/responsiveCarousel";
 import ProductsList from "../components/productList";
-import { sxInnerStack } from "./styles";
 import { GeneralLayout } from "../layout/GeneralLayout";
+import { sxInnerStack } from "./styles";
+import { useCart } from "../hooks/useCart";
+import NavLinks from "../components/NavLinks";
+import Link from "next/link";
 
 const render = ({ imgUrl, description }) => (
-  <CardHero key={imgUrl} alt="" image={imgUrl} description={description} />
+  <CardHero alt="" description={description} image={imgUrl} key={imgUrl} />
 );
 
 export default function Page() {
   const { data } = useGames();
-
+  const { changeFloatCart } = useCart();
   const noMargin: SxProps = { margin: "0 !important" };
 
   return (
     <GeneralLayout
-      navbar={
+      navBar={
         <NavBar
-          onSearch={() => 5}
-          cartComponent={<CartIcon size="medium" qty={2} onClick={() => 6} />}
+          cartComponent={
+            <CartIcon onClick={changeFloatCart} qty={2} size="medium" />
+          }
+          navigatorLinks={<NavLinks />}
+          mainLogo={
+            <Link href="/">
+              <MainLogo />
+            </Link>
+          }
+          onSearch={() => 3}
         />
       }
     >
