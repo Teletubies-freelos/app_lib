@@ -1,17 +1,29 @@
-import { AxiosInstance } from "axios";
-import { GamesPaths } from "./constans";
+import { type  GraphQLClient, gql } from 'graphql-request'
 
 interface IOffer {
-  imgUrl: string;
-  description: string;
-  price: number;
+  img_url?: string;
+  description?: string;
+  price?: number;
+  id: number;
 }
 
 export class Games {
-  constructor(private client: AxiosInstance) {}
+  private static GET_MAIN_OFFERS = gql`
+    query GET_MAIN_OFFERS($limit: Int!) {
+      games(limit: $limit) {
+        description
+        id
+        img_url
+      }
+    }`
+  constructor(private client: GraphQLClient) {}
 
-  async getMainOffers() {
-    const { data } = await this.client.get<IOffer[]>(GamesPaths.OFFERS);
-    return data;
+
+  async getMainOffers(limit = 10) {
+    const { games } = await this.client
+      .request<{games: IOffer[]}>(Games.GET_MAIN_OFFERS, {limit})
+
+    console.log(games)
+    return games;
   }
 }

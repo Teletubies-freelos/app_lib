@@ -19,14 +19,14 @@ import { useGames } from "../hooks/useGames";
 import { sxInnerStack } from "./styles";
 
 interface IRender {
-  imgUrl: string;
-  description: string;
+  img_url?: string;
+  description?: string;
 }
 
 const noMargin: SxProps = { margin: "0 !important" };
 
-const render = ({ imgUrl, description }: IRender) => (
-  <CardHero alt="" description={description} image={imgUrl} key={imgUrl} />
+const render = ({ img_url = "", description = ""}: IRender) => (
+  <CardHero alt="" description={description} image={img_url} key={img_url ?? ""} />
 );
 
 export default function Home() {
