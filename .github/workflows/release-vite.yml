@@ -1,7 +1,7 @@
 on:
   push:
     tags:
-      - "web2*"
+      - "web-static*"
     paths:
       - "apps/web2/**"
 
