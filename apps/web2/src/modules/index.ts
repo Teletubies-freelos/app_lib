@@ -1,13 +1,12 @@
 import { Games } from "../services/Games";
 
-import {  GraphQLClient } from 'graphql-request'
+import { GraphQLClient } from 'graphql-request'
 
 const headers = new Headers({
-  "x-hasura-admin-secret": "XOp9ZBvpRmoexOWBS2BgG7ZHh526PEArnzdFzJX84vKOxiO6J16Tm9BGdSP0pEVr"
-
+  "x-hasura-admin-secret": import.meta.env.VITE_HASURA_SECRET
 })
 
-export const mainClient = new GraphQLClient('https://harmless-caiman-36.hasura.app/v1/graphql', {
+export const mainClient = new GraphQLClient(import.meta.env.VITE_HASURA_BASE_URL, {
   headers
 });
 
