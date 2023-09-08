@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import {
   CardHero,
   CartIcon,
+  ColorSwitch,
   MainLogo,
   NavBar,
   NintendoLogo,
@@ -17,6 +18,7 @@ import { useCart } from "../hooks/useCart";
 import NavLinks from "../components/NavLinks";
 import { useGames } from "../hooks/useGames";
 import { sxInnerStack } from "./styles";
+import { useToggleColor } from "../providers/theme";
 
 interface IRender {
   img_url?: string;
@@ -33,10 +35,13 @@ export default function Home() {
   const { data } = useGames();
   const { changeFloatCart } = useCart();
 
+  const toggleColor = useToggleColor()
+
   return (
     <GeneralLayout
       navBar={
         <NavBar
+          actionsComponent={<ColorSwitch onChange={toggleColor} overrideCheckBg/>}
           cartComponent={
             <CartIcon onClick={changeFloatCart} qty={2} size="medium" />
           }

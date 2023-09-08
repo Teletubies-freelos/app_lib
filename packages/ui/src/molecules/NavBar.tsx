@@ -2,11 +2,13 @@ import { Box, Toolbar } from "@mui/material";
 import SearchBar from "../atoms/SearchBar";
 import { SubmitHandler } from "react-hook-form";
 import type { ISearch } from "../atoms/SearchBar";
+
 interface NavBarProps {
   cartComponent?: JSX.Element;
   mainLogo?: JSX.Element;
   navigatorLinks?: JSX.Element;
   onSearch?: SubmitHandler<ISearch>;
+  actionsComponent?: JSX.Element;
 }
 
 const sxMainBar = {
@@ -21,6 +23,7 @@ export default function NavBar({
   cartComponent,
   mainLogo,
   navigatorLinks,
+  actionsComponent,
   onSearch,
 }: NavBarProps) {
   return (
@@ -31,10 +34,11 @@ export default function NavBar({
           <Box sx={{ display: { xs: "none", md: "block" }, width: "40%" }}>
             <SearchBar
               searchButtonContent="Buscar"
-              onSubmit={onSearch as SubmitHandler<ISearch>}
+              onSubmit={onSearch}
             />
           </Box>
         )}
+      {actionsComponent}
         <Box display="flex" justifyContent="end" alignItems="center" gap="1rem">
           {navigatorLinks}
           {cartComponent}
@@ -44,7 +48,7 @@ export default function NavBar({
         <Box sx={{ display: { xs: "block", md: "none" } }}>
           <SearchBar
             searchButtonContent="Buscar"
-            onSubmit={onSearch as SubmitHandler<ISearch>}
+            onSubmit={onSearch}
           />
         </Box>
       )}

@@ -2,15 +2,16 @@ import { Switch } from "@mui/material";
 
 // @ts-ignore
 import moonSvg from './moon.svg'
+import { ChangeEventHandler } from "react";
 
 export interface ColorSwitchProps{
   moonUrl?: string;
   overrideCheckBg?: boolean;
+  onChange?: ChangeEventHandler
 }
 
-export default function ColorSwitch ({moonUrl = `url(${moonSvg})`, overrideCheckBg}: ColorSwitchProps){
-
-  return <Switch sx={(theme)=>({
+export default function ColorSwitch ({moonUrl = `url(${moonSvg})`, overrideCheckBg, onChange }: ColorSwitchProps){
+  return <Switch onChange={onChange} defaultChecked sx={(theme)=>({
     padding: 0.2,
     '& .MuiSwitch-track':{
       borderRadius: '2rem',
