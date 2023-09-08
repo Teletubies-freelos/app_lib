@@ -1,4 +1,4 @@
-import { Games } from "../services/Games";
+import { GamesGraphQL } from "../services/Games";
 
 import { GraphQLClient } from 'graphql-request'
 
@@ -10,11 +10,11 @@ export const mainClient = new GraphQLClient(import.meta.env.VITE_HASURA_BASE_URL
   headers
 });
 
-export const games = new Games(mainClient);
+export const games = new GamesGraphQL(mainClient);
 
 declare global {
   interface Window{
-    gamesClient: Games;
+    gamesClient: GamesGraphQL;
   }
 }
 
