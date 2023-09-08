@@ -20,14 +20,6 @@ export interface CardProductProps {
   className?: string;
 }
 
-const cardStyles = {
-  backgroundColor: "#fff",
-  minWidth: "20rem",
-  boxShadow: "none",
-  borderRadius: "1rem",
-  height: "10rem",
-};
-
 export default function CardProduct({
   alt,
   src,
@@ -39,7 +31,16 @@ export default function CardProduct({
   className,
 }: CardProductProps) {
   return (
-    <Card sx={cardStyles} className={className}>
+    <Card 
+      sx={({palette})=>({
+        background: palette.background.default,
+        minWidth: "20rem",
+        boxShadow: "none",
+        borderRadius: "1rem",
+        height: "10rem",
+      })} 
+      className={className}
+    >
       <Box display={"flex"} height="100%">
         <CardMedia
           component="img"

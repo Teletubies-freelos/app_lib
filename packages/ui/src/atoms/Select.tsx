@@ -18,7 +18,7 @@ export interface IOption {
 export interface SelectFilterProps<T extends IOption = IOption> {
   items?: T[];
   sxForm?: SxProps;
-  sxSelect?: SxProps;
+  sxSelect?: Record<string, unknown>;
   onChange?: (event: SelectChangeEvent) => void;
 }
 
@@ -58,7 +58,7 @@ export default function SelectFilter({
         open={isOpen}
         defaultValue={String(1)}
         IconComponent={ArrowDown}
-        sx={{ backgroundColor: "white", ...sxSelect }}
+        sx={({palette})=>({ backgroundColor: palette.background.default, ...sxSelect })}
       >
         {items?.map(({ label, value }) => (
           <MenuItem value={value} key={label + value}>

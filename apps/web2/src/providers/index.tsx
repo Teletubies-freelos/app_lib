@@ -1,9 +1,8 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { PropsWithChildren, useState } from "react";
 import DataProvider from "../context/DataProvider";
-import { CssBaseline, ThemeProvider } from "@mui/material";
-import { defaultTheme } from "../../../../packages/ui/src";
 import { games } from "../modules";
+import { ThemeProvider } from "./theme";
 
 const queryClient = new QueryClient();
 
@@ -15,8 +14,7 @@ export default function Providers({ children }: PropsWithChildren) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={defaultTheme}>
-        <CssBaseline />
+     <ThemeProvider>
         <DataProvider
           gamesClient={games}
           openCartFloat={openCartFloat}
