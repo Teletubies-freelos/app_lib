@@ -12,11 +12,5 @@ export const mainClient = new GraphQLClient(import.meta.env.VITE_HASURA_BASE_URL
 
 export const games = new GamesGraphQL(mainClient);
 
-declare global {
-  interface Window{
-    gamesClient: GamesGraphQL;
-  }
-}
-
 if(import.meta.env.DEV)
   window.gamesClient = games;

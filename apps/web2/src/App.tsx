@@ -6,13 +6,11 @@ import { CircularProgress } from "@mui/material";
 
 function App() {
   return (
-    <>
-      <Providers>
-        <Suspense fallback={<CircularProgress />}>
-          <RouterProvider router={router} />
-        </Suspense>
-      </Providers>
-    </>
+    <Providers>
+      <Suspense fallback={<CircularProgress />}>
+        <RouterProvider router={router} />
+      </Suspense>
+    </Providers>
   );
 }
 
