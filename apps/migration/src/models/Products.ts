@@ -6,7 +6,7 @@ export interface ProductsDAO {
   name: string;
   description: string;
   price: number;
-  image_url: string;
+  img_url: string;
   quantity: number;
 }
 
