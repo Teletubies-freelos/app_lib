@@ -17,7 +17,7 @@ export interface Games{
 export class GamesAxios implements Games{
   constructor(private client: AxiosInstance){}
 
-   async getMainOffers() {
+  async getMainOffers() {
     const { data } = await this.client.get<IOffer[]>(GamesPaths.OFFERS);
 
     return data;
