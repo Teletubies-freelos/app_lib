@@ -8,6 +8,7 @@ import {
   NintendoLogo,
   PlayStation4Logo,
   PlayStation5Logo,
+  SearchBar,
   XboxLogo,
 } from "../../../../packages/ui/src";
 import { GeneralLayout } from "../layout/GeneralLayout";
@@ -25,25 +26,33 @@ interface IRender {
   description?: string;
 }
 
-
-
-const render = ({ img_url = "", description = ""}: IRender) => (
-  <CardHero alt="" description={description} image={img_url} key={img_url ?? ""} />
+const render = ({ img_url = "", description = "" }: IRender) => (
+  <CardHero
+    alt=""
+    description={description}
+    image={img_url}
+    key={img_url ?? ""}
+  />
 );
 
 export default function Home() {
   const { data } = useGames();
   const { changeFloatCart } = useCart();
 
-  const toggleColor = useToggleColor()
-  const theme = useTheme()
-  const noMargin: SxProps = { margin: "0 !important",filter: theme.palette.mode == 'dark' ? 'invert(1)' : 'invert(0)' };
+  const toggleColor = useToggleColor();
+  const theme = useTheme();
+  const noMargin: SxProps = {
+    margin: "0 !important",
+    filter: theme.palette.mode == "dark" ? "invert(1)" : "invert(0)",
+  };
 
   return (
     <GeneralLayout
       navBar={
         <NavBar
-          actionsComponent={<ColorSwitch onChange={toggleColor} overrideCheckBg/>}
+          actionsComponent={
+            <ColorSwitch onChange={toggleColor} overrideCheckBg />
+          }
           cartComponent={
             <CartIcon onClick={changeFloatCart} qty={2} size="medium" />
           }
@@ -53,7 +62,14 @@ export default function Home() {
               <MainLogo />
             </Link>
           }
-          onSearch={() => 3}
+          searchBar={
+            <SearchBar
+              searchButtonContent="Buscar"
+              onSubmit={() => 4}
+              btnVariant="contained"
+              stylesButton={{ sx: { textTransform: "capitalize" } }}
+            />
+          }
         />
       }
     >
