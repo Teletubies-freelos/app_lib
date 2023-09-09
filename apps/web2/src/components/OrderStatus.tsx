@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { MainLogo, SearchBar } from "../../../../packages/ui/src";
+import { Button, MainLogo, SearchBar } from "../../../../packages/ui/src";
 
 export default function OrderStatus() {
   return (
@@ -22,11 +22,10 @@ export default function OrderStatus() {
           Ingresa tu número de pedido
         </Typography>
         <SearchBar
-          btnVariant="contained"
           direction="column"
           onSubmit={() => 3}
           placeHolder="ABC123"
-          searchButtonContent="Buscar"
+          buttonSearch={<Button label="buscar" variant="contained" />}
         />
       </Box>
       <Box

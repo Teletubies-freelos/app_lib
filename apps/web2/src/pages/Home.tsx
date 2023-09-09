@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import {
+  Button,
   CardHero,
   CartIcon,
   ColorSwitch,
@@ -64,10 +65,8 @@ export default function Home() {
           }
           searchBar={
             <SearchBar
-              searchButtonContent="Buscar"
               onSubmit={() => 4}
-              btnVariant="contained"
-              stylesButton={{ sx: { textTransform: "capitalize" } }}
+              buttonSearch={<Button label="buscar" variant="contained" />}
             />
           }
         />

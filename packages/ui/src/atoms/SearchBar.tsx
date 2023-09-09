@@ -1,12 +1,5 @@
-import { ReactNode } from "react";
 import { SearchOutlined } from "@mui/icons-material";
-import {
-  Button,
-  InputAdornment,
-  Stack,
-  TextField,
-  type ButtonProps,
-} from "@mui/material";
+import { InputAdornment, Stack, TextField } from "@mui/material";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 export interface ISearch {
@@ -14,20 +7,16 @@ export interface ISearch {
 }
 interface SearchBarProps {
   placeHolder?: string;
-  searchButtonContent?: ReactNode;
   direction?: "row" | "column";
-  btnVariant?: "text" | "outlined" | "contained";
-  stylesButton?: ButtonProps;
   onSubmit: SubmitHandler<ISearch>;
+  buttonSearch?: JSX.Element;
 }
 
 export default function SearchBar({
   placeHolder,
-  searchButtonContent,
   direction = "row",
-  btnVariant = "outlined",
-  stylesButton,
   onSubmit,
+  buttonSearch,
 }: SearchBarProps) {
   const { register, handleSubmit } = useForm<ISearch>();
 
@@ -63,9 +52,7 @@ export default function SearchBar({
         }}
         variant="outlined"
       />
-      <Button variant={btnVariant} {...stylesButton}>
-        {searchButtonContent}
-      </Button>
+      {buttonSearch}
     </Stack>
   );
 }
