@@ -36,7 +36,7 @@ export default function CardProduct({
         background: palette.background.default,
         minWidth: "20rem",
         boxShadow: "none",
-        borderRadius: "1rem",
+        borderRadius: ".25rem",
         height: "10rem",
       })} 
       className={className}
@@ -65,7 +65,7 @@ export default function CardProduct({
         >
           <Box>
             <Typography variant="h3">{title}</Typography>
-            <Typography variant="body1">{description}</Typography>
+            <Typography variant="body1" sx={{marginTop:'.5rem'}}>{description}</Typography>
           </Box>
           <Box>
             {!!previousPrice && (
@@ -76,7 +76,7 @@ export default function CardProduct({
                 S/ {previousPrice}
               </Typography>
             )}
-            <Typography variant="body2" sx={{ fontSize: "1.1em" }}>
+            <Typography variant="body2" sx={{ fontSize: "1.1em",color: (theme)=> theme.palette.text.primary }}>
               S/ {price}
             </Typography>
           </Box>

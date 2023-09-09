@@ -1,4 +1,5 @@
 import type { Knex } from "knex";
+import "dotenv/config"
 
 // Update with your config settings.
 const migrationsDirectory = './src/migrations';
@@ -31,16 +32,17 @@ const config: { [key: string]: Knex.Config } = {
     },
     migrations: {
       directory: migrationsDirectory,
-      tableName: "knex_migrations"
+      tableName: "knex_migrations",
     }
   },
 
   production: {
-    client: "postgresql",
+    client: "pg",
     connection: {
-      database: "my_db",
-      user: "username",
-      password: "password"
+      database: process.env.DB_NAME,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASS,
+      host: process.env.DB_HOST
     },
     pool: {
       min: 2,
@@ -48,7 +50,11 @@ const config: { [key: string]: Knex.Config } = {
     },
     migrations: {
       directory: migrationsDirectory,
-      tableName: "knex_migrations"
+      tableName: "knex_migrations",
+      schemaName: 'public'
+    },
+    seeds:{
+      directory: seedsDirectory
     }
   }
 

@@ -8,10 +8,10 @@ export class ProductFactory implements Factory<PartialBy<ProductsDAO, 'id'>>{
   createOne(){
     return {
       description: faker.commerce.productDescription() ,
-      image_url: faker.image.urlLoremFlickr({category: 'games'}),
+      img_url: faker.image.urlLoremFlickr({category: 'games'}),
       name: faker.commerce.productName(),
-      price: Number(faker.commerce.price()),
-      quantity: faker.number.int()
+      price: Number(faker.number.float({max:1000}).toFixed(2)),
+      quantity: faker.number.int({max:100})
     }
   }
   createMany(quantity = 50) {

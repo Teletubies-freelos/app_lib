@@ -7,18 +7,14 @@ import {
   type SxProps,
 } from "@mui/material";
 import type { MouseEventHandler } from "react";
-import { useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { CardProduct, DropDown, Isotype } from "../../../../packages/ui/src";
 import { VirtuosoGrid } from "react-virtuoso";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { useGames } from "../hooks/useGames";
+import { DataContext } from "../context/DataContext";
 
-const defaultProducts = Array.from({ length: 16 }).map(() => ({
-  alt: "Spiderman",
-  description: "Juego de Spiderman",
-  price: 188,
-  src: "https://m.media-amazon.com/images/I/815aKWcEkEL.jpg",
-  title: "Spiderman",
-  previousPrice: 189,
-}));
+
 
 interface CardProductProps {
   alt: string;
@@ -65,13 +61,23 @@ const ItemContainer: any = styled("div")(({ theme }) => ({
 }));
 
 export default function ProductsList() {
-  const [products, setProducts] = useState(defaultProducts);
+  const { gamesClient } = useContext(DataContext);
+  const {data, fetchNextPage} = useInfiniteQuery({
+    queryKey: ["list_games"],
+    queryFn: ({pageParam=0}) => gamesClient.getPaginatedGames({paginated: {limit: 10, offset: pageParam * 10}}),
+    getNextPageParam: (_lastPage, pages) => pages.length/10 ,
+  })
+
+  const products:CardProductProps[] | undefined = useMemo(()=> data?.pages.flat().map(({name,description,img_url,price})=> (
+    {
+    description, 
+    price, src:img_url ?? '', 
+    alt:name ?? '', 
+    title:name ?? '' 
+    })) , [data?.pages])
 
   const loadMore = () => {
-    console.log("%c algo :", "background-color:#048A81");
-    setTimeout(() => {
-      setProducts((prev) => [...prev, ...defaultProducts]);
-    }, 1000);
+    fetchNextPage()
   };
 
   return (
@@ -101,7 +107,7 @@ export default function ProductsList() {
           Item: ItemContainer,
           List: ListContainer,
         }}
-        data={products}
+        data={products ?? []}
         endReached={loadMore}
         itemContent={ItemContent}
         overscan={5}

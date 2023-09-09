@@ -16,7 +16,7 @@ export default function ColorSwitch ({moonUrl = `url(${moonSvg})`, overrideCheck
     '& .MuiSwitch-track':{
       borderRadius: '2rem',
       borderColor: theme.palette.text.secondary,
-      backgroundColor: theme.palette.background.paper + (overrideCheckBg? ' !important': ''),
+      backgroundColor: theme.palette.mode == 'dark' ? `#333 !important` :  theme.palette.background.paper + (overrideCheckBg? ' !important': ''),
       borderWidth: '0.1rem',
       borderStyle: 'solid'
     },
@@ -31,7 +31,7 @@ export default function ColorSwitch ({moonUrl = `url(${moonSvg})`, overrideCheck
         backgroundPosition: 'center',
         backgroundSize: 'contain',
         backgroundRepeat: 'no-repeat'
-      }
+      },
     }
   })}/>
 }

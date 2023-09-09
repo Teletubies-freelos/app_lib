@@ -21,6 +21,7 @@ const CardHero = ({ image, alt, onClick, description }: CardHeroProps) => (
       maxWidth: 400,
       boxShadow: "none",
       margin: "0 auto !important",
+      backgroundColor : (theme)=>theme.palette.background.default
     }}
   >
     <CardMedia
