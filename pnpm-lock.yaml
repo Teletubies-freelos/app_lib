@@ -30,7 +30,7 @@ importers:
         specifier: latest
         version: 1.10.13
 
-  apps/crm:
+  apps/crmC:
     dependencies:
       '@emotion/react':
         specifier: ^11.8.2
@@ -10752,7 +10752,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@jest/types': 27.5.1
-      '@types/node': 17.0.45
+      '@types/node': 18.16.2
     dev: true
 
   /jest-regex-util@29.6.3:
