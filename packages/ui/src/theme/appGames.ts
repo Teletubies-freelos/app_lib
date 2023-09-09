@@ -17,13 +17,24 @@ const typography = {
   body2: {
     color: "#444",
     fontWeight: "bold",
-  },
+  }
 }
 
 export const darkTheme = createTheme({
   typography,
   palette:{
     mode: 'dark',
+    primary:{
+      main: "#7339FF",
+    },
+    background:{
+      default:"#1F1D2B",
+      paper:"#363B50"
+    },
+    text:{
+      primary:"#FFFFFF",
+    },
+    
   }
 })
 
@@ -38,7 +49,7 @@ export const defaultTheme = createTheme({
       paper: "#EEF2FF",
     },
     text: {
-      primary: "#545454",
+      primary: "#444444",
       secondary: "#737373",
     },
     action: {

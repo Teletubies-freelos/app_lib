@@ -28,7 +28,7 @@ export default function NavLinks() {
             display: { xs: "none", md: "block" },
             textDecoration: "none",
             fontSize: ".875rem",
-            color: "#444",
+            color: `${theme.palette.text.primary} !important`,
             fontWeight: 500,
             whiteSpace: "nowrap",
           }}
@@ -42,7 +42,7 @@ export default function NavLinks() {
             display: { xs: "none", md: "block" },
             textDecoration: "none",
             fontSize: ".875rem",
-            color: "#444",
+            color: `${theme.palette.text.primary} !important`,
             fontWeight: 500,
           }}
         >

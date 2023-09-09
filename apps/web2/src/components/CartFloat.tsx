@@ -20,7 +20,7 @@ export default function CartFloat() {
     >
       <Box
         sx={{
-          backgroundColor: "white",
+          backgroundColor : (theme)=>theme.palette.background.default,
           width: "100%",
           height: { xs: "5rem", md: "8rem" },
           padding: { xs: "1rem", md: "1rem 6rem" },
@@ -30,10 +30,10 @@ export default function CartFloat() {
         }}
       >
         <Box>
-          <Typography variant="subtitle1" color="#000">
+          <Typography variant="subtitle1" color={(theme)=> theme.palette.text.primary}>
             4 Productos
           </Typography>
-          <Typography variant="h6" color="#000" fontWeight="bold">
+          <Typography variant="h6"  color={(theme)=> theme.palette.text.primary} fontWeight="bold">
             S/ 480.00
           </Typography>
         </Box>

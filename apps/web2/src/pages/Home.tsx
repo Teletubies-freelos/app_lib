@@ -12,7 +12,7 @@ import {
 } from "../../../../packages/ui/src";
 import { GeneralLayout } from "../layout/GeneralLayout";
 import ResponsiveCarousel from "../components/ResponsiveCarousel";
-import { Stack, SxProps } from "@mui/material";
+import { Stack, SxProps, useTheme } from "@mui/material";
 import ProductsList from "../components/ProductList";
 import { useCart } from "../hooks/useCart";
 import NavLinks from "../components/NavLinks";
@@ -25,7 +25,7 @@ interface IRender {
   description?: string;
 }
 
-const noMargin: SxProps = { margin: "0 !important" };
+
 
 const render = ({ img_url = "", description = ""}: IRender) => (
   <CardHero alt="" description={description} image={img_url} key={img_url ?? ""} />
@@ -36,6 +36,8 @@ export default function Home() {
   const { changeFloatCart } = useCart();
 
   const toggleColor = useToggleColor()
+  const theme = useTheme()
+  const noMargin: SxProps = { margin: "0 !important",filter: theme.palette.mode == 'dark' ? 'invert(1)' : 'invert(0)' };
 
   return (
     <GeneralLayout
