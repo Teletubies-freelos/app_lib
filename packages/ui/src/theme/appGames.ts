@@ -1,6 +1,9 @@
 import { createTheme } from "@mui/material/styles";
 
 const typography = {
+  allVariants: {
+    fontFamily: 'Prompt',
+  },
   h1: {
     fontSize: "2rem",
   },
