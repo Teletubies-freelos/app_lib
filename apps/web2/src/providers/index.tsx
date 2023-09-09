@@ -6,7 +6,13 @@ import { ThemeProvider } from "./theme";
 // import { fakeGameClient } from "../mockers/services/games";
 
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions:{
+    queries:{
+      refetchOnMount: false
+    }
+  }
+});
 
 export default function Providers({ children }: PropsWithChildren) {
   const [openCartFloat, setOpenCartFloat] = useState(false);
