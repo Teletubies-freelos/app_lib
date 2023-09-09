@@ -40,13 +40,23 @@ export default function SearchBar({
       onSubmit={handleSubmit(onSubmit)}
     >
       <TextField
-        sx={{ width: "100%" }}
+        sx={{
+          width: "100%",
+          backgroundColor: "white",
+          borderRadius: ".25rem",
+          "& input": { color: "#434343" },
+        }}
         placeholder={placeHolder}
         id="input-with-icon-textfield"
         inputProps={register("search")}
         InputProps={{
           startAdornment: (
-            <InputAdornment position="start">
+            <InputAdornment
+              position="start"
+              sx={{
+                color: (theme) => theme.palette.primary.main,
+              }}
+            >
               <SearchOutlined />
             </InputAdornment>
           ),

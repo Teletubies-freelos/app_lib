@@ -31,14 +31,21 @@ export default function NavBar({
       <Box sx={sxMainBar}>
         {mainLogo}
         {onSearch && (
-          <Box sx={{ display: { xs: "none", md: "block" }, width: "40%" }}>
+          <Box
+            sx={{
+              display: { xs: "none", md: "block" },
+              width: "40%",
+            }}
+          >
             <SearchBar
               searchButtonContent="Buscar"
               onSubmit={onSearch}
+              btnVariant="contained"
+              stylesButton={{ sx: { textTransform: "capitalize" } }}
             />
           </Box>
         )}
-      {actionsComponent}
+        {actionsComponent}
         <Box display="flex" justifyContent="end" alignItems="center" gap="1rem">
           {navigatorLinks}
           {cartComponent}
@@ -49,6 +56,8 @@ export default function NavBar({
           <SearchBar
             searchButtonContent="Buscar"
             onSubmit={onSearch}
+            btnVariant="contained"
+            stylesButton={{ sx: { textTransform: "capitalize" } }}
           />
         </Box>
       )}
