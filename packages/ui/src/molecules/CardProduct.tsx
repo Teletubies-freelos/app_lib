@@ -42,18 +42,22 @@ export default function CardProduct({
       className={className}
     >
       <Box display={"flex"} height="100%">
-        <CardMedia
-          component="img"
-          alt={alt}
-          src={src}
-          height={"100%"}
-          sx={{
-            objectFit: "contain",
-            margin: "auto 0",
-            padding: "1rem",
-            width: "unset",
-          }}
-        />
+        <Box sx={{
+          maxWidth: '6rem'
+        }}>
+          <CardMedia
+            component="img"
+            alt={alt}
+            src={src}
+            height={"100%"}
+            sx={{
+              objectFit: "contain",
+              margin: "auto 0",
+              padding: "1rem",
+              width: "100%",
+            }}
+          />
+        </Box>
         <CardContent
           sx={{
             padding: "1rem !important",
@@ -65,7 +69,20 @@ export default function CardProduct({
         >
           <Box>
             <Typography variant="h3">{title}</Typography>
-            <Typography variant="body1" sx={{marginTop:'.5rem'}}>{description}</Typography>
+            <Typography 
+              variant="body1" 
+              sx={{
+                  marginTop:'.5rem',
+                  textOverflow: "ellipsis",
+                  display: "-webkit-box",
+                  WebkitLineClamp: "3",
+                  WebkitBoxOrient: "vertical",
+                  height: '3.5rem',
+                  overflow: 'hidden'
+                }}
+              >
+                {description}
+              </Typography>
           </Box>
           <Box>
             {!!previousPrice && (

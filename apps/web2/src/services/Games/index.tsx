@@ -1,36 +1,14 @@
 import { AxiosInstance } from 'axios';
 import { type  GraphQLClient, gql } from 'graphql-request'
 import { GamesPaths } from './constans';
+import { IOffer } from '../../types/games';
+import { SearchParams } from '../../types';
 
-interface IOffer {
-  img_url?: string;
-  description?: string;
-  price?: number;
-  id: number;
-  name?: string;
-}
 
-interface PaginatedParams{
-  limit?: number;
-  offset?: number;
-}
-
-interface Filters{
-  price?: number;
-  name?: string;
-  platform?: string;
-  genre?: string;
-  order?: string;
-}
-
-interface SearchParams{
-  filters?: Filters;
-  paginated?: PaginatedParams;
-}
 
 export interface Games{
   getMainOffers(): Promise<IOffer[]>
-  getPaginatedGames(params?:SearchParams): Promise<IOffer[]>
+  getPaginatedGames(params?: SearchParams): Promise<IOffer[]>
 }
 
 
