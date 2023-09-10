@@ -30,7 +30,6 @@ export default function SelectModals({
             "& .MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input ": {
               height: "1.05rem !important",
             },
-            //data-shrink="false"
             "& .MuiInputLabel-shrink": {
               top: "-4% !important",
             },
