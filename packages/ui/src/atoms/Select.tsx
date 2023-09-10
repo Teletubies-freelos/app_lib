@@ -58,7 +58,10 @@ export default function SelectFilter({
         open={isOpen}
         defaultValue={String(1)}
         IconComponent={ArrowDown}
-        sx={({palette})=>({ backgroundColor: palette.background.default, ...sxSelect })}
+        sx={({ palette }) => ({
+          backgroundColor: palette.background.default,
+          ...sxSelect,
+        })}
       >
         {items?.map(({ label, value }) => (
           <MenuItem value={value} key={label + value}>

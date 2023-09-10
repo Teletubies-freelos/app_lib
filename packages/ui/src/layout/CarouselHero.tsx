@@ -14,8 +14,14 @@ const CarouselHero = ({ children, sx }: CarouselHeroProps) => {
       sx={{
         "& .navButtonsClassName": {
           background: "none !important",
-          color: theme.palette.text.primary,
+          color: `${theme.palette.primary.main} !important`,
           border: "none",
+          opacity: 1,
+          "&:hover": {
+            background: `${theme.palette.primary.main} !important`,
+            color: `#fff !important`,
+            opacity: 1,
+          },
         },
         "& .activeIndicatorClassName": {
           color: `${theme.palette.primary.main} !important`,
@@ -27,9 +33,17 @@ const CarouselHero = ({ children, sx }: CarouselHeroProps) => {
             color: `${theme.palette.primary.main} !important`,
           },
         },
+        "& .wraperBtns": {
+          top: "40%",
+          transform: "translateY(-50%)",
+          "& .navButtonsClassName": {
+            color: theme.palette.text.primary,
+          },
+        },
         ...sx,
       }}
       navButtonsProps={{ className: "navButtonsClassName" }}
+      navButtonsWrapperProps={{ className: "wraperBtns" }}
       activeIndicatorIconButtonProps={{
         className: "activeIndicatorClassName",
       }}
