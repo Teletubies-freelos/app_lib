@@ -5,12 +5,14 @@ import { tss } from "tss-react/mui";
 export interface LabelStepStatusProps {
   property: string;
   value?: string;
+  icon?: JSX.Element;
   sx?: SxProps;
 }
 
 export default function LabelStepStatus({
   property,
   value,
+  icon,
   sx,
 }: LabelStepStatusProps) {
   const LabelStatusStyles = tss.create(({ theme }) => ({
@@ -31,16 +33,28 @@ export default function LabelStepStatus({
       flexDirection={{ xs: "column", sm: "row" }}
       justifyContent={{ xs: "flex-start", sm: "space-between" }}
       alignItems={{ xs: "flex-start", sm: "center" }}
-      sx={{ background: "#F8FBFF", padding: ".5rem 1rem", ...sx }}
+      sx={{
+        background: "#F8FBFF",
+        padding: ".5rem 1rem",
+        width: "100%",
+        backgroundColor: "transparent",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        ...sx,
+      }}
     >
-      <Typography
-        className={classes.propertyStyle}
-        variant={"h5"}
-        component={"h5"}
-        sx={{ fontSize: { xs: "1.1rem", sm: "1.2rem" } }}
-      >
-        {property}
-      </Typography>
+      <Box display="flex" gap="1rem">
+        {icon}
+        <Typography
+          className={classes.propertyStyle}
+          variant={"h5"}
+          component={"h5"}
+          sx={{ fontSize: { xs: "1rem", sm: "1.1rem" } }}
+        >
+          {property}
+        </Typography>
+      </Box>
       {value && <Typography className={classes.valueStyle}>{value}</Typography>}
     </Box>
   );

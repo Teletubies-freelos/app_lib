@@ -1,4 +1,4 @@
-import { TextField, SxProps } from "@mui/material";
+import { TextField } from "@mui/material";
 
 interface CustomTextFieldProps {
   label: string;
