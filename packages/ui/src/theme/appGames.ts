@@ -2,7 +2,7 @@ import { createTheme } from "@mui/material/styles";
 
 const typography = {
   allVariants: {
-    fontFamily: 'Prompt',
+    fontFamily: "Prompt",
   },
   h1: {
     fontSize: "2rem",
@@ -20,26 +20,25 @@ const typography = {
   body2: {
     color: "#444",
     fontWeight: "bold",
-  }
-}
+  },
+};
 
 export const darkTheme = createTheme({
   typography,
-  palette:{
-    mode: 'dark',
-    primary:{
+  palette: {
+    mode: "dark",
+    primary: {
       main: "#7339FF",
     },
-    background:{
-      default:"#1F1D2B",
-      paper:"#363B50"
+    background: {
+      default: "#1F1D2B",
+      paper: "#363B50",
     },
-    text:{
-      primary:"#FFFFFF",
+    text: {
+      primary: "#FFFFFF",
     },
-    
-  }
-})
+  },
+});
 
 export const defaultTheme = createTheme({
   typography,
@@ -69,6 +68,9 @@ export const defaultTheme = createTheme({
     },
     info: {
       main: "#1773B0",
+    },
+    grey: {
+      "100": "#D9D9D9",
     },
   },
 });

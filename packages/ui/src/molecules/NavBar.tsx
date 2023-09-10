@@ -11,7 +11,7 @@ interface NavBarProps {
 const sxMainBar = {
   width: "100%",
   display: "flex",
-  gap: "3rem",
+  gap: { xs: "1rem", sm: "3rem" },
   justifyContent: "space-between",
   alignItems: "center",
 };
@@ -24,7 +24,13 @@ export default function NavBar({
   searchBar,
 }: NavBarProps) {
   return (
-    <Toolbar sx={{ flexDirection: "column", marginBottom: "3rem" }}>
+    <Toolbar
+      sx={{
+        flexDirection: "column",
+        marginBottom: "3rem",
+        gap: { xs: "2rem", sm: "0" },
+      }}
+    >
       <Box sx={sxMainBar}>
         {mainLogo}
         <Box
@@ -35,9 +41,9 @@ export default function NavBar({
         >
           {searchBar}
         </Box>
-        {actionsComponent}
         <Box display="flex" justifyContent="end" alignItems="center" gap="1rem">
           {navigatorLinks}
+          {actionsComponent}
           {cartComponent}
         </Box>
       </Box>

@@ -1,7 +1,9 @@
 import { Box } from "@mui/material";
 import type { PropsWithChildren } from "react";
 import { WhatsappLogo } from "../../../../packages/ui/src";
-import CartFloat from "../components/CartFloat";
+/* import CartFloat from "../components/CartFloat"; */
+/* import Payments from "../components/modals/Payments/Payments"; */
+import MyData from "../components/modals/MyPersonalnfo/MyData";
 
 interface GeneralLayoutProps {
   isShowSearch?: boolean;
@@ -33,7 +35,9 @@ export function GeneralLayout({
       >
         <WhatsappLogo sx={{ cursor: "pointer" }} />
       </Box>
-      <CartFloat />
+      {/* <CartFloat /> */}
+      {/*      <Payments /> */}
+      <MyData />
     </Box>
   );
 }

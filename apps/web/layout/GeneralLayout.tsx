@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
 import type { PropsWithChildren } from "react";
 import { WhatsappLogo } from "../../../packages/ui/src";
-import { useCart } from "../hooks/useCart";
-import CartFloat from "../components/CartFloat";
+/* import CartFloat from "../components/CartFloat"; */
+import Payments from "../../web2/src/components/modals/Payments";
 
 interface GeneralLayoutProps {
   isShowSearch?: boolean;
@@ -36,7 +36,8 @@ export function GeneralLayout({
       >
         <WhatsappLogo sx={{ cursor: "pointer" }} />
       </Box>
-      <CartFloat />
+      {/*   <CartFloat /> */}
+      <Payments />
     </Box>
   );
 }

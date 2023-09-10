@@ -60,7 +60,7 @@ export default function Home() {
           navigatorLinks={<NavLinks />}
           mainLogo={
             <Link to="/">
-              <MainLogo />
+              <MainLogo sx={{ width: { xs: "60%" } }} />
             </Link>
           }
           searchBar={

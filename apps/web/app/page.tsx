@@ -18,7 +18,6 @@ import { GeneralLayout } from "../layout/GeneralLayout";
 import { sxInnerStack } from "./styles";
 import { useCart } from "../hooks/useCart";
 import NavLinks from "../components/NavLinks";
-import Link from "next/link";
 
 const render = ({ imgUrl, description }) => (
   <CardHero alt="" description={description} image={imgUrl} key={imgUrl} />
@@ -37,11 +36,7 @@ export default function Page() {
             <CartIcon onClick={changeFloatCart} qty={2} size="medium" />
           }
           navigatorLinks={<NavLinks />}
-          mainLogo={
-            <Link href="/">
-              <MainLogo />
-            </Link>
-          }
+          mainLogo={<MainLogo />}
           onSearch={() => 3}
         />
       }
