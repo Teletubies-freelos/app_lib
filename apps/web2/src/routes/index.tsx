@@ -3,6 +3,7 @@ import { createBrowserRouter, createHashRouter } from "react-router-dom";
 
 const LazyHome = lazy(() => import("../pages/Home"));
 const LazyOrderStatus = lazy(() => import("../pages/estado-pedido"));
+const LazyTerminos = lazy(() => import("../pages/terminos"));
 
 const createRouter = import.meta.env.VITE_IS_BROWSER_ROUTER
   ? createBrowserRouter
@@ -16,5 +17,9 @@ export const router = createRouter([
   {
     path: "estado-pedido",
     element: <LazyOrderStatus />,
+  },
+  {
+    path: "terminos",
+    element: <LazyTerminos />,
   },
 ]);

@@ -3,6 +3,7 @@ import { ModalLayout } from "../../../../../../packages/ui/src";
 import { useCart } from "../../../hooks/useCart";
 import HeadModal from "../common/HeadModal";
 import BodyMyData from "./BodyMyData";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 export default function () {
   const { openCartFloat, changeFloatCart } = useCart();
 
@@ -14,7 +15,10 @@ export default function () {
     >
       <ModalLayout
         headerModal={
-          <HeadModal title={<Typography variant="h5">Tus datos</Typography>} />
+          <HeadModal
+            title={<Typography variant="h5">Tus datos</Typography>}
+            icon={<ArrowBackIosIcon />}
+          />
         }
         height="700px"
       >

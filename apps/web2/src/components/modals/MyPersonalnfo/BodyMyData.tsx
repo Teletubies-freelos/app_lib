@@ -8,7 +8,7 @@ import {
   FormControlLabel,
 } from "@mui/material";
 import CustomTextField from "../common/CustomTextField";
-import SelectModals from "../../SelectModals";
+import SelectModals from "../common/SelectModals";
 import { Button } from "../../../../../../packages/ui/src";
 
 export default function BodyMyData() {

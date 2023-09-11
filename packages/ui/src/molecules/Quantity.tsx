@@ -33,7 +33,6 @@ export default function Quantity({
       <Typography
         sx={{
           fontSize: "1.3rem",
-          fontWeight: "bold",
         }}
       >
         {quantity}

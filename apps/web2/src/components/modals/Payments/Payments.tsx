@@ -4,6 +4,7 @@ import { useCart } from "../../../hooks/useCart";
 import { ModalLayout } from "../../../../../../packages/ui/src";
 import HeadModal from "../common/HeadModal";
 import BodyPayments from "./BodyPayments";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 export default function Payments() {
   const { openCartFloat, changeFloatCart } = useCart();
@@ -18,6 +19,7 @@ export default function Payments() {
         headerModal={
           <HeadModal
             title={<Typography variant="h5">Medio de Pago</Typography>}
+            icon={<ArrowBackIosIcon />}
           />
         }
       >

@@ -1,15 +1,17 @@
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, SxProps } from "@mui/material";
 import { PropsWithChildren } from "react";
 
 interface ModalLayoutProps {
   headerModal: JSX.Element;
   height?: string;
+  sx?: SxProps;
 }
 
 const ModalLayout = ({
   headerModal,
   children,
   height,
+  sx,
 }: PropsWithChildren<ModalLayoutProps>) => {
   return (
     <Stack
@@ -18,6 +20,7 @@ const ModalLayout = ({
       height={height}
       sx={{
         borderRadius: "0.3rem",
+        ...sx,
       }}
     >
       {headerModal}
@@ -25,7 +28,7 @@ const ModalLayout = ({
         height="100%"
         sx={(theme) => ({
           background: theme.palette.background.paper,
-          padding: "1rem",
+          padding: "1.5rem 2.5rem",
           borderRadius: "0 0 0.3rem 0.3rem",
         })}
       >

@@ -4,9 +4,10 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 interface HeadModalProps {
   title: JSX.Element;
+  icon: JSX.Element;
 }
 
-export default function HeadModal({ title }: HeadModalProps) {
+export default function HeadModal({ title, icon }: HeadModalProps) {
   return (
     <Box
       display="flex"
@@ -27,7 +28,7 @@ export default function HeadModal({ title }: HeadModalProps) {
           color: theme.palette.text.primary,
         })}
       >
-        <ArrowBackIosIcon />
+        {icon}
         <Typography variant="h6">{title}</Typography>
       </Box>
       <CloseIcon />

@@ -5,6 +5,10 @@ import {
   StepStatus,
   WhatsappLogo,
 } from "../../../../packages/ui/src";
+import PickupStore from "../components/modals/PickupStore/PickupStore";
+import BodyPickup from "../components/modals/PickupStore/BodyPickup";
+import Cart from "../components/modals/Cart/Cart";
+import BodyCart from "../components/modals/Cart/BodyCart";
 import CartFloat from "../components/CartFloat";
 import Payments from "../components/modals/Payments/Payments";
 import MyData from "../components/modals/MyPersonalnfo/MyData";
@@ -35,7 +39,7 @@ export function GeneralLayout({
         justifyContent="end"
         sx={{
           width: "100%",
-          position: "sticky",
+          position: "fixed",
           bottom: "1.5rem",
           paddingRight: "1rem",
         }}
@@ -88,6 +92,8 @@ export function GeneralLayout({
           />
         }
       />
+      <Cart content={<BodyCart total="S/ 480.00" />} />
+      <PickupStore content={<BodyPickup total="S/ 480.00" />} />
     </Box>
   );
 }

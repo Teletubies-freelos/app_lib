@@ -20,8 +20,9 @@ export default function LabelStepStatus({
       fontWeight: 600,
     },
     valueStyle: {
-      color: theme.palette.text.secondary,
+      color: theme.palette.text.primary,
       fontSize: "1rem",
+      fontWeight: 600,
     },
   }));
 
