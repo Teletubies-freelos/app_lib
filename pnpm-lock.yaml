@@ -150,9 +150,6 @@ importers:
       react-virtuoso:
         specifier: ^4.5.0
         version: 4.5.0(react-dom@18.2.0)(react@18.2.0)
-      ui:
-        specifier: workspace:*
-        version: link:../../packages/ui
     devDependencies:
       '@storybook/addon-essentials':
         specifier: ^7.3.2
@@ -3192,8 +3189,8 @@ packages:
     dependencies:
       '@babel/runtime': 7.22.11
       '@emotion/cache': 11.11.0
-      '@emotion/react': 11.11.1(@types/react@18.2.21)(react@18.2.0)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.21)(react@18.2.0)
+      '@emotion/react': 11.11.1(@types/react@18.2.15)(react@18.2.0)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.15)(react@18.2.0)
       csstype: 3.1.2
       prop-types: 15.8.1
       react: 18.2.0
@@ -14608,7 +14605,7 @@ packages:
         optional: true
     dependencies:
       '@emotion/cache': 11.11.0
-      '@emotion/react': 11.11.1(@types/react@18.2.21)(react@18.2.0)
+      '@emotion/react': 11.11.1(@types/react@18.2.5)(react@18.2.0)
       '@emotion/serialize': 1.1.2
       '@emotion/utils': 1.2.1
       react: 18.2.0
