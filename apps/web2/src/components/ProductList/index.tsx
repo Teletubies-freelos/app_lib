@@ -1,4 +1,4 @@
-import { Box, MenuItem, Paper, type SxProps, Chip } from "@mui/material";
+import { Box, MenuItem, Paper, type SxProps } from "@mui/material";
 import { VirtuosoGrid } from "react-virtuoso";
 import { DropDown, Isotype } from "../../../../../packages/ui/src";
 import { useProducts } from "../../hooks/useProducts";

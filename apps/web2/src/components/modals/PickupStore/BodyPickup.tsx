@@ -13,7 +13,9 @@ export default function BodyPickup({ total }: { total: string }) {
             <Typography sx={({ palette }) => ({ color: palette.text.primary })}>
               Tu Pedido
             </Typography>
-            <Typography sx={({ palette }) => ({ color: palette.secondary })}>
+            <Typography
+              sx={({ palette }) => ({ color: palette.text.secondary })}
+            >
               3 productos
             </Typography>
           </Stack>

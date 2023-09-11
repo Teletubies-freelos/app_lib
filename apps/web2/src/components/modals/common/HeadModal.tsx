@@ -1,6 +1,5 @@
 import CloseIcon from "@mui/icons-material/Close";
 import { Typography, Box } from "@mui/material";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 interface HeadModalProps {
   title: JSX.Element;
