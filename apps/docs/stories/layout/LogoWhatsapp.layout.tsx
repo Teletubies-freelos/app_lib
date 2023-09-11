@@ -1,5 +1,5 @@
 import { Box, Stack } from "@mui/material";
-import { CartIcon, NavBar } from "../../../../packages/ui/src";
+import { Button, CartIcon, NavBar } from "../../../../packages/ui/src";
 import WhatsappLogo from "../../../../packages/ui/src/atoms/WhatsappLogo";
 
 export default function LogoWhatsapp() {
@@ -9,7 +9,10 @@ export default function LogoWhatsapp() {
       justifyContent={"space-between"}
       sx={{ height: "40rem" }}
     >
-      <NavBar cartComponent={<CartIcon />} onSearch={console.log} />
+      <NavBar
+        cartComponent={<CartIcon />}
+        searchBar={<Button label="Buscar" variant="contained" />}
+      />
       <Box display="flex" justifyContent="end" sx={{ width: "100%" }}>
         <WhatsappLogo />
       </Box>

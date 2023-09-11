@@ -1,17 +1,17 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { SearchBar } from '../../../../packages/ui/src';
+import { SearchBar } from "../../../../packages/ui/src";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-  title: 'Atoms/SearchBar',
+  title: "Atoms/SearchBar",
   component: SearchBar,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
-    layout: 'centered',
+    layout: "centered",
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
 } satisfies Meta<typeof SearchBar>;
 
@@ -20,10 +20,9 @@ type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Primary: Story = {
-  args:{
-    placeHolder: 'Ingresa tu busqueda',
-    searchButtonContent: 'Buscar',
-    direction: 'row',
-    btnVariant: 'outlined',
-  }
+  args: {
+    placeHolder: "Ingresa tu busqueda",
+    onSubmit: () => {},
+    direction: "row",
+  },
 };

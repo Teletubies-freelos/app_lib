@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import type { PropsWithChildren } from "react";
+import { useCart } from "../hooks/useCart";
 import {
   LabelStepStatus,
   StepStatus,
@@ -17,7 +18,6 @@ import FooterModal from "../components/modals/common/FooterModal";
 import InfoPayment from "../components/modals/common/InfoPayment";
 
 interface GeneralLayoutProps {
-  isShowSearch?: boolean;
   navBar: JSX.Element;
 }
 
@@ -25,6 +25,7 @@ export function GeneralLayout({
   children,
   navBar,
 }: PropsWithChildren<GeneralLayoutProps>) {
+  const { openCartFloat, changeFloatCart } = useCart();
   return (
     <Box
       sx={{
@@ -46,10 +47,18 @@ export function GeneralLayout({
       >
         <WhatsappLogo sx={{ cursor: "pointer" }} />
       </Box>
-      <CartFloat />
-      <Payments />
-      <MyData />
+      <CartFloat
+        openCartFloat={openCartFloat}
+        changeFloatCart={changeFloatCart}
+      />
+      <Payments
+        openCartFloat={openCartFloat}
+        changeFloatCart={changeFloatCart}
+      />
+      <MyData openCartFloat={openCartFloat} changeFloatCart={changeFloatCart} />
       <ConfirmedOrder
+        openCartFloat={openCartFloat}
+        changeFloatCart={changeFloatCart}
         stepStatus={
           <StepStatus
             steps={["En tienda", "Entregado"]}
@@ -92,8 +101,16 @@ export function GeneralLayout({
           />
         }
       />
-      <Cart content={<BodyCart total="S/ 480.00" />} />
-      <PickupStore content={<BodyPickup total="S/ 480.00" />} />
+      <Cart
+        openCartFloat={openCartFloat}
+        changeFloatCart={changeFloatCart}
+        content={<BodyCart total="S/ 480.00" />}
+      />
+      <PickupStore
+        openCartFloat={openCartFloat}
+        changeFloatCart={changeFloatCart}
+        content={<BodyPickup total="S/ 480.00" />}
+      />
     </Box>
   );
 }

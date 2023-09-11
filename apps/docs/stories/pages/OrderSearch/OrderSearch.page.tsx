@@ -4,6 +4,7 @@ import {
   NavBar,
   CartIcon,
   MainLogo,
+  Button,
 } from "../../../../../packages/ui/src";
 
 export default function OrderSearch() {
@@ -15,7 +16,7 @@ export default function OrderSearch() {
     >
       <NavBar
         cartComponent={<CartIcon />}
-        onSearch={console.log}
+        searchBar={<Button label="Buscar" variant="contained" />}
         mainLogo={<MainLogo />}
       />
       <Box sx={{ width: { xs: "100%", sm: "25rem" }, margin: "auto" }}>
@@ -24,9 +25,8 @@ export default function OrderSearch() {
         </Typography>
         <SearchBar
           placeHolder="ABC123"
-          searchButtonContent="Buscar"
+          buttonSearch={<Button label="buscar" variant="contained" />}
           onSubmit={() => console.log("click")}
-          btnVariant="contained"
           direction="column"
         />
       </Box>

@@ -1,13 +1,20 @@
 import { Modal, Typography } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { ModalLayout } from "../../../../../../packages/ui/src";
-import { useCart } from "../../../hooks/useCart";
 import HeadModal from "../common/HeadModal";
 import FooterModal from "../common/FooterModal";
 
-export default function PickupStore({ content }: { content: JSX.Element }) {
-  const { openCartFloat, changeFloatCart } = useCart();
+interface PickupStoreProps {
+  content?: JSX.Element;
+  openCartFloat: boolean;
+  changeFloatCart: () => void;
+}
 
+export default function PickupStore({
+  content,
+  openCartFloat,
+  changeFloatCart,
+}: PickupStoreProps) {
   return (
     <Modal
       open={openCartFloat}

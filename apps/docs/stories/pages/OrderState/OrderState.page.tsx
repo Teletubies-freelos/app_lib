@@ -5,6 +5,7 @@ import {
   CartIcon,
   MainLogo,
   StepStatus,
+  Button,
 } from "../../../../../packages/ui/src";
 
 export default function OrderState() {
@@ -17,8 +18,8 @@ export default function OrderState() {
     >
       <NavBar
         cartComponent={<CartIcon />}
-        onSearch={() => 3}
         mainLogo={<MainLogo />}
+        searchBar={<Button label="Buscar" variant="contained" />}
       />
       <Typography variant="h2" sx={{ margin: " 0 auto", border: "none" }}>
         Estado de pedido

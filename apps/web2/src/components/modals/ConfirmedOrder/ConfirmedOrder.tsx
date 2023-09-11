@@ -1,11 +1,12 @@
 import { Modal, Stack, SxProps } from "@mui/material";
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
-import { useCart } from "../../../hooks/useCart";
 import Typography from "@mui/material/Typography";
 import { LabelStepStatus } from "../../../../../../packages/ui/src";
 import totalMoney from "../common/total.svg";
 
 interface ConfirmedOrderProps {
+  openCartFloat: boolean;
+  changeFloatCart: () => void;
   footer: JSX.Element;
   infoPayment?: JSX.Element;
   priceDelivery?: JSX.Element;
@@ -14,14 +15,14 @@ interface ConfirmedOrderProps {
 }
 
 export default function ConfirmedOrder({
+  openCartFloat,
+  changeFloatCart,
   footer,
   infoPayment,
   priceDelivery,
   stepStatus,
   sx,
 }: ConfirmedOrderProps) {
-  const { openCartFloat, changeFloatCart } = useCart();
-
   return (
     <Modal
       open={openCartFloat}
