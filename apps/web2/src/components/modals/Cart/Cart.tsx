@@ -6,15 +6,18 @@ import HeadModal from "../common/HeadModal";
 
 interface CartProps {
   content?: JSX.Element;
+  openCartFloat: boolean;
+  changeFloatCart: () => void;
 }
 
-export default function Cart({ content }: CartProps) {
-  const { openCartFloat, changeFloatCart } = useCart();
-
+export default function Cart({
+  content,
+  openCartFloat,
+  changeFloatCart,
+}: CartProps) {
   return (
     <Modal
       open={openCartFloat}
-      onClose={changeFloatCart}
       sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
     >
       <ModalLayout

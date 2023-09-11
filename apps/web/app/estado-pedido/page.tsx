@@ -23,7 +23,6 @@ export default function Page() {
               <MainLogo />
             </Link>
           }
-          onSearch={() => 3}
         />
       }
     >

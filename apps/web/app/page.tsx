@@ -8,16 +8,16 @@ import {
   PlayStation5Logo,
   XboxLogo,
 } from "ui";
-import NavBar from "../../../packages/ui/src/molecules/NavBar";
 import type { SxProps } from "@mui/material";
 import { Stack } from "@mui/material";
+import NavBar from "../../../packages/ui/src/molecules/NavBar";
 import { useGames } from "../hooks/useGames";
 import ResponsiveCarousel from "../components/responsiveCarousel";
 import ProductsList from "../components/productList";
 import { GeneralLayout } from "../layout/GeneralLayout";
-import { sxInnerStack } from "./styles";
 import { useCart } from "../hooks/useCart";
 import NavLinks from "../components/NavLinks";
+import { sxInnerStack } from "./styles";
 
 const render = ({ imgUrl, description }) => (
   <CardHero alt="" description={description} image={imgUrl} key={imgUrl} />
@@ -35,9 +35,8 @@ export default function Page() {
           cartComponent={
             <CartIcon onClick={changeFloatCart} qty={2} size="medium" />
           }
-          navigatorLinks={<NavLinks />}
           mainLogo={<MainLogo />}
-          onSearch={() => 3}
+          navigatorLinks={<NavLinks />}
         />
       }
     >

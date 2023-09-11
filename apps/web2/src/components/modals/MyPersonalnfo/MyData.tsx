@@ -1,12 +1,18 @@
 import { Modal, Typography } from "@mui/material";
 import { ModalLayout } from "../../../../../../packages/ui/src";
-import { useCart } from "../../../hooks/useCart";
 import HeadModal from "../common/HeadModal";
 import BodyMyData from "./BodyMyData";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-export default function () {
-  const { openCartFloat, changeFloatCart } = useCart();
 
+interface MyDataProps {
+  openCartFloat: boolean;
+  changeFloatCart: () => void;
+}
+
+export default function MyData({
+  openCartFloat,
+  changeFloatCart,
+}: MyDataProps) {
   return (
     <Modal
       open={openCartFloat}

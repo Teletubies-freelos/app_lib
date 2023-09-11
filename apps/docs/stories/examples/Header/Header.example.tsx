@@ -6,7 +6,9 @@ import {
   PlayStation4Logo,
   PlayStation5Logo,
   XboxLogo,
-  MainLogo
+  MainLogo,
+  SearchBar,
+  Button,
 } from "../../../../../packages/ui/src";
 
 import Hero from "../Hero/Hero.example";
@@ -23,7 +25,16 @@ const sxInnerStack: SxProps = {
 export default function Header() {
   return (
     <Stack sx={{ width: "100%" }} spacing={6}>
-      <NavBar cartComponent={<CartIcon />} onSearch={console.log} mainLogo={<MainLogo />} />
+      <NavBar
+        cartComponent={<CartIcon />}
+        searchBar={
+          <SearchBar
+            onSubmit={() => 3}
+            buttonSearch={<Button label="buscar" variant="contained" />}
+          />
+        }
+        mainLogo={<MainLogo />}
+      />
       <Hero />
       <Stack
         sx={sxInnerStack}
