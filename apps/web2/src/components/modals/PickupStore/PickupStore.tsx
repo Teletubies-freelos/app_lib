@@ -1,10 +1,11 @@
 import { Modal, Typography } from "@mui/material";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { ModalLayout } from "../../../../../../packages/ui/src";
 import { useCart } from "../../../hooks/useCart";
 import HeadModal from "../common/HeadModal";
-import BodyMyData from "./BodyMyData";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-export default function () {
+import FooterModal from "../common/FooterModal";
+
+export default function PickupStore({ content }: { content: JSX.Element }) {
   const { openCartFloat, changeFloatCart } = useCart();
 
   return (
@@ -14,15 +15,24 @@ export default function () {
       sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
     >
       <ModalLayout
+        sx={{ maxWidth: "40rem" }}
         headerModal={
           <HeadModal
-            title={<Typography variant="h5">Tus datos</Typography>}
+            title={<Typography variant="h5">Recojo en Tienda</Typography>}
             icon={<ArrowBackIosIcon />}
           />
         }
-        height="700px"
       >
-        <BodyMyData />
+        {content}
+        <FooterModal
+          nameButton="Confirmar pedido"
+          infoMessage="No existe costo de envío por ser recojo en tienda."
+          sx={{
+            display: "flex",
+            flexDirection: "column-reverse",
+            marginTop: "2rem",
+          }}
+        />
       </ModalLayout>
     </Modal>
   );

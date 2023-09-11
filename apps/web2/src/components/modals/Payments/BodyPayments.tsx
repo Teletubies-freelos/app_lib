@@ -1,5 +1,5 @@
 import { Box, TextField, Typography } from "@mui/material";
-import SelectModals from "../../SelectModals";
+import SelectModals from "../common/SelectModals";
 import { Button, DropDown } from "../../../../../../packages/ui/src";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 export default function BodyPayments() {
