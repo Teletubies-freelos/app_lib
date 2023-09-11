@@ -1,4 +1,4 @@
-import { LabelStepStatus, StepStatus } from "ui";
+import { LabelStepStatus, StepStatus } from "../../../../packages/ui/src";
 import ConfirmedOrder from "../../../web2/src/components/modals/ConfirmedOrder/ConfirmedOrder";
 import FooterModal from "../../../web2/src/components/modals/common/FooterModal";
 import InfoPayment from "../../../web2/src/components/modals/common/InfoPayment";
