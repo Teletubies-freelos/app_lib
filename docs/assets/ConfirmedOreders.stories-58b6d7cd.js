@@ -1,0 +1,13 @@
+import{a as e,j as m,F as s}from"./jsx-runtime-dfa81c13.js";import{c as d,L as l}from"./ListContainers-9ea7e573.js";import"./appGames-c040a519.js";import{C as i,I as c}from"./InfoPayment-d622392e.js";import{F as u}from"./FooterModal-a598d4fb.js";import{T as o}from"./Typography-cad46f3f.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./extends-15b115a7.js";import"./inheritsLoose-d374ba88.js";import"./index-d3ea75b5.js";import"./createSvgIcon-e2fe83a2.js";import"./Modal-7990966f.js";import"./generateUtilityClasses-b6bf937b.js";import"./unsupportedProp-31074f43.js";import"./useControlled-58a03918.js";import"./useIsFocusVisible-e5f6c995.js";import"./total-8031757f.js";import"./Stack-f20df9f2.js";import"./InfoOutlined-609dddee.js";import"./styled-1922bd45.js";import"./createTheme-98f63f06.js";const A={title:"Modals/ConfirmedOrder",component:i},f=p=>e(i,{...p,stepStatus:e(d,{steps:["En tienda","Entregado"]}),footer:e(u,{infoMessage:"Guarda tu número de pedido y realiza el seguimiento en nuestra página principal",nameButton:"Hacer otro pedido",sx:{marginTop:"1.5rem",display:"flex",flexDirection:"column-reverse"}}),priceDelivery:e(l,{property:"Costo de delivery",value:"S/ 20.00",sx:{fontSize:"1rem !important",marginTop:"1.5rem"}}),infoPayment:e(c,{titleInfo:"Números de cuenta",content:m(s,{children:[e(o,{children:"Banco BBVA Continental - calixto prueba uno"}),e(o,{children:"Número de cuenta: 0238348483939292"}),e(o,{children:"CCI interbancario: 9483287829229292929"})]})})}),r=f.bind({});r.args={openCartFloat:!1,changeFloatCart:()=>{}};var t,a,n;r.parameters={...r.parameters,docs:{...(t=r.parameters)==null?void 0:t.docs,source:{originalSource:`args => <ConfirmedOrder {...args} stepStatus={<StepStatus steps={["En tienda", "Entregado"]} />} footer={<FooterModal infoMessage="Guarda tu número de pedido y realiza el seguimiento en nuestra página principal" nameButton="Hacer otro pedido" sx={{
+  marginTop: "1.5rem",
+  display: "flex",
+  flexDirection: "column-reverse"
+}} />} priceDelivery={<LabelStepStatus property="Costo de delivery" value="S/ 20.00" sx={{
+  fontSize: "1rem !important",
+  marginTop: "1.5rem"
+}} />} infoPayment={<InfoPayment titleInfo="Números de cuenta" content={<>
+            <Typography>Banco BBVA Continental - calixto prueba uno</Typography>
+            <Typography>Número de cuenta: 0238348483939292</Typography>
+            <Typography>CCI interbancario: 9483287829229292929</Typography>
+          </>} />} />`,...(n=(a=r.parameters)==null?void 0:a.docs)==null?void 0:n.source}}};const G=["Default"];export{r as Default,G as __namedExportsOrder,A as default};
+//# sourceMappingURL=ConfirmedOreders.stories-58b6d7cd.js.map
