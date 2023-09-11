@@ -1,4 +1,3 @@
-"use client";
 import { Box, Typography, SxProps } from "@mui/material";
 import { tss } from "tss-react/mui";
 
