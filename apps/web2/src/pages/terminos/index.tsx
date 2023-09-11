@@ -57,7 +57,12 @@ export default function Terminos() {
             Términos y condiciones
           </Typography>
           {Array.from({ length: 3 }).map((_, i) => (
-            <Typography fontSize=".9rem" fontWeight="400" marginTop="2.25rem">
+            <Typography
+              key={i}
+              fontSize=".9rem"
+              fontWeight="400"
+              marginTop="2.25rem"
+            >
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem
               accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
               quae ab illo inventore veritatis et quasi architecto beatae vitae

@@ -103,7 +103,7 @@ export function GeneralLayout({
       />
       <Cart
         openCartFloat={openCartFloat}
-        changeFloatCart={changeFloatCart}
+        onClose={changeFloatCart}
         content={<BodyCart total="S/ 480.00" />}
       />
       <PickupStore

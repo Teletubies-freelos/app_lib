@@ -2,7 +2,6 @@ import {
   Stack,
   Box,
   FormControl,
-  FormLabel,
   Radio,
   RadioGroup,
   FormControlLabel,
