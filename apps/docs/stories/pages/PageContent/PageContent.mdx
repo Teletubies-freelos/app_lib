@@ -1,0 +1,16 @@
+import { Meta, Source, Story, Canvas } from "@storybook/blocks";
+import { WithTheme } from "../../../../../packages/ui/src/themeHelpers";
+import PageContent from "./PageContent.page.tsx";
+import data from "./PageContent.page.tsx?raw";
+
+<Meta title="Pages/PageContent" component={PageContent} />
+
+Los productos aumentaran con el scroll del window con useWindowScroll
+
+<Source code={data} dark />
+
+<div style={{ display: "grid", placeItems: "center" }}>
+  <WithTheme>
+    <PageContent />
+  </WithTheme>
+</div>
