@@ -15,7 +15,11 @@ export default function OrderState() {
       alignItems={"center"}
       sx={{ height: "70rem" }}
     >
-      <NavBar cartComponent={<CartIcon />} onSearch={console.log} />
+      <NavBar
+        cartComponent={<CartIcon />}
+        onSearch={() => 3}
+        mainLogo={<MainLogo />}
+      />
       <Typography variant="h2" sx={{ margin: " 0 auto", border: "none" }}>
         Estado de pedido
       </Typography>

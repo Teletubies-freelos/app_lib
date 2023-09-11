@@ -1,5 +1,5 @@
 import { Check } from "@mui/icons-material";
-import { Box, Step, StepLabel, Stepper } from "@mui/material";
+import { Box, Step, StepLabel, Stepper, SxProps } from "@mui/material";
 
 const StepIcon = () => (
   <Check
@@ -14,9 +14,15 @@ const StepIcon = () => (
   />
 );
 
-export default function StepStatus({ steps }: { steps: string[] }) {
+export default function StepStatus({
+  steps,
+  sx,
+}: {
+  steps: string[];
+  sx?: SxProps;
+}) {
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%", ...sx }}>
       <Stepper activeStep={1} alternativeLabel>
         {steps.map((label) => (
           <Step key={label}>

@@ -1,51 +1,59 @@
 "use client";
-import { CardHero } from "ui";
-import { Box, Stack } from "@mui/material";
+import {
+  CardHero,
+  CartIcon,
+  MainLogo,
+  NintendoLogo,
+  PlayStation4Logo,
+  PlayStation5Logo,
+  XboxLogo,
+} from "ui";
+import NavBar from "../../../packages/ui/src/molecules/NavBar";
+import type { SxProps } from "@mui/material";
+import { Stack } from "@mui/material";
 import { useGames } from "../hooks/useGames";
-import { useMemo } from "react";
-import CarouselHero from "../../../packages/ui/src/layout/CarouselHero";
+import ResponsiveCarousel from "../components/responsiveCarousel";
+import ProductsList from "../components/productList";
+import { GeneralLayout } from "../layout/GeneralLayout";
+import { sxInnerStack } from "./styles";
+import { useCart } from "../hooks/useCart";
+import NavLinks from "../components/NavLinks";
 
-const groupBy = (items: JSX.Element[], groupSize: number) => {
-  const HeroItemsGroup: JSX.Element[][] = [];
-  for (let i = 0; i < items.length; i += groupSize)
-    HeroItemsGroup.push(items.slice(i, i + 3));
-
-  return HeroItemsGroup;
-};
+const render = ({ imgUrl, description }) => (
+  <CardHero alt="" description={description} image={imgUrl} key={imgUrl} />
+);
 
 export default function Page() {
   const { data } = useGames();
-
-  const HeroItems = useMemo(
-    () =>
-      data?.map(({ imgUrl, description }) => (
-        <CardHero
-          key={imgUrl}
-          alt=""
-          image={imgUrl}
-          description={description}
-        />
-      )) ?? [],
-    [data],
-  );
-
-  const HeroItemsGroup = useMemo(
-    () => groupBy(HeroItems ?? [], 3),
-    [HeroItems],
-  );
+  const { changeFloatCart } = useCart();
+  const noMargin: SxProps = { margin: "0 !important" };
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <CarouselHero sx={{ display: { md: "block", xs: "none" } }}>
-        {HeroItemsGroup.map((items, index) => (
-          <Stack gap={2} direction="row" key={index} justifyContent="center">
-            {items}
-          </Stack>
-        ))}
-      </CarouselHero>
-      <CarouselHero sx={{ display: { md: "none", xs: "block" } }}>
-        {HeroItems}
-      </CarouselHero>
-    </Box>
+    <GeneralLayout
+      navBar={
+        <NavBar
+          cartComponent={
+            <CartIcon onClick={changeFloatCart} qty={2} size="medium" />
+          }
+          navigatorLinks={<NavLinks />}
+          mainLogo={<MainLogo />}
+          onSearch={() => 3}
+        />
+      }
+    >
+      <ResponsiveCarousel data={data ?? []} itemRender={render} />
+      <Stack
+        direction="row"
+        gap={{ sm: 6 }}
+        justifyContent={{ xs: "space-evenly", sm: "center" }}
+        sx={sxInnerStack}
+      >
+        <PlayStation4Logo sx={noMargin} />
+        <PlayStation5Logo sx={noMargin} />
+        <NintendoLogo sx={noMargin} />
+        <XboxLogo sx={noMargin} />{" "}
+      </Stack>
+      <ProductsList />
+    </GeneralLayout>
   );
 }

@@ -15,12 +15,12 @@ export default function CardStateOrder({
 }: CardStateOrderProps) {
   return (
     <List
-      sx={{
-        background: "#fff",
+      sx={(theme) => ({
+        background: theme.palette.background.default,
         padding: "0 ",
         width: "100%",
         borderRadius: ".5rem",
-      }}
+      })}
     >
       <ListItem
         sx={{
@@ -53,9 +53,9 @@ export default function CardStateOrder({
             {quantity}
             <Typography
               component="span"
-              variant="body2"
+              variant="body1"
               color="text.primary"
-              sx={{ fontSize: "1.075rem" }}
+              sx={{ fontSize: "1.075rem", fontWeight: 500 }}
             >
               {price}
             </Typography>

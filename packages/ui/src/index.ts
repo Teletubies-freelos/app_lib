@@ -16,4 +16,8 @@ export { default as StepStatus } from "./molecules/StepStatus";
 export { default as CardStateOrder } from "./molecules/CardStateOrder";
 export { default as Quantity } from "./molecules/Quantity";
 export { default as HeaderModal } from "./molecules/HeaderModal";
+export { default as WhatsappLogo } from "./atoms/WhatsappLogo";
+export { default as ColorSwitch } from "./atoms/ColorSwitch";
+export { default as ModalLayout } from "./layout/ModalLayout";
 export { defaultTheme } from "./theme/appGames";
+export { ItemContainer, ListContainer } from "./atoms/ListContainers";

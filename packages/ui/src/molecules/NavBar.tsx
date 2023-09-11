@@ -1,50 +1,53 @@
 import { Box, Toolbar } from "@mui/material";
-import MainLogo from "../atoms/MainLogo";
-import SearchBar from "../atoms/SearchBar";
-import { SubmitHandler } from "react-hook-form";
-import type { ISearch } from "../atoms/SearchBar";
-import { useCallback } from "react";
 
 interface NavBarProps {
-  onSearch?: SubmitHandler<ISearch>;
   cartComponent?: JSX.Element;
+  mainLogo?: JSX.Element;
+  navigatorLinks?: JSX.Element;
+  searchBar?: JSX.Element;
+  actionsComponent?: JSX.Element;
 }
 
 const sxMainBar = {
   width: "100%",
   display: "flex",
-  gap: "3rem",
+  gap: { xs: "1rem", sm: "3rem" },
   justifyContent: "space-between",
   alignItems: "center",
 };
 
-export default function NavBar({ onSearch, cartComponent }: NavBarProps) {
-  const Search = useCallback(
-    () => (
-      <SearchBar
-        searchButtonContent="Buscar"
-        onSubmit={onSearch as SubmitHandler<ISearch>}
-      />
-    ),
-    [onSearch],
-  );
-
+export default function NavBar({
+  cartComponent,
+  mainLogo,
+  navigatorLinks,
+  actionsComponent,
+  searchBar,
+}: NavBarProps) {
   return (
-    <Toolbar sx={{ flexDirection: "column" }}>
+    <Toolbar
+      sx={{
+        flexDirection: "column",
+        marginBottom: "3rem",
+        gap: { xs: "2rem", sm: "0" },
+      }}
+    >
       <Box sx={sxMainBar}>
-        <MainLogo />
-        {onSearch && (
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            <Search />
-          </Box>
-        )}
-        {cartComponent}
-      </Box>
-      {onSearch && (
-        <Box sx={{ display: { xs: "block", sm: "none" } }}>
-          <Search />
+        {mainLogo}
+        <Box
+          sx={{
+            display: { xs: "none", md: "block" },
+            width: "40%",
+          }}
+        >
+          {searchBar}
         </Box>
-      )}
+        <Box display="flex" justifyContent="end" alignItems="center" gap="1rem">
+          {navigatorLinks}
+          {actionsComponent}
+          {cartComponent}
+        </Box>
+      </Box>
+      <Box sx={{ display: { xs: "block", md: "none" } }}>{searchBar}</Box>
     </Toolbar>
   );
 }

@@ -18,19 +18,33 @@ const CardHero = ({ image, alt, onClick, description }: CardHeroProps) => (
   <MUICard
     sx={{
       background: "white",
-      maxWidth: 300,
-      margin: "auto !important",
+      maxWidth: 400,
       boxShadow: "none",
+      margin: "0 auto !important",
+      backgroundColor : (theme)=>theme.palette.background.default
     }}
   >
     <CardMedia
-      height={188}
+      height={210}
       component="img"
       image={image}
       sx={{ borderRadius: ".5rem" }}
       alt={alt}
     />
-    <CardContent sx={{ padding: ".5rem" }}>{description}</CardContent>
+    <CardContent
+      sx={{
+        marginY: "1rem",
+        height: "2.4rem",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        display: "-webkit-box",
+        WebkitLineClamp: "2",
+        WebkitBoxOrient: "vertical",
+        paddingY: "0 !important",
+      }}
+    >
+      {description}
+    </CardContent>
     <CardActions sx={{ padding: 0 }}>
       <Button
         fullWidth

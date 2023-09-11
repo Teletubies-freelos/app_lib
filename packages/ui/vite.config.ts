@@ -25,6 +25,7 @@ export default defineConfig({
           react: "React",
           "react-dom": "ReactDOM",
           "@mui/material": "mui",
+          "react-hook=form": "reactHookForm",
         },
       },
     },

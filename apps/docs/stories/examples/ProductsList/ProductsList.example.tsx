@@ -1,5 +1,5 @@
 import { VirtuosoGrid } from "react-virtuoso";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 
 import { CardProduct, DropDown, Isotype } from "../../../../../packages/ui/src";
 import { CardProductProps } from "ui/src/molecules/CardProduct";

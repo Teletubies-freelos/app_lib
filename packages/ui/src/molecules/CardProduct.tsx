@@ -20,13 +20,6 @@ export interface CardProductProps {
   className?: string;
 }
 
-const cardStyles = {
-  backgroundColor: "#fff",
-  minWidth: "20rem",
-  boxShadow: "none",
-  borderRadius: "1rem",
-};
-
 export default function CardProduct({
   alt,
   src,
@@ -38,17 +31,30 @@ export default function CardProduct({
   className,
 }: CardProductProps) {
   return (
-    <Card sx={cardStyles} className={className}>
-      <Box display={"flex"}>
-        <Box width={"30%"} sx={{ display: "grid", placeItems: "center" }}>
+    <Card 
+      sx={({palette})=>({
+        background: palette.background.default,
+        minWidth: "20rem",
+        boxShadow: "none",
+        borderRadius: ".25rem",
+        height: "10rem",
+      })} 
+      className={className}
+    >
+      <Box display={"flex"} height="100%">
+        <Box sx={{
+          maxWidth: '6rem'
+        }}>
           <CardMedia
             component="img"
             alt={alt}
             src={src}
-            height={"80%"}
-            width={"100%"}
+            height={"100%"}
             sx={{
               objectFit: "contain",
+              margin: "auto 0",
+              padding: "1rem",
+              width: "100%",
             }}
           />
         </Box>
@@ -58,11 +64,25 @@ export default function CardProduct({
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
+            width: "70%",
           }}
         >
           <Box>
             <Typography variant="h3">{title}</Typography>
-            <Typography variant="body1">{description}</Typography>
+            <Typography 
+              variant="body1" 
+              sx={{
+                  marginTop:'.5rem',
+                  textOverflow: "ellipsis",
+                  display: "-webkit-box",
+                  WebkitLineClamp: "3",
+                  WebkitBoxOrient: "vertical",
+                  height: '3.5rem',
+                  overflow: 'hidden'
+                }}
+              >
+                {description}
+              </Typography>
           </Box>
           <Box>
             {!!previousPrice && (
@@ -73,7 +93,7 @@ export default function CardProduct({
                 S/ {previousPrice}
               </Typography>
             )}
-            <Typography variant="body2" sx={{ fontSize: "1.1em" }}>
+            <Typography variant="body2" sx={{ fontSize: "1.1em",color: (theme)=> theme.palette.text.primary }}>
               S/ {price}
             </Typography>
           </Box>

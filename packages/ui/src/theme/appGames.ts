@@ -1,25 +1,47 @@
 import { createTheme } from "@mui/material/styles";
 
-export const defaultTheme = createTheme({
-  typography: {
-    h1: {
-      fontSize: "2rem",
+const typography = {
+  allVariants: {
+    fontFamily: "Prompt",
+  },
+  h1: {
+    fontSize: "2rem",
+  },
+  h2: {
+    fontSize: "1.3rem",
+  },
+  h3: {
+    fontSize: "1rem",
+    fontWeight: "bold",
+  },
+  body1: {
+    fontSize: "0.75rem",
+  },
+  body2: {
+    color: "#444",
+    fontWeight: "bold",
+  },
+};
+
+export const darkTheme = createTheme({
+  typography,
+  palette: {
+    mode: "dark",
+    primary: {
+      main: "#7339FF",
     },
-    h2: {
-      fontSize: "1.3rem",
+    background: {
+      default: "#1F1D2B",
+      paper: "#363B50",
     },
-    h3: {
-      fontSize: "1rem",
-      fontWeight: "bold",
-    },
-    body1: {
-      fontSize: "0.75rem",
-    },
-    body2: {
-      color: "#444",
-      fontWeight: "bold",
+    text: {
+      primary: "#FFFFFF",
     },
   },
+});
+
+export const defaultTheme = createTheme({
+  typography,
   palette: {
     primary: {
       main: "#7339FF",
@@ -29,7 +51,7 @@ export const defaultTheme = createTheme({
       paper: "#EEF2FF",
     },
     text: {
-      primary: "#545454",
+      primary: "#444444",
       secondary: "#737373",
     },
     action: {
@@ -46,6 +68,9 @@ export const defaultTheme = createTheme({
     },
     info: {
       main: "#1773B0",
+    },
+    grey: {
+      "100": "#D9D9D9",
     },
   },
 });
