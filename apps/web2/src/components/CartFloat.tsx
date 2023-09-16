@@ -1,14 +1,19 @@
 import { Box, Modal, Typography } from "@mui/material";
 import { Button } from "../../../../packages/ui/src";
-import {  setIsCartShop, setIsWishList, useIsWishListOpen, usePriceTotalProducts, useTotalCountProducts } from "../observables";
+import {
+  setIsCartShop,
+  setIsWishList,
+  useIsWishListOpen,
+  usePriceTotalProducts,
+  useTotalCountProducts,
+} from "../observables";
 
 export default function CartFloat() {
- 
-  const isOpen = useIsWishListOpen()
-  const handleClose = ()=> setIsWishList(false)
+  const isOpen = useIsWishListOpen();
+  const handleClose = () => setIsWishList(false);
 
-  const totalPriceProducts = usePriceTotalProducts()
-  const quantityProducts = useTotalCountProducts()
+  const totalPriceProducts = usePriceTotalProducts();
+  const quantityProducts = useTotalCountProducts();
 
   return (
     <Modal
@@ -25,7 +30,7 @@ export default function CartFloat() {
     >
       <Box
         sx={{
-          backgroundColor: (theme) => theme.palette.background.default,
+          backgroundColor: "background.default",
           width: "100%",
           height: { xs: "5rem", md: "8rem" },
           padding: { xs: "1rem", md: "1rem 6rem" },
@@ -37,14 +42,16 @@ export default function CartFloat() {
         <Box>
           <Typography
             variant="subtitle1"
-            color={(theme) => theme.palette.text.primary}
+            color="text.primary"
+            fontSize={{ xs: ".8rem !important", sm: "1rem !important" }}
           >
             {quantityProducts} Productos
           </Typography>
           <Typography
             variant="h6"
-            color={(theme) => theme.palette.text.primary}
+            color="text.primary"
             fontWeight="bold"
+            fontSize={{ xs: ".8rem !important", sm: "1rem !important" }}
           >
             S/ {totalPriceProducts.toFixed(2)}
           </Typography>
@@ -71,6 +78,10 @@ export default function CartFloat() {
             color="primary"
             fullWidth
             label="Ir al carrito"
+            onClick={() => {
+              setIsCartShop(true);
+              setIsWishList(false);
+            }}
             sx={{
               display: { xs: "block", md: "none" },
               height: "2.6rem",
@@ -79,9 +90,9 @@ export default function CartFloat() {
             variant="contained"
           />
           <Button
-            onClick={()=> {
-              setIsCartShop(true)
-              setIsWishList(false)
+            onClick={() => {
+              setIsCartShop(true);
+              setIsWishList(false);
             }}
             color="primary"
             fullWidth

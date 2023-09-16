@@ -1,4 +1,4 @@
-import { Box, List, ListItem, Typography } from "@mui/material";
+import { Box, ListItem, Typography } from "@mui/material";
 
 interface CardStateOrderProps {
   img: JSX.Element;
@@ -14,54 +14,55 @@ export default function CardStateOrder({
   quantity,
 }: CardStateOrderProps) {
   return (
-    <List
-      sx={(theme) => ({
-        background: theme.palette.background.default,
-        padding: "0 ",
-        width: "100%",
+    <ListItem
+      sx={{
+        height: "auto",
+        maxHeight: "4.75rem",
+        alignItems: "center",
+        margin: "0.5rem 0",
+        background: "background.default",
         borderRadius: ".5rem",
-      })}
+      }}
     >
-      <ListItem
-        sx={{
-          height: "auto",
-          maxHeight: "4.75rem",
-          alignItems: "center",
-        }}
-      >
-        {img}
-        <Box width="100%" display="flex" alignItems="center">
-          <Box
+      {img}
+      <Box width="100%" display="flex" alignItems="center">
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            flexDirection: { xs: "column", sm: "row" },
+            justifyContent: "space-between",
+            alignItems: { xs: "flex-start", sm: "center" },
+            marginLeft: "1rem",
+            position: "relative",
+          }}
+        >
+          <Typography
             sx={{
-              width: "100%",
-              display: "flex",
-              flexDirection: { xs: "column", sm: "row" },
-              justifyContent: "space-between",
-              alignItems: { xs: "flex-start", sm: "center" },
-              marginLeft: "1rem",
-              position: "relative",
+              height: "100%",
+              fontSize: { xs: ".8rem !important", sm: "1rem !important" },
+              width: "13rem !important",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
             }}
           >
-            <Typography
-              sx={{
-                height: "100%",
-                fontSize: "1rem !important",
-              }}
-            >
-              {title}
-            </Typography>
-            {quantity}
-            <Typography
-              component="span"
-              variant="body1"
-              color="text.primary"
-              sx={{ fontSize: "1.075rem", fontWeight: 500 }}
-            >
-              {price}
-            </Typography>
-          </Box>
+            {title}
+          </Typography>
+          {quantity}
+          <Typography
+            component="span"
+            width="4rem"
+            variant="body1"
+            color="text.primary"
+            sx={{
+              fontSize: { xs: ".8rem !important", sm: ".9rem !important" },
+              fontWeight: 500,
+            }}
+          >
+            S/.{price}
+          </Typography>
         </Box>
-      </ListItem>
-    </List>
+      </Box>
+    </ListItem>
   );
 }
