@@ -20,7 +20,7 @@ export default function CardStateOrder({
         maxHeight: "4.75rem",
         alignItems: "center",
         margin: "0.5rem 0",
-        background: "background.default",
+        backgroundColor: "background.default",
         borderRadius: ".5rem",
       }}
     >

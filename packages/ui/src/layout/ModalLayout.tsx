@@ -27,7 +27,7 @@ const ModalLayout = ({
       <Box
         height="100%"
         sx={{
-          background: "background.paper",
+          backgroundColor: "background.paper",
           padding: { xs: " 0.5rem", sm: "1.5rem 2.5rem" },
           borderRadius: "0 0 0.3rem 0.3rem",
         }}
