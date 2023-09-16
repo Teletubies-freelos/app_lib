@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { DataContext } from "../context/DataContext";
 
 interface IUseCart {
-  openCartFloat: boolean;
-  changeFloatCart: () => void;
+  openCart: boolean;
+  onAddElement: () => void;
 }
 
 export function useCart(): IUseCart {
-  const { openCartFloat, changeFloatCart } = useContext(DataContext);
-  return { openCartFloat, changeFloatCart };
+  const { openCart, onAddElement } = useContext(DataContext);
+  return { openCart, onAddElement };
 }

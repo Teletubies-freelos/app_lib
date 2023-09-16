@@ -18,7 +18,6 @@ const sxProductListHeader: SxProps = {
 
 export default function ProductsList() {
   const { products, fetchNextPage } = useProducts();
-
   const loadMore = () => {
     fetchNextPage();
   };

@@ -15,6 +15,7 @@ export default defineConfig({
           reactQuery: ["@tanstack/react-query"],
           virtuoso: ["react-virtuoso"],
           tssReact: ["tss-react"],
+          dexie: ["dexie","dexie-react-hooks"],
         },
       },
     },

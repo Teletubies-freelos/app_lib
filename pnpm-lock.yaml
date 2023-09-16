@@ -309,12 +309,24 @@ importers:
       '@mui/material':
         specifier: ^5.14.7
         version: 5.14.7(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
+      '@react-rxjs/core':
+        specifier: ^0.10.7
+        version: 0.10.7(react@18.2.0)(rxjs@7.8.1)
+      '@react-rxjs/utils':
+        specifier: ^0.9.7
+        version: 0.9.7(@react-rxjs/core@0.10.7)(react@18.2.0)(rxjs@7.8.1)
       '@tanstack/react-query':
         specifier: ^4.33.0
         version: 4.33.0(react-dom@18.2.0)(react@18.2.0)
       axios:
         specifier: ^1.5.0
         version: 1.5.0
+      dexie:
+        specifier: ^3.2.4
+        version: 3.2.4
+      dexie-react-hooks:
+        specifier: ^1.1.6
+        version: 1.1.6(@types/react@18.2.21)(dexie@3.2.4)(react@18.2.0)
       graphql:
         specifier: ^16.8.0
         version: 16.8.0
@@ -336,6 +348,9 @@ importers:
       react-virtuoso:
         specifier: ^4.5.0
         version: 4.5.0(react-dom@18.2.0)(react@18.2.0)
+      rxjs:
+        specifier: ^7.8.1
+        version: 7.8.1
       tss-react:
         specifier: ^4.9.0
         version: 4.9.0(@emotion/react@11.11.1)(react@18.2.0)
@@ -3189,8 +3204,8 @@ packages:
     dependencies:
       '@babel/runtime': 7.22.11
       '@emotion/cache': 11.11.0
-      '@emotion/react': 11.11.1(@types/react@18.2.15)(react@18.2.0)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.15)(react@18.2.0)
+      '@emotion/react': 11.11.1(@types/react@18.2.21)(react@18.2.0)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.21)(react@18.2.0)
       csstype: 3.1.2
       prop-types: 15.8.1
       react: 18.2.0
@@ -4210,6 +4225,30 @@ packages:
     resolution: {integrity: sha512-Ba7HmkFgfQxZqqaeIWWkNK0rEhpxVQHIoVyW1YDSkGsGIXzcaW4deC8B0pZrNSSyLTdIk7y+5olKt5+g0GmFIQ==}
     dev: false
 
+  /@react-rxjs/core@0.10.7(react@18.2.0)(rxjs@7.8.1):
+    resolution: {integrity: sha512-dornp8pUs9OcdqFKKRh9+I2FVe21gWufNun6RYU1ddts7kUy9i4Thvl0iqcPFbGY61cJQMAJF7dxixWMSD/A/A==}
+    peerDependencies:
+      react: '>=16.8.0'
+      rxjs: '>=7'
+    dependencies:
+      '@rx-state/core': 0.1.4(rxjs@7.8.1)
+      react: 18.2.0
+      rxjs: 7.8.1
+      use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
+
+  /@react-rxjs/utils@0.9.7(@react-rxjs/core@0.10.7)(react@18.2.0)(rxjs@7.8.1):
+    resolution: {integrity: sha512-m9CUTdRsglObvUAlYfB24QvN+QH4XqCGEKnCdSILIeOx7mMqSi9TTFp2zrj5XqtMiLnj4ReAdDxrXegLPB73bQ==}
+    peerDependencies:
+      '@react-rxjs/core': '>=0.1.0'
+      react: '>=16.8.0'
+      rxjs: '>=6'
+    dependencies:
+      '@react-rxjs/core': 0.10.7(react@18.2.0)(rxjs@7.8.1)
+      react: 18.2.0
+      rxjs: 7.8.1
+    dev: false
+
   /@refinedev/cli@2.9.0(@babel/preset-env@7.22.10)(@types/react@18.2.15)(react@18.2.0):
     resolution: {integrity: sha512-IfPzymuX5G2+TPL3F+YvamAwRz8kz3gHSYrd1xkozLtXBgekhjZG4qDTmtfLgU0YgoFEfWI/z+MjaxTNfQbWug==}
     hasBin: true
@@ -4570,6 +4609,14 @@ packages:
       colors: 1.2.5
       string-argv: 0.3.2
     dev: true
+
+  /@rx-state/core@0.1.4(rxjs@7.8.1):
+    resolution: {integrity: sha512-Z+3hjU2xh1HisLxt+W5hlYX/eGSDaXXP+ns82gq/PLZpkXLu0uwcNUh9RLY3Clq4zT+hSsA3vcpIGt6+UAb8rQ==}
+    peerDependencies:
+      rxjs: '>=7'
+    dependencies:
+      rxjs: 7.8.1
+    dev: false
 
   /@sinclair/typebox@0.27.8:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
@@ -8347,6 +8394,23 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /dexie-react-hooks@1.1.6(@types/react@18.2.21)(dexie@3.2.4)(react@18.2.0):
+    resolution: {integrity: sha512-xSblWtmPwhafWNWMECsW7zMMmBu8goH3QqTxEfwBNoNG1mgsM0oFclippev7ss9HhKICqBwTjgqpscci5Ed4mA==}
+    peerDependencies:
+      '@types/react': '>=16'
+      dexie: ^3.2 || ^4.0.1-alpha
+      react: '>=16'
+    dependencies:
+      '@types/react': 18.2.21
+      dexie: 3.2.4
+      react: 18.2.0
+    dev: false
+
+  /dexie@3.2.4:
+    resolution: {integrity: sha512-VKoTQRSv7+RnffpOJ3Dh6ozknBqzWw/F3iqMdsZg958R0AS8AnY9x9d1lbwENr0gzeGJHXKcGhAMRaqys6SxqA==}
+    engines: {node: '>=6.0'}
+    dev: false
 
   /diff@4.0.2:
     resolution: {integrity: sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==}
@@ -14605,7 +14669,7 @@ packages:
         optional: true
     dependencies:
       '@emotion/cache': 11.11.0
-      '@emotion/react': 11.11.1(@types/react@18.2.5)(react@18.2.0)
+      '@emotion/react': 11.11.1(@types/react@18.2.21)(react@18.2.0)
       '@emotion/serialize': 1.1.2
       '@emotion/utils': 1.2.1
       react: 18.2.0
