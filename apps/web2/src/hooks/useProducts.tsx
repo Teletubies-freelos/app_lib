@@ -31,7 +31,7 @@ export const useProducts = ()=>{
   const query = useInfiniteQuery({
     queryKey: ["list_games"],
     queryFn: ({pageParam = 0}) => gamesClient
-      .getPaginatedGames({paginated: { limit: 10, offset: pageParam}}),
+      .getPaginatedGames({paginated: { limit: 20, offset: pageParam}}),
     getNextPageParam: getNextPage
   })
 

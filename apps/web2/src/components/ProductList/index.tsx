@@ -69,7 +69,7 @@ export default function ProductsList() {
         endReached={loadMore}
         itemContent={ItemContent}
         overscan={5}
-        style={{ height: 300 }}
+        style={{ height: 200 }}
         useWindowScroll
       />
     </Paper>
