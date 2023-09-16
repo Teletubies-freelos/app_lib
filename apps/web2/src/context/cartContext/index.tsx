@@ -4,7 +4,10 @@ import { poblateData } from "../../utils";
 import { CircularProgress } from "@mui/material";
 
 
-export const cartContext = createContext({handleOnClick:(_price:number,_count?:number)=>{}})
+export const cartContext = createContext(
+  {
+    handleOnClick:(_price:number,_count?:number, _is?: boolean)=>{}
+  })
 
 
 export const CartProvider = ({children}:PropsWithChildren)=>{
@@ -32,10 +35,13 @@ export const CartProvider = ({children}:PropsWithChildren)=>{
     }
   },[])
 
-  const handleOnClick =(price:number,count = 1)=>{
-    setIsWishList(!isOpenRef.current)
+  const handleOnClick =(price:number,count = 1, isGoingToOpenWish = true)=>{
+    if(isGoingToOpenWish){
+      setIsWishList(!isOpenRef.current)
+      isOpenRef.current = !isOpenRef.current
 
-    isOpenRef.current = !isOpenRef.current
+    }
+
     setTotalCountProducts(countRef.current + count)
     setPriceTotalProducts(priceRef.current + price)
   }

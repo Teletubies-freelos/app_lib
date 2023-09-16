@@ -27,11 +27,21 @@ export class CartProductDAO {
   }
 
   async changeQuantity(id: number, quantity: number) {
-    return await this.db.products.update(id, { quantity })
+    if(quantity)
+      return await this.db.products.update(id, { quantity })
+
+    return await this.deleteProduct(id)
   }
 
   async getProducts() {
     return await this.db.products.toArray()
+  }
+
+  async getTotalCount(){
+    return (
+        await this.getProducts()
+      ).
+        reduce((acc, {quantity})=> acc + quantity, 0)
   }
 
 }
