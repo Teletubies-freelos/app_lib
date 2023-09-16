@@ -1,21 +1,18 @@
-import { AxiosInstance } from 'axios';
-import { type  GraphQLClient, gql } from 'graphql-request'
-import { GamesPaths } from './constans';
-import { IOffer } from '../../types/games';
-import { SearchParams } from '../../types';
+import { AxiosInstance } from "axios";
+import { type GraphQLClient, gql } from "graphql-request";
+import { GamesPaths } from "./constans";
+import { IOffer } from "../../types/games";
+import { SearchParams } from "../../types";
 
-
-
-export interface Games{
-  getMainOffers(): Promise<IOffer[]>
-  getPaginatedGames(params?: SearchParams): Promise<IOffer[]>
+export interface Games {
+  getMainOffers(): Promise<IOffer[]>;
+  getPaginatedGames(params?: SearchParams): Promise<IOffer[]>;
 }
 
-
-export class GamesAxios implements Games{
-  constructor(private client: AxiosInstance){}
+export class GamesAxios implements Games {
+  constructor(private client: AxiosInstance) {}
   getPaginatedGames(_params?: SearchParams | undefined): Promise<IOffer[]> {
-    throw new Error('Method not implemented.');
+    throw new Error("Method not implemented.");
   }
 
   async getMainOffers() {
@@ -23,7 +20,6 @@ export class GamesAxios implements Games{
 
     return data;
   }
-
 }
 
 export class GamesGraphQL implements Games {
@@ -33,34 +29,42 @@ export class GamesGraphQL implements Games {
         description
         id
         img_url
+        price
+        name
       }
-    }`
+    }
+  `;
 
   private static GET_PAGINATED_GAMES = gql`
-  query GET_PAGINATED_GAMES($limit: Int! $offset: Int) {
-    games(limit: $limit offset: $offset) {
-      description
-      id
-      img_url
-      price
-      name
+    query GET_PAGINATED_GAMES($limit: Int!, $offset: Int) {
+      games(limit: $limit, offset: $offset) {
+        description
+        id
+        img_url
+        price
+        name
+      }
     }
-  }`
+  `;
 
   constructor(private client: GraphQLClient) {}
 
   async getMainOffers(limit = 10) {
-    const { games } = await this.client
-      .request<{games: IOffer[]}>(GamesGraphQL.GET_MAIN_OFFERS, {limit})
+    const { games } = await this.client.request<{ games: IOffer[] }>(
+      GamesGraphQL.GET_MAIN_OFFERS,
+      { limit },
+    );
 
     return games;
   }
 
-   async getPaginatedGames(params?: SearchParams): Promise<IOffer[]> {
-    const {paginated={} } = params ?? { }
-    const {games } = await this.client
-      .request<{games: IOffer[]}>(GamesGraphQL.GET_PAGINATED_GAMES, {...paginated})
+  async getPaginatedGames(params?: SearchParams): Promise<IOffer[]> {
+    const { paginated = {} } = params ?? {};
+    const { games } = await this.client.request<{ games: IOffer[] }>(
+      GamesGraphQL.GET_PAGINATED_GAMES,
+      { ...paginated },
+    );
 
-    return games
+    return games;
   }
 }

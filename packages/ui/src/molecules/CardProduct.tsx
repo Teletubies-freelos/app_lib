@@ -31,20 +31,21 @@ export default function CardProduct({
   className,
 }: CardProductProps) {
   return (
-    <Card 
-      sx={({palette})=>({
+    <Card
+      sx={({ palette }) => ({
         background: palette.background.default,
-        minWidth: "20rem",
         boxShadow: "none",
         borderRadius: ".25rem",
         height: "10rem",
-      })} 
+      })}
       className={className}
     >
       <Box display={"flex"} height="100%">
-        <Box sx={{
-          maxWidth: '6rem'
-        }}>
+        <Box
+          sx={{
+            maxWidth: "6rem",
+          }}
+        >
           <CardMedia
             component="img"
             alt={alt}
@@ -69,20 +70,20 @@ export default function CardProduct({
         >
           <Box>
             <Typography variant="h3">{title}</Typography>
-            <Typography 
-              variant="body1" 
+            <Typography
+              variant="body1"
               sx={{
-                  marginTop:'.5rem',
-                  textOverflow: "ellipsis",
-                  display: "-webkit-box",
-                  WebkitLineClamp: "3",
-                  WebkitBoxOrient: "vertical",
-                  height: '3.5rem',
-                  overflow: 'hidden'
-                }}
-              >
-                {description}
-              </Typography>
+                marginTop: ".5rem",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: "3",
+                WebkitBoxOrient: "vertical",
+                height: "3.5rem",
+                overflow: "hidden",
+              }}
+            >
+              {description}
+            </Typography>
           </Box>
           <Box>
             {!!previousPrice && (
@@ -93,7 +94,13 @@ export default function CardProduct({
                 S/ {previousPrice}
               </Typography>
             )}
-            <Typography variant="body2" sx={{ fontSize: "1.1em",color: (theme)=> theme.palette.text.primary }}>
+            <Typography
+              variant="body2"
+              sx={{
+                fontSize: "1.1em",
+                color: (theme) => theme.palette.text.primary,
+              }}
+            >
               S/ {price}
             </Typography>
           </Box>
@@ -111,9 +118,9 @@ export default function CardProduct({
           variant="contained"
           sx={{
             position: "relative",
-            bottom: "3.2rem",
+            bottom: { xs: "2.8rem", sm: "3.2rem" },
             right: "2rem",
-            height: "2.4rem",
+            height: { xs: "1.8rem", sm: "2.5rem" },
             minWidth: "unset",
             aspectRatio: 1,
             padding: 0,

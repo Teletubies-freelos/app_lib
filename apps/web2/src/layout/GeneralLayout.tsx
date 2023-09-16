@@ -1,9 +1,6 @@
 import { Box } from "@mui/material";
 import type { PropsWithChildren } from "react";
-import {
-
-  WhatsappLogo,
-} from "../../../../packages/ui/src";
+import { WhatsappLogo } from "../../../../packages/ui/src";
 
 import CartFloat from "../components/CartFloat";
 import Cart from "../components/modals/Cart/Cart";
@@ -19,7 +16,6 @@ export function GeneralLayout({
   children,
   navBar,
 }: PropsWithChildren<GeneralLayoutProps>) {
-
   return (
     <Box
       sx={{
@@ -39,11 +35,21 @@ export function GeneralLayout({
           paddingRight: "1rem",
         }}
       >
-        <WhatsappLogo sx={{ cursor: "pointer" }} />
+        <WhatsappLogo
+          sx={{
+            cursor: "pointer",
+            height: "50px",
+            transform: "translate(-10px,-40px)",
+            transition: "all 0.3s ease-in-out",
+            "&:hover": {
+              transform: "translate(-10px,-40px) scale(1.1)",
+            },
+          }}
+        />
       </Box>
-        <Cart content={<BodyCart />}/>
-        <CartFloat  />
-        <PickupStore content={<BodyPickup />} />
+      <Cart content={<BodyCart />} />
+      <CartFloat />
+      <PickupStore content={<BodyPickup />} />
     </Box>
   );
 }

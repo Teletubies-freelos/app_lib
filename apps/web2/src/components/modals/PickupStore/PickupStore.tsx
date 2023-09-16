@@ -9,22 +9,20 @@ interface PickupStoreProps {
   content?: JSX.Element;
 }
 
-export default function PickupStore({
-  content,
-}: PickupStoreProps) {
-  const isOpen = useIsPickupStoreOpen()
+export default function PickupStore({ content }: PickupStoreProps) {
+  const isOpen = useIsPickupStoreOpen();
 
   return (
     <Modal
       open={!!isOpen}
-      onClose={()=> setIsPickupStore(false)}
+      onClose={() => setIsPickupStore(false)}
       sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
     >
       <ModalLayout
         sx={{ maxWidth: "40rem" }}
         headerModal={
           <HeadModal
-            onClose={()=>setIsPickupStore(false)}
+            onClose={() => setIsPickupStore(false)}
             title={<Typography variant="h5">Recojo en Tienda</Typography>}
             icon={<ArrowBackIosIcon />}
           />

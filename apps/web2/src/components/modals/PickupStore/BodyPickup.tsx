@@ -9,15 +9,14 @@ import { cartClient } from "../../../modules";
 
 export default function BodyPickup() {
   const {
-    dataProducts: {data}, 
-    dataPrice: {data: total}
-  } = useGetIndexedDb()
+    dataProducts: { data },
+    dataPrice: { data: total },
+  } = useGetIndexedDb();
 
-  const {data: totalCount} = useQuery({
-    queryKey: ['totalCount'],
-    queryFn : ()=> cartClient.getTotalCount()
-  })
-  
+  const { data: totalCount } = useQuery({
+    queryKey: ["totalCount"],
+    queryFn: () => cartClient.getTotalCount(),
+  });
 
   return (
     <Stack>
@@ -30,13 +29,13 @@ export default function BodyPickup() {
             <Typography
               sx={({ palette }) => ({ color: palette.text.secondary })}
             >
-              {totalCount}
+              {totalCount} Productos
             </Typography>
           </Stack>
         }
         content={
           <>
-            {data?.map(({name, price, id}) => (
+            {data?.map(({ name, price, id }) => (
               <Box
                 display="flex"
                 justifyContent="space-between"

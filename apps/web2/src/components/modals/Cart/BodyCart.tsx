@@ -161,8 +161,9 @@ export default function BodyCart() {
         <Typography
           textAlign="center"
           variant="body2"
-          fontSize="1rem"
+          fontSize=".9rem"
           padding="1rem 0 .5rem 0"
+          color="text.primary"
         >
           Selecciona el tipo de entrega
         </Typography>

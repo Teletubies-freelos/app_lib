@@ -3,7 +3,7 @@ export default function Filters() {
   return (
     <Box
       display="flex"
-      gap="1.5rem"
+      gap={{ xs: "0.5rem", md: "1.5rem" }}
       alignItems="center"
       width={{ xs: "100%", md: "30%" }}
       order={{ xs: "3", md: "2" }}
