@@ -98,7 +98,7 @@ export default function BodyCart() {
         sx={{overflowY: 'scroll'}}
       >
        {
-        data && data.length > 0 ? 
+        data?.length > 0 ? 
         <List
         sx={{
           padding: "0",

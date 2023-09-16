@@ -25,7 +25,7 @@ export default function CartFloat() {
     >
       <Box
         sx={{
-          backgroundColor: (theme) => theme.palette.background.default,
+          backgroundColor: 'background.default',
           width: "100%",
           height: { xs: "5rem", md: "8rem" },
           padding: { xs: "1rem", md: "1rem 6rem" },
@@ -37,7 +37,7 @@ export default function CartFloat() {
         <Box>
           <Typography
             variant="subtitle1"
-            color={(theme) => theme.palette.text.primary}
+            color='text.primary'
             fontSize= {{ xs: ".8rem !important", sm: "1rem !important"} }
           >
             {quantityProducts} Productos
