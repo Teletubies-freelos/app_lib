@@ -13,7 +13,7 @@ export default function NavLinks() {
           sx={({ palette }) => ({
             display: { xs: "block", md: "none" },
             textDecoration: "none",
-            fontSize: ".875rem",
+            fontSize: { xs: ".8rem", sm: ".875rem" },
             color: palette.primary.main,
             fontWeight: 500,
           })}

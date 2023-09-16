@@ -67,6 +67,7 @@ export default function CartFloat() {
             color="primary"
             fullWidth
             label="Seguir Comprando"
+            onClick={() => setIsWishList(false)}
             sx={{
               height: "2.6rem",
               display: { xs: "none", md: "block" },
