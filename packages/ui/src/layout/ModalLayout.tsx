@@ -26,11 +26,11 @@ const ModalLayout = ({
       {headerModal}
       <Box
         height="100%"
-        sx={(theme) => ({
-          background: theme.palette.background.paper,
-          padding: {xs:' 0.5rem' , sm:'1.5rem 2.5rem'},
+        sx={{
+          background: "background.paper",
+          padding: { xs: " 0.5rem", sm: "1.5rem 2.5rem" },
           borderRadius: "0 0 0.3rem 0.3rem",
-        })}
+        }}
       >
         {children}
       </Box>
