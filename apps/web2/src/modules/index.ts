@@ -15,5 +15,7 @@ export const games = new GamesGraphQL(mainClient);
 
 export const cartClient = new CartProductDAO(appGamesDbSingleton)
 
-if(import.meta.env.DEV)
+if(import.meta.env.DEV){
   window.gamesClient = games;
+  window.cartClient = cartClient;
+}

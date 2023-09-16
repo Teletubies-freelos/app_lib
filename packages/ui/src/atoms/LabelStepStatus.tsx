@@ -3,7 +3,7 @@ import { tss } from "tss-react/mui";
 
 export interface LabelStepStatusProps {
   property: string;
-  value?: string;
+  value?: number | string;
   icon?: JSX.Element;
   sx?: SxProps;
 }

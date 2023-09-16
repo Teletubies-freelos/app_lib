@@ -20,25 +20,24 @@ interface CardProductProps {
   className?: string;
 }
 
-export function ItemContent(_index: number, product: CardProductProps) {
 
-  const {handleOnClick} = useContext(cartContext)
+export const itemContentRender = (handleOnClick: (price: number)=>void) =>
+  function (_index: number, product: CardProductProps) {
+    const _handleOnClick = () => {
+      cartClient.addProduct({
+        imageUrl: product.src,
+        name: product.title,
+        price: product.price,
+        quantity: 1,
+        priceDiscount: 0,
+        productId: product.title
+      })
 
-  const _handleOnClick = () => {
-    cartClient.addProduct({
-      imageUrl: product.src,
-      name: product.title,
-      price: product.price,
-      quantity: 1,
-      priceDiscount: 0,
-      productId: product.title
-    })
+      handleOnClick(product.price)
+    }
 
-    handleOnClick(product.price)
+    return <CardProduct {...product} onAdd={_handleOnClick} />;
   }
-
-  return <CardProduct {...product} onAdd={_handleOnClick} />;
-}
 
 
 export const ListContainer: any = styled("div")({

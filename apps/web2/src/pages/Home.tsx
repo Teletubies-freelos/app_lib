@@ -20,26 +20,42 @@ import NavLinks from "../components/NavLinks";
 import { useGames } from "../hooks/useGames";
 import { sxInnerStack } from "./styles";
 import { useToggleColor } from "../providers/theme";
-import { useMemo} from "react";
+import { useContext, useMemo} from "react";
 import CartIconReactive from "../components/CartIconReactive";
+import { cartContext } from "../context/cartContext";
+import { IOffer } from "../types/games";
+import { cartClient } from "../modules";
 
-interface IRender {
-  img_url?: string;
-  description?: string;
-}
 
-const render = ({ img_url = "", description = "" }: IRender) => (
-  <CardHero
+const CardHeroHOC = ({ img_url = "", description = "", id, name = "", price = 0 }: IOffer)=>{
+  const {handleOnClick} = useContext(cartContext)
+
+  const _handleClick = ()=>{
+    cartClient.addProduct({
+      imageUrl: img_url,
+      name,
+      price,
+      priceDiscount: 0,
+      productId: id,
+      quantity: 1,
+    })
+
+    handleOnClick(price)
+  }
+
+  return (<CardHero
+    onClick={_handleClick}
     alt=""
     description={description}
     image={img_url}
     key={img_url ?? ""}
-  />
-);
+  />)
+}
+
+const render = (props: IOffer) => <CardHeroHOC key={props.id} {...props}/>;
 
 export default function Home() {
   const { data } = useGames();
-
   const toggleColor = useToggleColor();
   const theme = useTheme();
   const noMargin: SxProps = useMemo(()=>(

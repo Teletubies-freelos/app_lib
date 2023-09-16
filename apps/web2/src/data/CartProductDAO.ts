@@ -4,8 +4,7 @@ export class CartProductDAO{
     constructor(private db:AppGamesDB){
     }
 
-    async addProduct(product:ICartProduct){
-        
+    async addProduct(product:ICartProduct){       
        const productResult = await this.db.products.get({productId:product.productId})
 
        if(productResult?.id){

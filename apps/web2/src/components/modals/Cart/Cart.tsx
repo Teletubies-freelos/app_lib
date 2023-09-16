@@ -9,15 +9,12 @@ interface CartProps {
 }
 
 export default function Cart({ content }: CartProps) {
-
   const isOpen = useIsCartShopOpen()
-
-  const handleClose = ()=> setIsCartShop(false)
 
   return (
     <Modal
-      onClose={handleClose}
-      open={isOpen}
+      onClose={()=> setIsCartShop(false)}
+      open={!!isOpen}
       sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
     >
       <ModalLayout

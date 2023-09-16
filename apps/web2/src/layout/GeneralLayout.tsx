@@ -39,7 +39,7 @@ export function GeneralLayout({
       >
         <WhatsappLogo sx={{ cursor: "pointer" }} />
       </Box>
-        <Cart content={<BodyCart total="480"/>}/>
+        <Cart content={<BodyCart />}/>
         <CartFloat  />
     </Box>
   );

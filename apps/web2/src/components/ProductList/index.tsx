@@ -3,8 +3,10 @@ import { VirtuosoGrid } from "react-virtuoso";
 import { DropDown, Isotype } from "../../../../../packages/ui/src";
 import { useProducts } from "../../hooks/useProducts";
 import { Loading } from "./Loading";
-import { ItemContainer, ItemContent, ListContainer } from "./Containers";
+import { ItemContainer, ListContainer, itemContentRender } from "./Containers";
 import Filters from "./Filters";
+import { useContext, useMemo } from "react";
+import { cartContext } from "../../context/cartContext";
 
 const sxProductListHeader: SxProps = {
   width: "100%",
@@ -18,9 +20,13 @@ const sxProductListHeader: SxProps = {
 
 export default function ProductsList() {
   const { products, fetchNextPage } = useProducts();
+  const {handleOnClick} = useContext(cartContext)
+
   const loadMore = () => {
     fetchNextPage();
   };
+
+  const ItemContent= useMemo(()=> itemContentRender(handleOnClick), [])
 
   return (
     <Paper

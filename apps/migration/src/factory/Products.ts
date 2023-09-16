@@ -7,6 +7,7 @@ import type { Factory, PartialBy } from "../types";
 export class ProductFactory implements Factory<PartialBy<ProductsDAO, 'id'>>{
   createOne(){
     return {
+      id: faker.string.uuid() as any,
       description: faker.commerce.productDescription() ,
       img_url: faker.image.urlLoremFlickr({category: 'games'}),
       name: faker.commerce.productName(),

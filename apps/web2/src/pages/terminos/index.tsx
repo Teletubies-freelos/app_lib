@@ -13,11 +13,9 @@ import { Box, Stack, Typography } from "@mui/material";
 
 import { useToggleColor } from "../../providers/theme";
 import NavLinks from "../../components/NavLinks";
-import { useCart } from "../../hooks/useCart";
 
 export default function Terminos() {
   const toggleColor = useToggleColor();
-  const { changeFloatCart } = useCart();
 
   return (
     <GeneralLayout
@@ -27,7 +25,7 @@ export default function Terminos() {
             <ColorSwitch onChange={toggleColor} overrideCheckBg />
           }
           cartComponent={
-            <CartIcon onClick={changeFloatCart} qty={2} size="medium" />
+            <CartIcon />
           }
           navigatorLinks={<NavLinks />}
           mainLogo={

@@ -1,6 +1,6 @@
 import { Box, Modal, Typography } from "@mui/material";
 import { Button } from "../../../../packages/ui/src";
-import {  setIsWishList, useIsWishListOpen, usePriceTotalProducts, useTotalCountProducts } from "../observables";
+import {  setIsCartShop, setIsWishList, useIsWishListOpen, usePriceTotalProducts, useTotalCountProducts } from "../observables";
 
 export default function CartFloat() {
  
@@ -46,7 +46,7 @@ export default function CartFloat() {
             color={(theme) => theme.palette.text.primary}
             fontWeight="bold"
           >
-            S/ {totalPriceProducts}
+            S/ {totalPriceProducts.toFixed(2)}
           </Typography>
         </Box>
         <Box
@@ -79,6 +79,10 @@ export default function CartFloat() {
             variant="contained"
           />
           <Button
+            onClick={()=> {
+              setIsCartShop(true)
+              setIsWishList(false)
+            }}
             color="primary"
             fullWidth
             label="Ir al carrito"

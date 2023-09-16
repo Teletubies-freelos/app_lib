@@ -10,7 +10,8 @@ import { CartProvider } from "../context/cartContext";
 const queryClient = new QueryClient({
   defaultOptions:{
     queries:{
-      refetchOnMount: false
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
     }
   }
 });
