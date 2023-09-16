@@ -9,6 +9,9 @@ import totalMoney from "../common/total.svg";
 
 import { setIsCartShop, setIsPickupStore } from "../../../observables";
 import { useGetIndexedDb } from "../../../hooks/useGetIndexedDb";
+import {  useContext, useState } from "react";
+import { cartClient } from "../../../modules";
+import { cartContext } from "../../../context/cartContext";
 
 
 interface ImageProps{
@@ -36,12 +39,56 @@ const Loading = ()=> (
   </Box>
 )
 
+interface CardQtyProps {
+  initialQty: number;
+  indexedId: number;
+  price: number;
+  onDeleteTotal?: ()=> Promise<void> | void;
+  onChangeQty?: ()=> Promise<void> | void
+}
+
+const CardQty = ({ initialQty, indexedId , onDeleteTotal, onChangeQty, price}: CardQtyProps)=>{
+  const [ qty, setQty ] = useState(initialQty)
+  const { handleOnClick } = useContext(cartContext)
+
+  return (
+    <Quantity
+      changeQuantity={async ()=>{
+        await cartClient.changeQuantity(indexedId, qty + 1)
+
+        handleOnClick(price, 1, false)
+
+        if(onChangeQty)
+          await onChangeQty();
+
+        setQty(prev => prev + 1 )
+      }}
+      quantity={qty}
+      onDelete={async ()=>{
+        await cartClient.changeQuantity(indexedId, qty - 1)
+
+        handleOnClick(- price, -1, false)
+
+        if(onChangeQty)
+          await onChangeQty();
+
+        if(qty <= 1 && onDeleteTotal)
+          return await onDeleteTotal()
+
+        setQty(prev => prev - 1)
+      }}
+    />
+  )
+}
+
 export default function BodyCart() {
   const {
     dataProducts: 
-      {data, isFetching: isLoading}, 
-    dataPrice: {isLoading: isLoadingTotal, data: total}
+      {data, isFetching: isLoading, refetch: refetchProducts}, 
+    dataPrice: {isLoading: isLoadingTotal, data: total, refetch: refetchPrice}
   } = useGetIndexedDb()
+
+ 
 
    return (
     <>
@@ -53,21 +100,28 @@ export default function BodyCart() {
         sx={{overflowY: 'scroll'}}
       >
         {
-          isLoading || isLoadingTotal ? <Loading /> : data?.map(({imageUrl, name, price, quantity, id}) => (
-            <CardStateOrder
-              key={id}
-              img={<Image url={imageUrl}/>}
-              title={name}
-              price={price}
-              quantity={
-                <Quantity
-                  quantity={quantity}
-                  changeQuantity={() => 4}
-                  onDelete={() => 5}
-                />
-              }
-            />
-          ))
+          isLoading || isLoadingTotal ? 
+            <Loading /> : 
+            data?.map(({imageUrl, name, price, quantity, id}) => (
+              <CardStateOrder
+                key={id}
+                img={<Image url={imageUrl}/>}
+                title={name}
+                price={price}
+                quantity={
+                  <CardQty
+                    onChangeQty={()=>refetchPrice().then(()=>{})}
+                    price={price}
+                    onDeleteTotal={()=> Promise.all([
+                      refetchPrice(),
+                      refetchProducts()
+                    ]).then(()=>{})} 
+                    initialQty={quantity} 
+                    indexedId={id!} 
+                  />
+                }
+              />
+            ))
         }
       </Box>
       <LabelStepStatus

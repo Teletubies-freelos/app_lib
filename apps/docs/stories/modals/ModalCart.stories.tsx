@@ -7,7 +7,7 @@ export default {
 };
 
 const Template = (args) => (
-  <Cart {...args} content={<BodyCart total="S/ 480.00" />} />
+  <Cart {...args} content={<BodyCart />} />
 );
 
 export const Default = Template.bind({});

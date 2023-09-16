@@ -15,7 +15,7 @@ export default function BodyPickup() {
 
   const {data: totalCount} = useQuery({
     queryKey: ['totalCount'],
-    queryFn : ()=> cartClient.getTotalProductsQuantity()
+    queryFn : ()=> cartClient.getTotalCount()
   })
   
 

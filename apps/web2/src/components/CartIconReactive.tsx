@@ -13,7 +13,7 @@ import { cartClient } from "../modules";
       const subscription = isCartShop$.subscribe((next)=> isOpenRef.current = next)
 
       if(!totalCount)
-        cartClient.getTotalProductsQuantity().then( setInitialTotalCount)
+        cartClient.getTotalCount().then( setInitialTotalCount)
 
       return ()=> subscription.unsubscribe()
     },[])

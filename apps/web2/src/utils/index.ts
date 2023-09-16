@@ -4,7 +4,7 @@ import { setPriceTotalProducts, setTotalCountProducts } from "../observables"
 export const poblateData = async ()=>{
   const [ initialPrce, inititalCount] = await Promise.all([
     cartClient.getTotalProductsPrice(),
-    cartClient.getTotalProductsQuantity()
+    cartClient.getTotalCount()
   ])
 
   console.log(initialPrce,inititalCount )

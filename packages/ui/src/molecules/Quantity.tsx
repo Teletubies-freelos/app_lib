@@ -1,6 +1,10 @@
 import { Box, SxProps, Typography } from "@mui/material";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import AddIcon from "@mui/icons-material/Add";
+
+import {
+  Add as AddIcon, 
+  Remove, 
+  DeleteOutline as DeleteOutlineIcon 
+} from "@mui/icons-material";
 
 interface QuantityProps {
   quantity: number;
@@ -18,18 +22,29 @@ const stylesBox: SxProps = {
   transform: { xs: "translate(50%,50%)", sm: "unset" },
 };
 
+const sxIcons = {
+  color: "primary.main",
+  fontWeight: "700",
+  cursor: "pointer",
+}
+
 export default function Quantity({
   quantity,
   changeQuantity,
   onDelete,
 }: QuantityProps) {
+
   return (
     <Box sx={stylesBox}>
-      <DeleteOutlineIcon
-        fontSize="medium"
-        onClick={onDelete}
-        sx={{ cursor: "pointer" }}
-      />
+      {
+        quantity > 1 ?
+          <Remove  onClick={onDelete} sx={sxIcons}/> :
+          <DeleteOutlineIcon
+            fontSize="medium"
+            onClick={onDelete}
+            sx={{ cursor: "pointer" }}
+          />
+        }
       <Typography
         sx={{
           fontSize: "1.3rem",
@@ -39,11 +54,7 @@ export default function Quantity({
       </Typography>
       <AddIcon
         fontSize="large"
-        sx={{
-          color: "primary.main",
-          fontWeight: "700",
-          cursor: "pointer",
-        }}
+        sx={sxIcons}
         onClick={changeQuantity}
       />
     </Box>
