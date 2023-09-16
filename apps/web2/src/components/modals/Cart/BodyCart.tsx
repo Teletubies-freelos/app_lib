@@ -8,6 +8,8 @@ import {
 import totalMoney from "../common/total.svg";
 import { cartClient } from "../../../modules";
 import { useQuery } from "@tanstack/react-query";
+import { setIsCartShop, setIsPickupStore } from "../../../observables";
+import { useGetIndexedDb } from "../../../hooks/useGetIndexedDb";
 
 
 interface ImageProps{
@@ -36,20 +38,12 @@ const Loading = ()=> (
 )
 
 export default function BodyCart() {
-  const { data: total, isFetching: isLoadingTotal } = useQuery({
-    queryKey: ['total'],
-    queryFn: ()=> cartClient.getTotalProductsPrice(),
-    cacheTime: 0,
-    staleTime: 0
-  })
-
-  const { data, isFetching: isLoading } = useQuery({
-    queryKey: ['products'],
-    queryFn:()=> cartClient.getProducts(),
-    cacheTime: 0,
-    staleTime: 0
-  })
-
+  const {
+    dataProducts: 
+      {data, isFetching: isLoading}, 
+    dataPrice: {isLoading: isLoadingTotal, data: total}
+  } = useGetIndexedDb()
+  
    return (
     <>
       <Box 
@@ -97,6 +91,10 @@ export default function BodyCart() {
         </Typography>
         <Box display="flex" gap=".5rem">
           <Button
+            onClick={()=>{
+              setIsPickupStore(true)
+              setIsCartShop(false)
+            }}
             fullWidth
             label="Recojo en tienda"
             variant="outlined"

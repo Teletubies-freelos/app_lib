@@ -21,6 +21,7 @@ export default function Cart({ content }: CartProps) {
         sx={{ maxWidth: "40rem" }}
         headerModal={
           <HeadModal
+            onClose={()=> setIsCartShop(false)}
             title={<Typography variant="h5">Carrito</Typography>}
             icon={<ShoppingCartOutlinedIcon />}
           />

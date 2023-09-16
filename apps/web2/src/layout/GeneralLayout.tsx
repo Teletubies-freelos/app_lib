@@ -8,6 +8,8 @@ import {
 import CartFloat from "../components/CartFloat";
 import Cart from "../components/modals/Cart/Cart";
 import BodyCart from "../components/modals/Cart/BodyCart";
+import PickupStore from "../components/modals/PickupStore/PickupStore";
+import BodyPickup from "../components/modals/PickupStore/BodyPickup";
 
 interface GeneralLayoutProps {
   navBar: JSX.Element;
@@ -41,6 +43,7 @@ export function GeneralLayout({
       </Box>
         <Cart content={<BodyCart />}/>
         <CartFloat  />
+        <PickupStore content={<BodyPickup />} />
     </Box>
   );
 }
