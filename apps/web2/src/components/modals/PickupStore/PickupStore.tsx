@@ -1,9 +1,13 @@
-import { Modal, Typography } from "@mui/material";
+import { IconButton, Modal, Typography } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { ModalLayout } from "../../../../../../packages/ui/src";
 import HeadModal from "../common/HeadModal";
 import FooterModal from "../common/FooterModal";
-import { setIsPickupStore, useIsPickupStoreOpen } from "../../../observables";
+import {
+  setIsCartShop,
+  setIsPickupStore,
+  useIsPickupStoreOpen,
+} from "../../../observables";
 
 interface PickupStoreProps {
   content?: JSX.Element;
@@ -11,6 +15,11 @@ interface PickupStoreProps {
 
 export default function PickupStore({ content }: PickupStoreProps) {
   const isOpen = useIsPickupStoreOpen();
+
+  const handleBack = () => {
+    setIsCartShop(true);
+    setIsPickupStore(false);
+  };
 
   return (
     <Modal
@@ -24,7 +33,14 @@ export default function PickupStore({ content }: PickupStoreProps) {
           <HeadModal
             onClose={() => setIsPickupStore(false)}
             title={<Typography variant="h5">Recojo en Tienda</Typography>}
-            icon={<ArrowBackIosIcon />}
+            icon={
+              <IconButton onClick={handleBack}>
+                <ArrowBackIosIcon
+                  onClick={handleBack}
+                  sx={{ cursor: "pointer" }}
+                />
+              </IconButton>
+            }
           />
         }
       >

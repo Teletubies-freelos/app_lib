@@ -16,3 +16,6 @@ export const [useIsCartShopOpen, isCartShowOpen$] = bind(isCartShop$, false);
 
 export const [isPickupStore$, setIsPickupStore] = createSignal<boolean | undefined>();
 export const [useIsPickupStoreOpen, isPickupStoreOpen$] = bind(isPickupStore$, false);
+
+export const [isYourData$, setIsYourData] = createSignal<boolean | undefined>();
+export const [useIsYourDataOpen, isYourDataOpen$] = bind(isYourData$, false);

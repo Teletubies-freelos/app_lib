@@ -7,7 +7,7 @@ import {
 } from "../../../../../../packages/ui/src";
 import totalMoney from "../common/total.svg";
 
-import { setIsCartShop, setIsPickupStore } from "../../../observables";
+import { setIsCartShop, setIsPickupStore, setIsYourData } from "../../../observables";
 import { useGetIndexedDb } from "../../../hooks/useGetIndexedDb";
 import { useContext, useState } from "react";
 import { cartClient } from "../../../modules";
@@ -179,6 +179,10 @@ export default function BodyCart() {
             sx={{ height: "2.8rem", fontSize: { xs: ".7rem !important" } }}
           />
           <Button
+            onClick={() => {
+              setIsYourData(true);
+              setIsCartShop(false);
+            }}
             fullWidth
             label="Entrega a domicilio"
             variant="contained"

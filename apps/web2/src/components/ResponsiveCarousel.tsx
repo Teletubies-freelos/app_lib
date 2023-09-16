@@ -29,9 +29,11 @@ export default function ResponsiveCarousel<T>({
   );
 
   return (
-    <>
+    <Stack sx={{ paddingX: "1rem" }}>
       <CarouselHero
-        sx={{ display: { md: "block", xs: "none" }, paddingX: "1rem" }}
+        sx={{
+          display: { md: "block", xs: "none" },
+        }}
       >
         {HeroItemsGroup.map((items, index) => (
           <Stack gap={2} direction="row" key={index} justifyContent="center">
@@ -42,6 +44,6 @@ export default function ResponsiveCarousel<T>({
       <CarouselHero sx={{ display: { md: "none", xs: "block" } }}>
         {HeroItems}
       </CarouselHero>
-    </>
+    </Stack>
   );
 }
