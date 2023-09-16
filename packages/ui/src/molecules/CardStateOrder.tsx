@@ -14,20 +14,15 @@ export default function CardStateOrder({
   quantity,
 }: CardStateOrderProps) {
   return (
-    <List
-      sx={(theme) => ({
-        background: theme.palette.background.default,
-        padding: "0 ",
-        width: "100%",
-        borderRadius: ".5rem",
-      })}
-    >
       <ListItem
-        sx={{
+        sx={(theme)=>({
           height: "auto",
           maxHeight: "4.75rem",
           alignItems: "center",
-        }}
+          margin  : "0.5rem 0",
+          background: theme.palette.background.default,
+          borderRadius: ".5rem",
+        })}
       >
         {img}
         <Box width="100%" display="flex" alignItems="center">
@@ -45,7 +40,10 @@ export default function CardStateOrder({
             <Typography
               sx={{
                 height: "100%",
-                fontSize: "1rem !important",
+                fontSize: { xs: ".8rem !important", sm: "1rem !important"},
+                width:'13rem !important',
+                overflow: "hidden",
+                textOverflow: "ellipsis",
               }}
             >
               {title}
@@ -53,15 +51,16 @@ export default function CardStateOrder({
             {quantity}
             <Typography
               component="span"
+              width='4rem'
               variant="body1"
               color="text.primary"
-              sx={{ fontSize: "1.075rem", fontWeight: 500 }}
+              sx={{  fontSize: { xs: ".8rem !important", sm: ".9rem !important"}, fontWeight: 500 }}
             >
-              {price}
+              S/.{price}
             </Typography>
           </Box>
         </Box>
       </ListItem>
-    </List>
+
   );
 }

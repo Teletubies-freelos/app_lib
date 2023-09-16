@@ -38,6 +38,7 @@ export default function CartFloat() {
           <Typography
             variant="subtitle1"
             color={(theme) => theme.palette.text.primary}
+            fontSize= {{ xs: ".8rem !important", sm: "1rem !important"} }
           >
             {quantityProducts} Productos
           </Typography>
@@ -45,6 +46,7 @@ export default function CartFloat() {
             variant="h6"
             color={(theme) => theme.palette.text.primary}
             fontWeight="bold"
+            fontSize= {{ xs: ".8rem !important", sm: "1rem !important"} }
           >
             S/ {totalPriceProducts.toFixed(2)}
           </Typography>
@@ -71,6 +73,10 @@ export default function CartFloat() {
             color="primary"
             fullWidth
             label="Ir al carrito"
+            onClick={()=> {
+              setIsCartShop(true)
+              setIsWishList(false)
+            }}
             sx={{
               display: { xs: "block", md: "none" },
               height: "2.6rem",

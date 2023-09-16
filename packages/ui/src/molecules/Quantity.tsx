@@ -15,10 +15,11 @@ interface QuantityProps {
 const stylesBox: SxProps = {
   display: "flex",
   alignItems: "center",
+  width:{xs:'4rem'},
   gap: "1rem",
   position: { xs: "absolute", sm: "static" },
   right: { xs: "3.6rem", sm: "unset" },
-  bottom: { xs: "50%", sm: "unset" },
+  bottom: { xs: "30%", sm: "unset" },
   transform: { xs: "translate(50%,50%)", sm: "unset" },
 };
 
@@ -26,6 +27,7 @@ const sxIcons = {
   color: "primary.main",
   fontWeight: "700",
   cursor: "pointer",
+  fontSize: { xs: ".9rem !important", sm: "1rem !important" } 
 }
 
 export default function Quantity({
@@ -42,18 +44,18 @@ export default function Quantity({
           <DeleteOutlineIcon
             fontSize="medium"
             onClick={onDelete}
-            sx={{ cursor: "pointer" }}
+            sx={{ cursor: "pointer",
+          fontSize: { xs: ".9rem !important", sm: "1rem !important" }  }}
           />
         }
       <Typography
         sx={{
-          fontSize: "1.3rem",
+          fontSize: { xs: ".8rem !important", sm: "1rem !important" },
         }}
       >
         {quantity}
       </Typography>
       <AddIcon
-        fontSize="large"
         sx={sxIcons}
         onClick={changeQuantity}
       />

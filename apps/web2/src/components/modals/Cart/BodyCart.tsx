@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Stack, Typography } from "@mui/material";
+import { Box, CircularProgress, List, Stack, Typography } from "@mui/material";
 import {
   Button,
   CardStateOrder,
@@ -19,7 +19,7 @@ interface ImageProps{
 }
 
 const Image = ({ url }: ImageProps)=> (
-  <Box display="flex" height={"4.75rem"} alignItems={"center"}>
+  <Box display="flex" height={"4.75rem"} width='4rem' alignItems={"center"}>
     <img
       src={url}
       srcSet={url}
@@ -88,8 +88,6 @@ export default function BodyCart() {
     dataPrice: {isLoading: isLoadingTotal, data: total, refetch: refetchPrice}
   } = useGetIndexedDb()
 
- 
-
    return (
     <>
       <Box 
@@ -99,34 +97,47 @@ export default function BodyCart() {
         height={'60vh'} 
         sx={{overflowY: 'scroll'}}
       >
-        {
-          isLoading || isLoadingTotal ? 
-            <Loading /> : 
-            data?.map(({imageUrl, name, price, quantity, id}) => (
-              <CardStateOrder
-                key={id}
-                img={<Image url={imageUrl}/>}
-                title={name}
-                price={price}
-                quantity={
-                  <CardQty
-                    onChangeQty={()=>refetchPrice().then(()=>{})}
-                    price={price}
-                    onDeleteTotal={()=> Promise.all([
-                      refetchPrice(),
-                      refetchProducts()
-                    ]).then(()=>{})} 
-                    initialQty={quantity} 
-                    indexedId={id!} 
-                  />
-                }
-              />
-            ))
-        }
+       {
+        data && data.length > 0 ? 
+        <List
+        sx={{
+          padding: "0",
+          width: "100%",
+        }}
+      >
+      {
+        isLoading || isLoadingTotal ? 
+          <Loading /> : 
+          data?.map(({imageUrl, name, price, quantity, id}) => (
+            <CardStateOrder
+              key={id}
+              img={<Image url={imageUrl}/>}
+              title={name}
+              price={price}
+              quantity={
+                <CardQty
+                  onChangeQty={()=>refetchPrice().then(()=>{})}
+                  price={price}
+                  onDeleteTotal={()=> Promise.all([
+                    refetchPrice(),
+                    refetchProducts()
+                  ]).then(()=>{})} 
+                  initialQty={quantity} 
+                  indexedId={id!} 
+                />
+              }
+            />
+          ))
+      }
+      </List>
+        :
+        <Typography textAlign='center' sx={{paddingTop:'4rem',textTransform:'uppercase'}}>Tu carrito está vacío.
+        </Typography>
+       }
       </Box>
       <LabelStepStatus
         property="Total"
-        value={total?.toFixed(2)}
+        value={`S/. ${total?.toFixed(2)}`}
         icon={<img src={totalMoney} alt="money" />}
         sx={{
           fontSize: "1rem !important",
@@ -151,13 +162,13 @@ export default function BodyCart() {
             fullWidth
             label="Recojo en tienda"
             variant="outlined"
-            sx={{ height: "2.8rem" }}
+            sx={{ height: "2.8rem",fontSize:{xs:'.7rem !important'} }}
           />
           <Button
             fullWidth
             label="Entrega a domicilio"
             variant="contained"
-            sx={{ height: "2.8rem" }}
+            sx={{ height: "2.8rem",fontSize:{xs:'.7rem !important'} }}
           />
         </Box>
       </Stack>
