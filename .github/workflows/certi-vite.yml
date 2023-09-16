@@ -1,7 +1,7 @@
 on: 
   push:
      tags:
-      - "static-certi*"
+      - "certi-static*"
 
 name: 🚀 Deploy website on push
 
