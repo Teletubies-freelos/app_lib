@@ -35,14 +35,16 @@ export default function BodyPickup() {
         }
         content={
           <>
-            {data?.map(({ name, price, id }) => (
+            {data?.map(({ name, price, id, quantity }) => (
               <Box
                 display="flex"
                 justifyContent="space-between"
                 padding=".5rem 0"
                 key={id}
               >
-                <Typography>{name}</Typography>
+                <Typography>
+                  {name} x {quantity}
+                </Typography>
                 <Typography>S/ {price}</Typography>
               </Box>
             ))}
