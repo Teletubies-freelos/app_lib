@@ -1,12 +1,11 @@
-import {  useContext, type MouseEventHandler } from "react";
+import { type MouseEventHandler } from "react";
 
 import { CardProduct } from "../../../../../packages/ui/src";
 import {
   styled,
 } from "@mui/material";
-import { cartContext } from "../../context/cartContext";
+
 import { cartClient } from "../../modules";
-import { setPriceTotalProducts } from "../../observables";
 
 
 interface CardProductProps {

@@ -8,7 +8,6 @@ import {
 import totalMoney from "../common/total.svg";
 import { cartClient } from "../../../modules";
 import { useQuery } from "@tanstack/react-query";
-import { useTotalCountProducts } from "../../../observables";
 
 
 interface ImageProps{

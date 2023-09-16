@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import {
   Button,
   CardHero,
-  CartIcon,
   ColorSwitch,
   MainLogo,
   NavBar,

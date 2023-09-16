@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { PropsWithChildren, useState } from "react";
+import { PropsWithChildren } from "react";
 import DataProvider from "../context/DataProvider";
 import { games } from "../modules";
 import { ThemeProvider } from "./theme";
