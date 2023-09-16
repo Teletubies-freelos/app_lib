@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, CircularProgress, Stack, Typography } from "@mui/material";
 import {
   Button,
   CardStateOrder,
@@ -6,17 +6,21 @@ import {
   Quantity,
 } from "../../../../../../packages/ui/src";
 import totalMoney from "../common/total.svg";
+import { cartClient } from "../../../modules";
+import { useQuery } from "@tanstack/react-query";
+import { useTotalCountProducts } from "../../../observables";
 
-interface BodyCartProps {
-  total: string;
+
+interface ImageProps{
+  url: string
 }
 
-const image = (
+const Image = ({ url }: ImageProps)=> (
   <Box display="flex" height={"4.75rem"} alignItems={"center"}>
     <img
-      src={"https://m.media-amazon.com/images/I/815aKWcEkEL.jpg"}
-      srcSet={`https://m.media-amazon.com/images/I/815aKWcEkEL.jpg`}
-      alt={"image"}
+      src={url}
+      srcSet={url}
+      alt={url}
       style={{
         height: "80%",
         width: "100%",
@@ -26,30 +30,57 @@ const image = (
     />
   </Box>
 );
+const Loading = ()=> (
+  <Box width={1} height={1} display="grid" sx={{placeItems:"center"}}>
+    <CircularProgress color="info" />
+  </Box>
+)
 
-export default function BodyCart({ total }: BodyCartProps) {
-  return (
+export default function BodyCart() {
+  const { data: total, isFetching: isLoadingTotal } = useQuery({
+    queryKey: ['total'],
+    queryFn: ()=> cartClient.getTotalProductsPrice(),
+    cacheTime: 0,
+    staleTime: 0
+  })
+
+  const { data, isFetching: isLoading } = useQuery({
+    queryKey: ['products'],
+    queryFn:()=> cartClient.getProducts(),
+    cacheTime: 0,
+    staleTime: 0
+  })
+
+   return (
     <>
-      <Box display="flex" flexDirection="column" gap="1rem">
-        {Array.from({ length: 4 }).map((_, index) => (
-          <CardStateOrder
-            key={index}
-            img={image}
-            title="Spidermaan Marvel PS4"
-            price="S/ 120.00"
-            quantity={
-              <Quantity
-                quantity={10}
-                changeQuantity={() => 4}
-                onDelete={() => 5}
-              />
-            }
-          />
-        ))}
+      <Box 
+        display="flex" 
+        flexDirection="column" 
+        gap="1rem" 
+        height={'60vh'} 
+        sx={{overflowY: 'scroll'}}
+      >
+        {
+          isLoading || isLoadingTotal ? <Loading /> : data?.map(({imageUrl, name, price, quantity, id}) => (
+            <CardStateOrder
+              key={id}
+              img={<Image url={imageUrl}/>}
+              title={name}
+              price={price}
+              quantity={
+                <Quantity
+                  quantity={quantity}
+                  changeQuantity={() => 4}
+                  onDelete={() => 5}
+                />
+              }
+            />
+          ))
+        }
       </Box>
       <LabelStepStatus
         property="Total"
-        value={total}
+        value={total?.toFixed(2)}
         icon={<img src={totalMoney} alt="money" />}
         sx={{
           fontSize: "1rem !important",

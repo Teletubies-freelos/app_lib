@@ -3,34 +3,32 @@ import { PropsWithChildren, useState } from "react";
 import DataProvider from "../context/DataProvider";
 import { games } from "../modules";
 import { ThemeProvider } from "./theme";
-// import { fakeGameClient } from "../mockers/services/games";
+import { CartProvider } from "../context/cartContext";
 
+// import { fakeGameClient } from "../mockers/services/games";
 
 const queryClient = new QueryClient({
   defaultOptions:{
     queries:{
-      refetchOnMount: false
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
     }
   }
 });
 
 export default function Providers({ children }: PropsWithChildren) {
-  const [openCartFloat, setOpenCartFloat] = useState(false);
-  const changeFloatCart = () => {
-    setOpenCartFloat(!openCartFloat);
-  };
 
   return (
     <QueryClientProvider client={queryClient}>
      <ThemeProvider>
+      <CartProvider>
         <DataProvider
           // gamesClient={fakeGameClient}
           gamesClient={games}
-          openCartFloat={openCartFloat}
-          changeFloatCart={changeFloatCart}
         >
           {children}
         </DataProvider>
+      </CartProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );

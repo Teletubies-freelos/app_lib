@@ -1,21 +1,21 @@
 import { Box, Modal, Typography } from "@mui/material";
 import { Button } from "../../../../packages/ui/src";
+import {  setIsCartShop, setIsWishList, useIsWishListOpen, usePriceTotalProducts, useTotalCountProducts } from "../observables";
 
-interface CartFloatProps {
-  openCartFloat: boolean;
-  changeFloatCart: () => void;
-}
+export default function CartFloat() {
+ 
+  const isOpen = useIsWishListOpen()
+  const handleClose = ()=> setIsWishList(false)
 
-export default function CartFloat({
-  openCartFloat,
-  changeFloatCart,
-}: CartFloatProps) {
+  const totalPriceProducts = usePriceTotalProducts()
+  const quantityProducts = useTotalCountProducts()
+
   return (
     <Modal
       aria-describedby="modal-modal-description"
       aria-labelledby="modal-modal-title"
-      onClose={changeFloatCart}
-      open={openCartFloat}
+      onClose={handleClose}
+      open={!!isOpen}
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -39,14 +39,14 @@ export default function CartFloat({
             variant="subtitle1"
             color={(theme) => theme.palette.text.primary}
           >
-            4 Productos
+            {quantityProducts} Productos
           </Typography>
           <Typography
             variant="h6"
             color={(theme) => theme.palette.text.primary}
             fontWeight="bold"
           >
-            S/ 480.00
+            S/ {totalPriceProducts.toFixed(2)}
           </Typography>
         </Box>
         <Box
@@ -79,6 +79,10 @@ export default function CartFloat({
             variant="contained"
           />
           <Button
+            onClick={()=> {
+              setIsCartShop(true)
+              setIsWishList(false)
+            }}
             color="primary"
             fullWidth
             label="Ir al carrito"

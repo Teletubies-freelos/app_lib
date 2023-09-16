@@ -1,5 +1,6 @@
 import CloseIcon from "@mui/icons-material/Close";
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, IconButton } from "@mui/material";
+import { setIsCartShop } from "../../../observables";
 
 interface HeadModalProps {
   title: JSX.Element;
@@ -30,7 +31,9 @@ export default function HeadModal({ title, icon }: HeadModalProps) {
         {icon}
         <Typography variant="h6">{title}</Typography>
       </Box>
-      <CloseIcon />
+      <IconButton onClick={()=>setIsCartShop(false)}>
+        <CloseIcon  />
+      </IconButton>
     </Box>
   );
 }

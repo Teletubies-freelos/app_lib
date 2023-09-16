@@ -4,8 +4,8 @@ import Providers from "./providers";
 import { Suspense } from "react";
 import { CircularProgress } from "@mui/material";
 
+
 if(import.meta.env.DEV && import.meta.env.VITE_MSW_ON){
-  console.log('worker starting')
   const { worker } = await import('../../../packages/mock-service/src/browser')
   
   worker.start()

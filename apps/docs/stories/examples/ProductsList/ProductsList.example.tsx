@@ -1,8 +1,7 @@
 import { VirtuosoGrid } from "react-virtuoso";
 import { useState } from "react";
-
 import { CardProduct, DropDown, Isotype } from "../../../../../packages/ui/src";
-import { CardProductProps } from "ui/src/molecules/CardProduct";
+
 import {
   Box,
   MenuItem,
@@ -11,6 +10,7 @@ import {
   Typography,
   styled,
 } from "@mui/material";
+import { CardProductProps } from "../../../../../packages/ui/src/molecules/CardProduct";
 
 const defaultProducts = Array.from({ length: 10 }).map(() => ({
   alt: "Spiderman",

@@ -1,9 +1,13 @@
-import type { MouseEventHandler } from "react";
+import {  useContext, type MouseEventHandler } from "react";
 
 import { CardProduct } from "../../../../../packages/ui/src";
 import {
   styled,
 } from "@mui/material";
+import { cartContext } from "../../context/cartContext";
+import { cartClient } from "../../modules";
+import { setPriceTotalProducts } from "../../observables";
+
 
 interface CardProductProps {
   alt: string;
@@ -17,9 +21,23 @@ interface CardProductProps {
 }
 
 
-export function ItemContent(_index: number, product: CardProductProps) {
-  return <CardProduct {...product} />;
-}
+export const itemContentRender = (handleOnClick: (price: number)=>void) =>
+  function (_index: number, product: CardProductProps) {
+    const _handleOnClick = () => {
+      cartClient.addProduct({
+        imageUrl: product.src,
+        name: product.title,
+        price: product.price,
+        quantity: 1,
+        priceDiscount: 0,
+        productId: product.title
+      })
+
+      handleOnClick(product.price)
+    }
+
+    return <CardProduct {...product} onAdd={_handleOnClick} />;
+  }
 
 
 export const ListContainer: any = styled("div")({

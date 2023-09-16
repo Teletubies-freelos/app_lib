@@ -4,17 +4,14 @@ import { DataContext, IDataContext } from "./DataContext";
 const DataProvider = ({
   children,
   gamesClient,
-  openCartFloat,
-  changeFloatCart,
 }: PropsWithChildren<IDataContext>) => {
+
   return (
-    <>
       <DataContext.Provider
-        value={{ gamesClient, openCartFloat, changeFloatCart }}
+        value={{ gamesClient}}
       >
         {children}
       </DataContext.Provider>
-    </>
   );
 };
 

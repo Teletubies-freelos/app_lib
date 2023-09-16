@@ -3,7 +3,7 @@ import { Box, List, ListItem, Typography } from "@mui/material";
 interface CardStateOrderProps {
   img: JSX.Element;
   title: string;
-  price: string;
+  price: number | string;
   quantity?: JSX.Element;
 }
 
