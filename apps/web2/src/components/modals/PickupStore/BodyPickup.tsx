@@ -3,8 +3,22 @@ import { Box, Stack, Typography } from "@mui/material";
 import { LabelStepStatus } from "../../../../../../packages/ui/src";
 import totalMoney from "../common/total.svg";
 import CustomAcordion from "../common/CustomAcordion";
+import { useGetIndexedDb } from "../../../hooks/useGetIndexedDb";
+import { useQuery } from "@tanstack/react-query";
+import { cartClient } from "../../../modules";
 
-export default function BodyPickup({ total }: { total: string }) {
+export default function BodyPickup() {
+  const {
+    dataProducts: {data}, 
+    dataPrice: {data: total}
+  } = useGetIndexedDb()
+
+  const {data: totalCount} = useQuery({
+    queryKey: ['totalCount'],
+    queryFn : ()=> cartClient.getTotalProductsQuantity()
+  })
+  
+
   return (
     <Stack>
       <CustomAcordion
@@ -16,21 +30,21 @@ export default function BodyPickup({ total }: { total: string }) {
             <Typography
               sx={({ palette }) => ({ color: palette.text.secondary })}
             >
-              3 productos
+              {totalCount}
             </Typography>
           </Stack>
         }
         content={
           <>
-            {Array.from(Array(3).keys()).map((_, index) => (
+            {data?.map(({name, price, id}) => (
               <Box
                 display="flex"
                 justifyContent="space-between"
                 padding=".5rem 0"
-                key={index}
+                key={id}
               >
-                <Typography>Producto 1</Typography>
-                <Typography>S/ 12,00</Typography>
+                <Typography>{name}</Typography>
+                <Typography>S/ {price}</Typography>
               </Box>
             ))}
           </>
@@ -38,7 +52,7 @@ export default function BodyPickup({ total }: { total: string }) {
       />
       <LabelStepStatus
         property="Total"
-        value={total}
+        value={total?.toFixed(2)}
         icon={<img src={totalMoney} alt="money" />}
         sx={{
           fontSize: "1rem !important",
