@@ -6,8 +6,7 @@ import {
   Quantity,
 } from "../../../../../../packages/ui/src";
 import totalMoney from "../common/total.svg";
-import { cartClient } from "../../../modules";
-import { useQuery } from "@tanstack/react-query";
+
 import { setIsCartShop, setIsPickupStore } from "../../../observables";
 import { useGetIndexedDb } from "../../../hooks/useGetIndexedDb";
 
@@ -43,7 +42,7 @@ export default function BodyCart() {
       {data, isFetching: isLoading}, 
     dataPrice: {isLoading: isLoadingTotal, data: total}
   } = useGetIndexedDb()
-  
+
    return (
     <>
       <Box 

@@ -1,7 +1,15 @@
 import { ICartProduct, type AppGamesDB } from "./index";
 
 export class CartProductDAO{
-    constructor(private db:AppGamesDB){
+    constructor(private db:AppGamesDB){}
+
+    async getTotalProductsQuantity(){
+        return await this.db.products.count()
+    }
+
+    async getTotalProductsPrice(){
+        return (await this.db.products.toArray())
+                .reduce((acc,product)=>acc+product.price*product.quantity,0)
     }
 
     async addProduct(product:ICartProduct){       
@@ -24,15 +32,6 @@ export class CartProductDAO{
 
     async getProducts(){
         return await this.db.products.toArray()
-    }
-
-    async getTotalProductsQuantity(){
-        return await this.db.products.count()
-    }
-
-    async getTotalProductsPrice(){
-        return (await this.db.products.toArray())
-                .reduce((acc,product)=>acc+product.price*product.quantity,0)
     }
 
 }

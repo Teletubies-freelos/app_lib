@@ -1,6 +1,5 @@
 import CloseIcon from "@mui/icons-material/Close";
 import { Typography, Box, IconButton } from "@mui/material";
-import { setIsCartShop } from "../../../observables";
 
 interface HeadModalProps {
   title: JSX.Element;
