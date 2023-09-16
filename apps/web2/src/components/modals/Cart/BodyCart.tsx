@@ -9,17 +9,16 @@ import totalMoney from "../common/total.svg";
 
 import { setIsCartShop, setIsPickupStore } from "../../../observables";
 import { useGetIndexedDb } from "../../../hooks/useGetIndexedDb";
-import {  useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { cartClient } from "../../../modules";
 import { cartContext } from "../../../context/cartContext";
 
-
-interface ImageProps{
-  url: string
+interface ImageProps {
+  url: string;
 }
 
-const Image = ({ url }: ImageProps)=> (
-  <Box display="flex" height={"4.75rem"} width='4rem' alignItems={"center"}>
+const Image = ({ url }: ImageProps) => (
+  <Box display="flex" height={"4.75rem"} width="4rem" alignItems={"center"}>
     <img
       src={url}
       srcSet={url}
@@ -33,107 +32,121 @@ const Image = ({ url }: ImageProps)=> (
     />
   </Box>
 );
-const Loading = ()=> (
-  <Box width={1} height={1} display="grid" sx={{placeItems:"center"}}>
+const Loading = () => (
+  <Box width={1} height={1} display="grid" sx={{ placeItems: "center" }}>
     <CircularProgress color="info" />
   </Box>
-)
+);
 
 interface CardQtyProps {
   initialQty: number;
   indexedId: number;
   price: number;
-  onDeleteTotal?: ()=> Promise<void> | void;
-  onChangeQty?: ()=> Promise<void> | void
+  onDeleteTotal?: () => Promise<void> | void;
+  onChangeQty?: () => Promise<void> | void;
 }
 
-const CardQty = ({ initialQty, indexedId , onDeleteTotal, onChangeQty, price}: CardQtyProps)=>{
-  const [ qty, setQty ] = useState(initialQty)
-  const { handleOnClick } = useContext(cartContext)
+const CardQty = ({
+  initialQty,
+  indexedId,
+  onDeleteTotal,
+  onChangeQty,
+  price,
+}: CardQtyProps) => {
+  const [qty, setQty] = useState(initialQty);
+  const { handleOnClick } = useContext(cartContext);
 
   return (
     <Quantity
-      changeQuantity={async ()=>{
-        await cartClient.changeQuantity(indexedId, qty + 1)
+      changeQuantity={async () => {
+        await cartClient.changeQuantity(indexedId, qty + 1);
 
-        handleOnClick(price, 1, false)
+        handleOnClick(price, 1, false);
 
-        if(onChangeQty)
-          await onChangeQty();
+        if (onChangeQty) await onChangeQty();
 
-        setQty(prev => prev + 1 )
+        setQty((prev) => prev + 1);
       }}
       quantity={qty}
-      onDelete={async ()=>{
-        await cartClient.changeQuantity(indexedId, qty - 1)
+      onDelete={async () => {
+        await cartClient.changeQuantity(indexedId, qty - 1);
 
-        handleOnClick(- price, -1, false)
+        handleOnClick(-price, -1, false);
 
-        if(onChangeQty)
-          await onChangeQty();
+        if (onChangeQty) await onChangeQty();
 
-        if(qty <= 1 && onDeleteTotal)
-          return await onDeleteTotal()
+        if (qty <= 1 && onDeleteTotal) return await onDeleteTotal();
 
-        setQty(prev => prev - 1)
+        setQty((prev) => prev - 1);
       }}
     />
-  )
-}
+  );
+};
 
 export default function BodyCart() {
   const {
-    dataProducts: 
-      {data, isFetching: isLoading, refetch: refetchProducts}, 
-    dataPrice: {isLoading: isLoadingTotal, data: total, refetch: refetchPrice}
-  } = useGetIndexedDb()
+    dataProducts: {
+      data = [],
+      isFetching: isLoading,
+      refetch: refetchProducts,
+    },
+    dataPrice: {
+      isLoading: isLoadingTotal,
+      data: total,
+      refetch: refetchPrice,
+    },
+  } = useGetIndexedDb();
 
-   return (
+  return (
     <>
-      <Box 
-        display="flex" 
-        flexDirection="column" 
-        gap="1rem" 
-        height={'60vh'} 
-        sx={{overflowY: 'scroll'}}
+      <Box
+        display="flex"
+        flexDirection="column"
+        gap="1rem"
+        height={"60vh"}
+        sx={{ overflowY: "scroll" }}
       >
-       {
-        data?.length > 0 ? 
-        <List
-        sx={{
-          padding: "0",
-          width: "100%",
-        }}
-      >
-      {
-        isLoading || isLoadingTotal ? 
-          <Loading /> : 
-          data?.map(({imageUrl, name, price, quantity, id}) => (
-            <CardStateOrder
-              key={id}
-              img={<Image url={imageUrl}/>}
-              title={name}
-              price={price}
-              quantity={
-                <CardQty
-                  onChangeQty={()=>refetchPrice().then(()=>{})}
+        {data?.length > 0 ? (
+          <List
+            sx={{
+              padding: "0",
+              width: "100%",
+            }}
+          >
+            {isLoading || isLoadingTotal ? (
+              <Loading />
+            ) : (
+              data?.map(({ imageUrl, name, price, quantity, id }) => (
+                <CardStateOrder
+                  key={id}
+                  img={<Image url={imageUrl} />}
+                  title={name}
                   price={price}
-                  onDeleteTotal={()=> Promise.all([
-                    refetchPrice(),
-                    refetchProducts()
-                  ]).then(()=>{})} 
-                  initialQty={quantity} 
-                  indexedId={id!} 
+                  quantity={
+                    <CardQty
+                      onChangeQty={() => refetchPrice().then(() => {})}
+                      price={price}
+                      onDeleteTotal={() =>
+                        Promise.all([refetchPrice(), refetchProducts()]).then(
+                          () => {},
+                        )
+                      }
+                      initialQty={quantity}
+                      indexedId={id!}
+                    />
+                  }
                 />
-              }
-            />
-          ))
-      }
-      </List>
-        :
-        <Typography textAlign='center' sx={{paddingTop:'4rem',textTransform:'uppercase'}}>Tu carrito está vacío.
-        </Typography>
-       }
+              ))
+            )}
+          </List>
+        ) : (
+          <Typography
+            textAlign="center"
+            sx={{ paddingTop: "4rem", textTransform: "uppercase" }}
+          >
+            Tu carrito está vacío.
+          </Typography>
+        )}
       </Box>
       <LabelStepStatus
         property="Total"
@@ -155,20 +168,20 @@ export default function BodyCart() {
         </Typography>
         <Box display="flex" gap=".5rem">
           <Button
-            onClick={()=>{
-              setIsPickupStore(true)
-              setIsCartShop(false)
+            onClick={() => {
+              setIsPickupStore(true);
+              setIsCartShop(false);
             }}
             fullWidth
             label="Recojo en tienda"
             variant="outlined"
-            sx={{ height: "2.8rem",fontSize:{xs:'.7rem !important'} }}
+            sx={{ height: "2.8rem", fontSize: { xs: ".7rem !important" } }}
           />
           <Button
             fullWidth
             label="Entrega a domicilio"
             variant="contained"
-            sx={{ height: "2.8rem",fontSize:{xs:'.7rem !important'} }}
+            sx={{ height: "2.8rem", fontSize: { xs: ".7rem !important" } }}
           />
         </Box>
       </Stack>
