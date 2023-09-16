@@ -1,14 +1,12 @@
-import { cartClient } from "../modules"
-import { setPriceTotalProducts, setTotalCountProducts } from "../observables"
+import { cartClient } from "../modules";
+import { setPriceTotalProducts, setTotalCountProducts } from "../observables";
 
-export const poblateData = async ()=>{
-  const [ initialPrce, inititalCount] = await Promise.all([
+export const poblateData = async () => {
+  const [initialPrce, inititalCount] = await Promise.all([
     cartClient.getTotalProductsPrice(),
-    cartClient.getTotalCount()
-  ])
+    cartClient.getTotalCount(),
+  ]);
 
-  console.log(initialPrce,inititalCount )
-
-  setPriceTotalProducts(initialPrce)
-  setTotalCountProducts(inititalCount)
-}
+  setPriceTotalProducts(initialPrce);
+  setTotalCountProducts(inititalCount);
+};

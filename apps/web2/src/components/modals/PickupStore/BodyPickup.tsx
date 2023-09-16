@@ -53,7 +53,7 @@ export default function BodyPickup() {
       />
       <LabelStepStatus
         property="Total"
-        value={total?.toFixed(2)}
+        value={`S/. ${total?.toFixed(2)}`}
         icon={<img src={totalMoney} alt="money" />}
         sx={{
           fontSize: "1rem !important",
