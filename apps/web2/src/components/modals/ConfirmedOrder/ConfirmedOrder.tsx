@@ -3,10 +3,7 @@ import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutli
 import Typography from '@mui/material/Typography';
 import { LabelStepStatus } from '../../../../../../packages/ui/src';
 import totalMoney from '../common/total.svg';
-import {
-  setIsConfirmedOrder,
-  useIsPaymentDataOpen,
-} from '../../../observables';
+import { setIsConfirmedOrder } from '../../../observables';
 
 interface ConfirmedOrderProps {
   footer: JSX.Element;

@@ -29,10 +29,10 @@ export default function InfoPayment({ titleInfo, content }: InfoPaymentProps) {
         <Stack>
           <Typography
             textAlign='left'
-            sx={(theme) => ({
+            sx={{
               fontSize: '.9rem',
               fontWeight: 600,
-            })}
+            }}
           >
             {titleInfo}
           </Typography>
