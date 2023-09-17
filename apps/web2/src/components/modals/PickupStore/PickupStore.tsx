@@ -7,24 +7,19 @@ import {
   setIsCartShop,
   setIsConfirmedStore,
   setIsPickupStore,
-  setPurchaseCode,
   useIsPickupStoreOpen,
 } from '../../../observables';
-import { purchase } from '../../../modules';
-import { useMutation } from '@tanstack/react-query';
+
+import { usePurchase } from '../../../hooks/usePurchase';
 
 interface PickupStoreProps {
   content?: JSX.Element;
 }
 
+
 export default function PickupStore({ content }: PickupStoreProps) {
   const isOpen = useIsPickupStoreOpen();
-
-  const { mutateAsync, isLoading } = useMutation({
-    mutationKey: ['purchase'],
-    mutationFn: ()=> purchase.savePurchase(),
-    cacheTime: 0,
-  })
+  const {isLoading, mutateAsync} = usePurchase()
 
   const handleBack = () => {
     setIsCartShop(true);
@@ -32,8 +27,7 @@ export default function PickupStore({ content }: PickupStoreProps) {
   };
 
   const handleConfirm = async () => {
-    const result = await mutateAsync()
-    setPurchaseCode(result)
+    await mutateAsync()
     setIsConfirmedStore(true);
     setIsPickupStore(false);
   };
