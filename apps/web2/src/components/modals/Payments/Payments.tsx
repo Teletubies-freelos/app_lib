@@ -1,29 +1,38 @@
-import { Modal, Typography } from "@mui/material";
-import { ModalLayout } from "../../../../../../packages/ui/src";
-import HeadModal from "../common/HeadModal";
-import BodyPayments from "./BodyPayments";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { IconButton, Modal, Typography } from '@mui/material';
+import { ModalLayout } from '../../../../../../packages/ui/src';
+import HeadModal from '../common/HeadModal';
+import BodyPayments from './BodyPayments';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import {
+  setIsPaymentData,
+  setIsYourData,
+  useIsPaymentDataOpen,
+} from '../../../observables';
 
-interface PaymentsProps {
-  openCartFloat: boolean;
-  changeFloatCart: () => void;
-}
+export default function Payments() {
+  const isOpen = useIsPaymentDataOpen();
 
-export default function Payments({
-  openCartFloat,
-  changeFloatCart,
-}: PaymentsProps) {
+  const handleBack = () => {
+    setIsPaymentData(false);
+    setIsYourData(true);
+  };
+
   return (
     <Modal
-      open={openCartFloat}
-      onClose={changeFloatCart}
-      sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      open={!!isOpen}
+      onClose={() => setIsPaymentData(false)}
+      sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
     >
       <ModalLayout
         headerModal={
           <HeadModal
-            title={<Typography variant="h5">Medio de Pago</Typography>}
-            icon={<ArrowBackIosIcon />}
+            onClose={() => setIsPaymentData(false)}
+            title={<Typography variant='h5'>Medio de Pago</Typography>}
+            icon={
+              <IconButton onClick={handleBack}>
+                <ArrowBackIosIcon />
+              </IconButton>
+            }
           />
         }
       >
