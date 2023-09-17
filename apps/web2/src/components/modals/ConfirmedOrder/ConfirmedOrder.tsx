@@ -1,13 +1,16 @@
-import { Modal, Stack, SxProps } from "@mui/material";
-import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
-import Typography from "@mui/material/Typography";
-import { LabelStepStatus } from "../../../../../../packages/ui/src";
-import totalMoney from "../common/total.svg";
+import { Modal, Stack, SxProps } from '@mui/material';
+import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
+import Typography from '@mui/material/Typography';
+import { LabelStepStatus } from '../../../../../../packages/ui/src';
+import totalMoney from '../common/total.svg';
+import {
+  setIsConfirmedOrder,
+  useIsPaymentDataOpen,
+} from '../../../observables';
 
 interface ConfirmedOrderProps {
-  openCartFloat: boolean;
-  changeFloatCart: () => void;
   footer: JSX.Element;
+  isOpen: boolean;
   infoPayment?: JSX.Element;
   priceDelivery?: JSX.Element;
   stepStatus: JSX.Element;
@@ -15,8 +18,7 @@ interface ConfirmedOrderProps {
 }
 
 export default function ConfirmedOrder({
-  openCartFloat,
-  changeFloatCart,
+  isOpen,
   footer,
   infoPayment,
   priceDelivery,
@@ -25,36 +27,36 @@ export default function ConfirmedOrder({
 }: ConfirmedOrderProps) {
   return (
     <Modal
-      open={openCartFloat}
-      onClose={changeFloatCart}
+      open={!!isOpen}
+      onClose={() => setIsConfirmedOrder(false)}
       sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         ...sx,
       }}
     >
       <Stack
         sx={(theme) => ({
           background: theme.palette.background.default,
-          maxWidth: "40rem",
-          minHeight: "40rem",
-          width: "100%",
-          borderRadius: " 0.3rem",
-          padding: "2rem",
-          justifyContent: "center",
+          maxWidth: '40rem',
+          minHeight: '40rem',
+          width: '100%',
+          borderRadius: ' 0.3rem',
+          padding: '2rem',
+          justifyContent: 'center',
         })}
       >
-        <Stack alignItems="center">
+        <Stack alignItems='center'>
           <CheckCircleOutlineOutlinedIcon
             sx={(theme) => ({
               color: theme.palette.primary.main,
-              height: "3.875rem",
-              width: "3.875rem",
+              height: '3.875rem',
+              width: '3.875rem',
             })}
           />
           <Typography
-            variant="h6"
+            variant='h6'
             sx={(theme) => ({ color: theme.palette.primary.main })}
           >
             ¡Pedido Confirmado!
@@ -62,23 +64,23 @@ export default function ConfirmedOrder({
           {stepStatus}
           {infoPayment}
         </Stack>
-        <Stack marginTop="1.5rem">
+        <Stack marginTop='1.5rem'>
           {priceDelivery}
           <LabelStepStatus
-            property="TOTAL"
-            icon={<img src={totalMoney} alt="money" />}
-            value="S/ 480.00"
+            property='TOTAL'
+            icon={<img src={totalMoney} alt='money' />}
+            value='S/ 480.00'
             sx={{
-              fontWeight: "bold !important",
-              fontSize: "1.1rem !important",
+              fontWeight: 'bold !important',
+              fontSize: '1.1rem !important',
             }}
           />
           <LabelStepStatus
-            property="Número de pedido"
-            value="XAC431981"
+            property='Número de pedido'
+            value='XAC431981'
             sx={{
-              fontSize: "1rem !important",
-              marginTop: "1.5rem",
+              fontSize: '1rem !important',
+              marginTop: '1.5rem',
             }}
           />
         </Stack>
