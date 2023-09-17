@@ -3,7 +3,7 @@ import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutli
 import Typography from '@mui/material/Typography';
 import { LabelStepStatus } from '../../../../../../packages/ui/src';
 import totalMoney from '../common/total.svg';
-import { setIsConfirmedOrder } from '../../../observables';
+import { setIsConfirmedOrder, usePurchaseCode } from '../../../observables';
 
 interface ConfirmedOrderProps {
   footer: JSX.Element;
@@ -22,6 +22,8 @@ export default function ConfirmedOrder({
   stepStatus,
   sx,
 }: ConfirmedOrderProps) {
+  const code = usePurchaseCode();
+
   return (
     <Modal
       open={!!isOpen}
@@ -74,7 +76,7 @@ export default function ConfirmedOrder({
           />
           <LabelStepStatus
             property='Número de pedido'
-            value='XAC431981'
+            value={code}
             sx={{
               fontSize: '1rem !important',
               marginTop: '1.5rem',
