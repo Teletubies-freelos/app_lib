@@ -1,4 +1,4 @@
-import { IconButton, Modal, Typography } from '@mui/material';
+import { CircularProgress, IconButton, Modal, Typography } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { ModalLayout } from '../../../../../../packages/ui/src';
 import HeadModal from '../common/HeadModal';
@@ -10,19 +10,24 @@ import {
   useIsPickupStoreOpen,
 } from '../../../observables';
 
+import { usePurchase } from '../../../hooks/usePurchase';
+
 interface PickupStoreProps {
   content?: JSX.Element;
 }
 
+
 export default function PickupStore({ content }: PickupStoreProps) {
   const isOpen = useIsPickupStoreOpen();
+  const {isLoading, mutateAsync} = usePurchase()
 
   const handleBack = () => {
     setIsCartShop(true);
     setIsPickupStore(false);
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
+    await mutateAsync()
     setIsConfirmedStore(true);
     setIsPickupStore(false);
   };
@@ -51,16 +56,21 @@ export default function PickupStore({ content }: PickupStoreProps) {
         }
       >
         {content}
-        <FooterModal
-          onClick={handleConfirm}
-          nameButton='Confirmar pedido'
-          infoMessage='No existe costo de envío por ser recojo en tienda.'
-          sx={{
-            display: 'flex',
-            flexDirection: 'column-reverse',
-            marginTop: '2rem',
-          }}
-        />
+        {
+          isLoading? 
+            <CircularProgress /> 
+            : <FooterModal
+            onClick={handleConfirm}
+              nameButton='Confirmar pedido'
+              infoMessage='No existe costo de envío por ser recojo en tienda.'
+              sx={{
+                display: 'flex',
+                flexDirection: 'column-reverse',
+                marginTop: '2rem',
+              }}
+            />
+        }
+        
       </ModalLayout>
     </Modal>
   );

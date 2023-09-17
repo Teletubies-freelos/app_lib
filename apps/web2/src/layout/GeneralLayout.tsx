@@ -46,6 +46,7 @@ export function GeneralLayout({
           position: 'fixed',
           bottom: '1.5rem',
           paddingRight: '1rem',
+          height: 0,
         }}
       >
         <WhatsappLogo

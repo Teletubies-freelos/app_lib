@@ -28,3 +28,6 @@ export const [useIsConfirmedOrderOpen, isConfirmedOrderOpen$] = bind(isConfirmed
 
 export const [isConfirmedStore$, setIsConfirmedStore] = createSignal<boolean | undefined>();
 export const [useIsConfirmedStoreOpen, isConfirmedStoreOpen$] = bind(isConfirmedStore$, false);
+
+export const [purchaseCode$, setPurchaseCode] = createSignal<string>();
+export const [usePurchaseCode, purchaseCodeDefault$] = bind(purchaseCode$, '');
