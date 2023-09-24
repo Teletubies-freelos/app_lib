@@ -1,4 +1,6 @@
 import { graphql } from 'msw'
+import { seedProducts } from '../seeder/products';
+import { seedOrders } from '../seeder/orders';
 import { ProductFactory } from '../../../../apps/migration/src/factory/Products'
 
 const factory = new ProductFactory
@@ -17,5 +19,18 @@ export const handlers = [
         games: factory.createMany(10)
       })
     )
+  }),
+  graphql.query('PRODUCT_NVENTORY', (_req, res, ctx)=>{
+    return res(
+      ctx.data( seedProducts(10))
+    )
+  }
+  ),
+  graphql.query('CREATE_ORDER', (_req, res, ctx)=>{
+
+    return res(
+      ctx.data( seedOrders(10))
+    )
   })
+
 ]
