@@ -1,22 +1,24 @@
 import { graphql } from 'msw'
 import { seedProducts } from '../seeder/products';
 import { seedOrders } from '../seeder/orders';
-import { ProductFactory } from '../../../../apps/migration/src/factory/Products'
+import { db } from '../factory';
 
-const factory = new ProductFactory
+console.log(Array.from({length: 100}).map(()=> db.products.create()))
 
 export const handlers = [
-  graphql.query('GET_PAGINATED_GAMES', (_req, res, ctx)=>{
+  graphql.query('GET_PAGINATED_GAMES', async (req, res, ctx)=>{
+    const {limit, offset} = req.variables
+
     return res(
       ctx.data({
-        games: factory.createMany(10)
+        games: db.products.findMany({take: limit, skip: offset})
       })
     )
   }),
   graphql.query('GET_MAIN_OFFERS', (_req, res, ctx)=>{
     return res(
       ctx.data({
-        games: factory.createMany(10)
+        games: db.products.findMany({take: 10})
       })
     )
   }),

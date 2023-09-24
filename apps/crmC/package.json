@@ -59,5 +59,8 @@
   },
   "refine": {
     "projectId": "3trMjA-es7q8t-PTD8PO"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
