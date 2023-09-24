@@ -35,5 +35,5 @@ jobs:
         server: ${{ secrets.FTP_HOST }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./apps/web2/dist/
+        local-dir: ./apps/crm2/dist/
         server-dir: /cert.apgames.pe/public_html/cms/
