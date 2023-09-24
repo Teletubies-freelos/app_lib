@@ -16,9 +16,6 @@ jobs:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: Check envs
-      if: ${{ env.VITE_HASURA_SECRET == ''}} || ${{ env.VITE_HASURA_GRAPHQL_URL == '' }} || ${{ env.VITE_OAUTH_DOMAIN == '' }} || ${{ env.VITE_OAUTH_ID == '' }}
-      run: exit 1
     - name: 🚚 Get latest code
       uses: actions/checkout@v3
     - name: Set up Node
