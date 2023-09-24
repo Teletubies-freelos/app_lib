@@ -2,10 +2,14 @@ import React, {
   PropsWithChildren,
   createContext,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { RefineThemes } from "@refinedev/mui";
+import { defaultTheme } from "../../../../../packages/ui/src";
+import { darkTheme } from "../../../../../packages/ui/src/theme/appGames";
+import { CssBaseline, GlobalStyles } from "@mui/material";
 
 type ColorModeContextType = {
   mode: string;
@@ -33,25 +37,27 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
     window.localStorage.setItem("colorMode", mode);
   }, [mode]);
 
-  const setColorMode = () => {
-    if (mode === "light") {
-      setMode("dark");
-    } else {
-      setMode("light");
-    }
-  };
+ 
+  const value = useMemo(()=>({
+    setMode: () => {
+      if (mode === "light") {
+        setMode("dark");
+      } else {
+        setMode("light");
+      }
+    },
+    mode
+  }), [])
 
   return (
     <ColorModeContext.Provider
-      value={{
-        setMode: setColorMode,
-        mode,
-      }}
+      value={value}
     >
       <ThemeProvider
-        // you can change the theme colors here. example: mode === "light" ? RefineThemes.Magenta : RefineThemes.MagentaDark
-        theme={mode === "light" ? RefineThemes.Blue : RefineThemes.BlueDark}
+        theme={mode === "light" ? defaultTheme : darkTheme}
       >
+        <CssBaseline />
+        <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
         {children}
       </ThemeProvider>
     </ColorModeContext.Provider>
