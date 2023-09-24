@@ -1,20 +1,19 @@
+import { lazy } from 'react'
 import { createHashRouter } from 'react-router-dom'
-import { Authenticated } from '../components/authenticated'
-import ListProducts from '../pages/products/list'
+
+const LazyHome = lazy(()=> import('../pages/home'))
+const LazyProducts = lazy(()=> import('../pages/products'))
 
 export const routes = createHashRouter([
   {
-    path: '/home'
+    path: '/home',
+    element: <LazyHome />
   },
   {
     path: '/products'
   },
   {
     path: '/',
-    element: (
-      <Authenticated>
-        <ListProducts />
-      </Authenticated>
-    )
+    element: <LazyProducts />
   }
 ])

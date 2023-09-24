@@ -2,7 +2,7 @@ import { MaterialReactTable } from 'material-react-table'
 import { lisColumns } from './config'
 import { useGetProducts } from '../../hooks/getProducts'
 
-export default function ListProducts(){
+export const ListProducts = () => {
   const { data , setPage, pagination } = useGetProducts()
   
   return(
