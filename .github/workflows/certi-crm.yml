@@ -10,12 +10,14 @@ jobs:
   web-deploy:
     env:
       VITE_HASURA_SECRET: ${{ vars.HASURA_SECRET }}
-      VITE_HASURA_BASE_URL: ${{ vars.HASURA_BASE_URLs }}
+      VITE_HASURA_GRAPHQL_URL: ${{ vars.HASURA_BASE_URLs }}
+      VITE_OAUTH_ID: ${{ vars.OAUTH_ID }}
+      VITE_OAUTH_DOMAIN: ${{ vars.OAUTH_DOMAIN }}
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
     - name: Check envs
-      if: ${{ env.VITE_HASURA_SECRET == ''}} || ${{ env.VITE_HASURA_BASE_URL == '' }} || ${{ env.VITE_OAUTH_DOMAIN == '' }} || ${{ env.VITE_OAUTH_ID == '' }}
+      if: ${{ env.VITE_HASURA_SECRET == ''}} || ${{ env.VITE_HASURA_GRAPHQL_URL == '' }} || ${{ env.VITE_OAUTH_DOMAIN == '' }} || ${{ env.VITE_OAUTH_ID == '' }}
       run: exit 1
     - name: 🚚 Get latest code
       uses: actions/checkout@v3
