@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
+    "@mswjs/data": "^0.13.0",
     "msw": "^1.3.0",
     "typescript": "^5.2.2"
   }
