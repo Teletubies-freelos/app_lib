@@ -3,15 +3,18 @@ import { routes } from './routes'
 
 import LoadingPage from '../../../packages/ui/src/molecules/Loadingpage'
 import { Providers } from './components/providers'
+import { Suspense } from 'react'
 
 function App() {
 
   return (
     <Providers>
-      <RouterProvider 
-        router={routes}
-        fallbackElement={<LoadingPage />}
-      />
+      <Suspense fallback={<LoadingPage />}>
+        <RouterProvider 
+          router={routes}
+          fallbackElement={<LoadingPage />}
+        />
+      </Suspense>
     </Providers>
   )
 }
