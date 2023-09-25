@@ -1,25 +1,165 @@
-import { Box, TextField, Typography } from '@mui/material';
-import SelectModals from '../common/SelectModals';
-import { Button, DropDown } from '../../../../../../packages/ui/src';
+import {
+  Box,
+  MenuItem,
+  Select,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material';
+import { Button } from '../../../../../../packages/ui/src';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { setIsConfirmedOrder, setIsPaymentData } from '../../../observables';
+import { useGetIndexedDb } from '../../../hooks/useGetIndexedDb';
+import { cartClient } from '../../../modules';
+import { useQuery } from '@tanstack/react-query';
+import CustomAcordion from '../common/CustomAcordion';
+import { useCallback, useEffect, useState } from 'react';
+import { PAYMENT_METHODS } from '../../../utils';
+import { SelectChangeEvent } from '@mui/material';
+import { IOffer } from '../../../types/games';
+
+interface IUserData {
+  address: string | null;
+  fullName: string | null;
+  phone: string | null;
+}
+
 export default function BodyPayments() {
+  const [userData, setUserData] = useState<IUserData>({
+    address: sessionStorage.getItem('address') || '',
+    fullName: sessionStorage.getItem('fullName') || '',
+    phone: sessionStorage.getItem('phone') || '',
+  });
+
+  const [selectedMethod, setSelectedMethod] = useState<string>('');
+
+  const {
+    dataProducts: { data },
+    dataPrice: { data: total },
+  } = useGetIndexedDb();
+
+  const { data: totalCount } = useQuery({
+    queryKey: ['totalCount'],
+    queryFn: () => cartClient.getTotalCount(),
+  });
+
   const handleFinish = () => {
     setIsConfirmedOrder(true);
     setIsPaymentData(false);
   };
 
+  const handleChange = useCallback(
+    (event: SelectChangeEvent) => {
+      setSelectedMethod(event.target.value);
+    },
+    [setSelectedMethod],
+  );
+
+  const renderProduct = useCallback(
+    ({ name, price, product_id, quantity }: IOffer) => (
+      <Box
+        display='flex'
+        justifyContent='space-between'
+        padding='.5rem 0'
+        key={product_id}
+      >
+        <Typography>
+          {name} x {quantity}
+        </Typography>
+        <Typography>S/ {price}</Typography>
+      </Box>
+    ),
+    [],
+  );
+
+  const { address, fullName, phone } = userData;
+
   return (
     <Box display='flex' flexDirection='column' gap='.75rem' padding='1.4rem'>
-      <SelectModals
-        label='Tu pedido'
-        groupOptions={[
-          { id: 1, name: '2 Productos' },
-          { id: 2, name: 'opcion 2' },
-        ]}
+      <CustomAcordion
+        header={
+          <Stack>
+            <Typography sx={({ palette }) => ({ color: palette.text.primary })}>
+              Tu Pedido
+            </Typography>
+            <Typography
+              sx={({ palette }) => ({ color: palette.text.secondary })}
+            >
+              {totalCount} Productos
+            </Typography>
+          </Stack>
+        }
+        content={<>{data?.map(renderProduct)}</>}
       />
-      <DropDown items={[{ value: '1', label: 'primera opcion' }]}></DropDown>
-      <DropDown items={[{ value: '1', label: 'primera opcion' }]}></DropDown>
+      <CustomAcordion
+        header={
+          <Stack>
+            <Typography sx={({ palette }) => ({ color: palette.text.primary })}>
+              Informacion de Entrega
+            </Typography>
+          </Stack>
+        }
+        content={
+          <Stack justifyContent='space-between' padding='.5rem 0'>
+            <Box
+              display='flex'
+              justifyContent='space-between'
+              padding='.5rem 0'
+            >
+              <Typography
+                sx={({ palette }) => ({ color: palette.text.secondary })}
+              >
+                Direccion
+              </Typography>
+              <Typography
+                sx={({ palette }) => ({ color: palette.text.secondary })}
+              >
+                {address}
+              </Typography>
+            </Box>
+            <Box
+              display='flex'
+              justifyContent='space-between'
+              padding='.5rem 0'
+            >
+              <Typography
+                sx={({ palette }) => ({ color: palette.text.secondary })}
+              >
+                Nombre
+              </Typography>
+              <Typography
+                sx={({ palette }) => ({ color: palette.text.secondary })}
+              >
+                {fullName}
+              </Typography>
+            </Box>
+            <Box
+              display='flex'
+              justifyContent='space-between'
+              padding='.5rem 0'
+            >
+              <Typography
+                sx={({ palette }) => ({ color: palette.text.secondary })}
+              >
+                Telefono
+              </Typography>
+              <Typography
+                sx={({ palette }) => ({ color: palette.text.secondary })}
+              >
+                {phone}
+              </Typography>
+            </Box>
+          </Stack>
+        }
+      />
+
+      <Select value={selectedMethod} onChange={handleChange}>
+        {PAYMENT_METHODS.map(({ label, value }) => (
+          <MenuItem key={value} value={label}>
+            {label}
+          </MenuItem>
+        ))}
+      </Select>
 
       <TextField
         id='outlined-multiline-flexible'
@@ -58,7 +198,7 @@ export default function BodyPayments() {
           variant='body2'
           sx={(theme) => ({ color: theme.palette.text.secondary })}
         >
-          S/ 480.00
+          S/ {total}
         </Typography>
       </Box>
       <Box

@@ -3,11 +3,9 @@ import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutli
 import Typography from '@mui/material/Typography';
 import { LabelStepStatus } from '../../../../../../packages/ui/src';
 import totalMoney from '../common/total.svg';
-import { 
-  setIsConfirmedOrder, 
-  usePriceTotalProducts, 
-  usePurchaseCode, 
-} from '../../../observables';
+import { setIsConfirmedOrder, usePurchaseCode } from '../../../observables';
+import { useGetIndexedDb } from '../../../hooks/useGetIndexedDb';
+import { PRICE_DELIVERY } from '../../../utils';
 
 interface ConfirmedOrderProps {
   footer: JSX.Element;
@@ -27,7 +25,9 @@ export default function ConfirmedOrder({
   sx,
 }: ConfirmedOrderProps) {
   const code = usePurchaseCode();
-  const total = usePriceTotalProducts();
+  const {
+    dataPrice: { data: total },
+  } = useGetIndexedDb();
 
   return (
     <Modal
@@ -73,7 +73,7 @@ export default function ConfirmedOrder({
           <LabelStepStatus
             property='TOTAL'
             icon={<img src={totalMoney} alt='money' />}
-            value={`S/. ${total.toFixed()}`}
+            value={`S/. ${(total + PRICE_DELIVERY).toFixed()}`}
             sx={{
               fontWeight: 'bold !important',
               fontSize: '1.1rem !important',

@@ -91,7 +91,7 @@ export default function Home() {
           searchBar={
             <SearchBar
               onSubmit={() => 4}
-              buttonSearch={<Button label='buscar' variant='contained' />}
+              buttonSearch={<Button variant='contained'>Buscar</Button>}
             />
           }
         />
