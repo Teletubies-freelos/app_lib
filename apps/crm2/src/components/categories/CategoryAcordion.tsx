@@ -49,7 +49,7 @@ const CategoryAcordion = ({ id, name }: CategoryAcordionProps) => {
   });
  */
   return (
-    <Accordion expanded={isOpen} onChange={() => setIsOpen(true)}>
+    <Accordion expanded={isOpen} onChange={() => setIsOpen(prev => !prev)}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls='panel1a-content'

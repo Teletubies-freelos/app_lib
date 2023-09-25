@@ -28,9 +28,8 @@ export class Categories {
     query GET_CATEGORIES(
       $limit: Int!
       $offset: Int!
-      $orderBy: Categories_order_by!
     ) {
-      Categories(limit: $limit, offset: $offset, order_by: $orderBy) {
+      Categories(limit: $limit, offset: $offset, order_by: {category_id: desc}) {
         category_id
         name
       }
@@ -49,13 +48,12 @@ export class Categories {
     return insert_Categories_one;
   }
 
-  async list({ limit = 20, offset = 0, orderBy = 'desc' }: ListOptions) {
+  async list({ limit = 20, offset = 0 }: ListOptions) {
     const { Categories: allCategories } = await this.client.request<{
       Categories: CategoryResponse[];
     }>(Categories.GET_CATEGORIES, {
       limit,
-      offset,
-      orderBy: { product_id: orderBy },
+      offset
     });
 
     return allCategories;

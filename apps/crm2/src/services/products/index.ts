@@ -61,26 +61,22 @@ export class Products {
   `;
 
   static GET_PRODUCT = gql`
-    query MyQuery(
-      $limit: Int!
-      $offset: Int!
-      $orderBy: Products_order_by!
-      $categoryId: Int!
-    ) {
+    query GetProducts($limit: Int, $offset: Int, $categoryId: Int) {
       Products(
         limit: $limit
         offset: $offset
-        order_by: $orderBy
+        order_by: { category_id: desc }
         where: { category_id: { _eq: $categoryId } }
       ) {
+        quantity
+        product_id
+        price_offer
         price
         name
-        price_offer
-        product_id
-        quantity
         is_visible
         image_url
         description
+        category_id
       }
     }
   `;
@@ -90,14 +86,13 @@ export class Products {
   async getList({
     pagination = {},
     filters = {},
-    sort = 'desc',
   }: QueryManyOptions<GetProductFilters> = {}) {
     const { limit = 20, offset = 0 } = pagination;
     const { categoryId } = filters;
 
     const { games } = await this.client.request<{ games: GamesResponse[] }>(
-      Products.GET_LIST,
-      { limit, offset, categoryId, orderBy: { product_id: sort } },
+      Products.GET_PRODUCT,
+      { limit, offset, categoryId: Number(categoryId) },
     );
 
     return games;
