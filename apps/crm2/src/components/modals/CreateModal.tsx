@@ -1,6 +1,6 @@
 //modal mui
 
-import { Button, Stack, Typography, TextField, Dialog } from '@mui/material';
+import { Button, Stack, Typography, TextField, Dialog, IconButton } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import {
   categoryId$,
@@ -9,9 +9,13 @@ import {
   useIsOpenCategory,
 } from '../../observables';
 import { useMutation } from '@tanstack/react-query';
-import { useContext, useEffect, useRef } from 'react';
+import { ChangeEvent, useContext, useEffect, useRef, useState } from 'react';
 import { dataContext } from '../../context/data';
 import { CreateGamesPayload } from '../../services/products';
+import { Photo } from '@mui/icons-material';
+import axios from 'axios';
+import { env } from '../../config';
+
 
 interface FormValues {
   name: string;
@@ -24,6 +28,8 @@ interface FormValues {
 
 const CreateModal = () => {
   const categoryIdRef = useRef<number | string | undefined>();
+
+  const [ imgUrl, setImgUrl ] = useState('')
 
   const { register, handleSubmit } = useForm<FormValues>({
     defaultValues: {
@@ -52,7 +58,6 @@ const CreateModal = () => {
 
   const onSubmit = async ({
     description,
-    image,
     name,
     offerPrice,
     price,
@@ -60,7 +65,7 @@ const CreateModal = () => {
   }: FormValues) => {
     await mutateAsync({
       description,
-      image_url: image,
+      image_url: imgUrl,
       name,
       price_offer: offerPrice,
       price,
@@ -73,6 +78,22 @@ const CreateModal = () => {
   };
 
   const isOpen = useIsOpenCategory();
+
+  const handleChange = async (event: ChangeEvent<HTMLInputElement>)=>{
+    const [ file ] = event.target.files ?? []
+
+    const formData = new FormData();
+
+    formData.append('file', file)
+
+    const { data } = await axios.post(`${env.PHOTO_UPLOAD_URL}/index.php`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      }})
+
+
+    setImgUrl(`${env.PHOTO_UPLOAD_URL}/${data}`)
+  }
 
   return (
     <Dialog open={!!isOpen} onClose={() => setIsOpenCategory(false)}>
@@ -89,6 +110,20 @@ const CreateModal = () => {
         <Typography variant='h3' textAlign='center'>
           Producto Nuevo
         </Typography>
+        <IconButton
+          aria-label="upload picture"
+          component="label"
+          sx={{
+            width: '4rem',
+            aspectRatio: 1
+          }}
+        >
+          <input hidden type='file' accept='image/*' onChange={handleChange} />
+          <Photo />
+        </IconButton>
+        {
+          !!imgUrl && <img height={100} width={50} src={imgUrl} alt='uploaded image'/>
+        }
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack gap='1rem'>
             <TextField
@@ -112,12 +147,12 @@ const CreateModal = () => {
                 required: 'El Precio del producto es obligatorio',
               })}
             />
-            <TextField
+          {/*   <TextField
               label='Url de la imagen del Producto'
               {...register('image', {
                 required: 'La url de la imagen del producto es obligatorio',
               })}
-            />
+            /> */}
             <TextField
               label='Descripcion del Producto'
               rows={3}

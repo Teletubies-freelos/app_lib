@@ -13,6 +13,7 @@ jobs:
       VITE_HASURA_GRAPHQL_URL: ${{ vars.HASURA_BASE_URLs }}
       VITE_OAUTH_ID: ${{ vars.OAUTH_ID }}
       VITE_OAUTH_DOMAIN: ${{ vars.OAUTH_DOMAIN }}
+      VITE_PHOTO_UPLOAD_URL: ${{ vars.PHOTO_UPLOAD_URL }}
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:

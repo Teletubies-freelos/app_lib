@@ -34,9 +34,8 @@ export const Product = ({
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm<ProductData>();
-  console.log(errors);
+
   const { products } = useContext(dataContext);
   const [isDeleted, setIsDeleted] = useState(false);
 
@@ -92,24 +91,29 @@ export const Product = ({
           border: (theme) => `1px solid ${theme.palette.primary.main}}}`,
         }}
       >
-        <Box>
-          <TextField
-            defaultValue={name}
-            required
-            variant='outlined'
-            label='Nombre'
-            {...register('name')}
-          />
-          <IconButton onClick={() => mutateDelete(product_id)}>
-            <Delete />
-          </IconButton>
+        <Box display={'flex'} gap={3} justifyContent={'space-between'} >
+          <img src={image_url} alt='name' width={50} height={100}/>
+          <Box display={'grid'} gap={3} width={'100%'}>
+            <Box>
+              <TextField
+                defaultValue={name}
+                required
+                variant='outlined'
+                label='Nombre'
+                {...register('name')}
+              />
+              <IconButton onClick={() => mutateDelete(product_id)}>
+                <Delete />
+              </IconButton>
+            </Box>
+            <TextField
+              defaultValue={description}
+              variant='outlined'
+              label='Descripción'
+              {...register('description')}
+            />
+          </Box>
         </Box>
-        <TextField
-          defaultValue={description}
-          variant='outlined'
-          label='Descripción'
-          {...register('description')}
-        />
         <Box display='flex' gap='1rem'>
           <TextField
             required
@@ -142,8 +146,12 @@ export const Product = ({
           {...register('quantity')}
         />
         <TextField
+          hidden
           defaultValue={image_url}
           variant='outlined'
+          hiddenLabel
+          sx={{display: 'none'}}
+          InputProps={{hidden: true,}}
           label='Url imagen del producto'
           {...register('image_url')}
         />

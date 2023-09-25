@@ -45,7 +45,7 @@ export class Products {
       $image_url: String
       $name: String
       $price: float8
-      $offer_price: float8
+      $price_offer: float8
       $quantity: Int
       $category_id: Int
     ) {
@@ -54,7 +54,7 @@ export class Products {
           description: $description
           image_url: $image_url
           name: $name
-          price_offer: $offer_price
+          price_offer: $price_offer
           quantity: $quantity
           category_id: $category_id
           price: $price
