@@ -11,6 +11,11 @@ export const [useIsOpenCategory, isOpenCategoryModal$] = bind(
   false,
 );
 
-export const categoryId$ = new BehaviorSubject<number | string | undefined>(undefined)
+export const categoryId$ = new BehaviorSubject<number | string | undefined>(
+  undefined,
+);
 
-export const isRefetch$ = new BehaviorSubject(undefined);
+export const isRefetchCategories$ = new BehaviorSubject(undefined);
+export const isRefetchProducts$ = new BehaviorSubject<
+  undefined | string | number
+>(undefined);
