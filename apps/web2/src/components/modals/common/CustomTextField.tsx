@@ -1,15 +1,17 @@
-import { TextField } from "@mui/material";
+import { TextField, TextFieldProps } from "@mui/material";
 
 interface CustomTextFieldProps {
   label: string;
   type?: "text" | "email";
   width?: string;
+  textfieldProps?: TextFieldProps
 }
 
 export default function CustomTextField({
   label,
   type,
   width,
+  textfieldProps
 }: CustomTextFieldProps) {
   return (
     <TextField
@@ -44,6 +46,7 @@ export default function CustomTextField({
           },
         },
       })}
+      {...textfieldProps}
     />
   );
 }
