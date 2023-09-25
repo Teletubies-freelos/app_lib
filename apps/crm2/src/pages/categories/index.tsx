@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { useContext } from 'react';
 import { dataContext } from '../../context/data';
-import { setIsOpenCategory } from '../../observables';
+import { isRefetch$ } from '../../observables';
 import CreateModal from '../../components/modals/CreateModal';
 import List from '../../components/categories/List';
 
@@ -15,12 +15,13 @@ interface ICategory {
 export default function Categories() {
   const { register, handleSubmit } = useForm<ICategory>();
   const { categories } = useContext(dataContext);
-  const { mutate } = useMutation(
+  const { mutateAsync } = useMutation(
     async (payload: string) => await categories?.createOne(payload),
   );
 
-  const onSubmit = (data: ICategory) => {
-    mutate(data.name);
+  const onSubmit = async (data: ICategory) => {
+    await mutateAsync(data.name);
+    isRefetch$.next(undefined)
   };
 
   return (
@@ -35,10 +36,6 @@ export default function Categories() {
         </Stack>
       </form>
       <Stack>
-        <Button variant='contained' onClick={() => setIsOpenCategory(true)}>
-          {' '}
-          Anadir Productos
-        </Button>
         <CreateModal />
       </Stack>
     </Authenticated>

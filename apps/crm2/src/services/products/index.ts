@@ -18,6 +18,7 @@ export interface CreateGamesPayload {
   offer_price?: number;
   quantity?: number;
   price?: number;
+  category_id?: number;
 }
 
 export interface GetProductFilters {
@@ -42,20 +43,24 @@ export class Products {
       $description: String
       $imag_url: String
       $name: String
-      $price: Float
-      $offer_price: Float
+      $price: float8
+      $offer_price: float8
       $quantity: Int
+      $category_id: Int
     ) {
-      insert_products_one(
+      insert_Products_one(
         object: {
           description: $description
-          imag_url: $imag_url
+          image_url: $imag_url
           name: $name
-          offer_price: $offer_price
+          price_offer: $offer_price
           quantity: $quantity
+          category_id: $category_id
+          price: $price
+          is_visible: true
         }
       ) {
-        id
+        product_id
       }
     }
   `;
@@ -90,7 +95,7 @@ export class Products {
     const { limit = 20, offset = 0 } = pagination;
     const { categoryId } = filters;
 
-    const { games } = await this.client.request<{ games: GamesResponse[] }>(
+    const { Products : games } = await this.client.request<{ Products: GamesResponse[] }>(
       Products.GET_PRODUCT,
       { limit, offset, categoryId: Number(categoryId) },
     );

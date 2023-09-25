@@ -1,16 +1,25 @@
 import { Stack } from '@mui/material';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { dataContext } from '../../context/data';
 import { useQuery } from '@tanstack/react-query';
 import CategoryAcordion from './CategoryAcordion';
+import { isRefetch$ } from '../../observables';
 
 const List = () => {
   const { categories } = useContext(dataContext);
-  const { data: dataCategories } = useQuery(
+  const { data: dataCategories, refetch } = useQuery(
     ['categories'],
     async () =>
       await categories?.list({ limit: 10, offset: 0, orderBy: 'desc' }),
   );
+
+  useEffect(()=>{
+    const sub = isRefetch$.subscribe(()=>{
+      refetch()
+    })
+
+    return ()=>{sub.unsubscribe()}
+  }, [refetch])
 
   return (
     <Stack>

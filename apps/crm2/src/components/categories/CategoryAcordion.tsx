@@ -2,6 +2,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Button,
   Typography,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -9,6 +10,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useContext, useState } from 'react';
 import { dataContext } from '../../context/data';
 import { Product } from '../product';
+import { categoryId$, setIsOpenCategory } from '../../observables';
 
 interface CategoryAcordionProps {
   id: string | number;
@@ -18,6 +20,7 @@ interface CategoryAcordionProps {
 const CategoryAcordion = ({ id, name }: CategoryAcordionProps) => {
   const { products } = useContext(dataContext);
   const [isOpen, setIsOpen] = useState(false);
+
   const { data } = useQuery(
     ['products', id],
     async () =>
@@ -48,6 +51,13 @@ const CategoryAcordion = ({ id, name }: CategoryAcordionProps) => {
     getNextPageParam: (_lastPage, pages) => pages.length + 1,
   });
  */
+  const handleProductModal = ()=>{
+    setIsOpenCategory(true)
+    categoryId$.next(id)
+  }
+
+  console.log(data)
+
   return (
     <Accordion expanded={isOpen} onChange={() => setIsOpen(prev => !prev)}>
       <AccordionSummary
@@ -58,17 +68,21 @@ const CategoryAcordion = ({ id, name }: CategoryAcordionProps) => {
         <Typography>{name}</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <Typography>
-          {data?.map(({ name, price, description, id, price_offer }) => (
-            <Product
-              key={id}
-              name={name}
-              price={price}
-              description={description}
-              priceOffer={price_offer}
-            />
-          ))}
-        </Typography>
+        <Button variant='contained' onClick={handleProductModal}>
+          {' '}
+          Anadir Productos
+        </Button>
+
+        {data?.map(({ name, price, description, id, price_offer }) => (
+          <Product
+            key={id}
+            name={name}
+            price={price}
+            description={description}
+            priceOffer={price_offer}
+          />
+        ))}
+
       </AccordionDetails>
     </Accordion>
   );
