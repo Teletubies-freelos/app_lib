@@ -47,6 +47,12 @@ importers:
       '@mui/material':
         specifier: ^5.14.10
         version: 5.14.10(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
+      '@react-rxjs/core':
+        specifier: ^0.10.7
+        version: 0.10.7(react@18.2.0)(rxjs@7.8.1)
+      '@react-rxjs/utils':
+        specifier: ^0.9.7
+        version: 0.9.7(@react-rxjs/core@0.10.7)(react@18.2.0)(rxjs@7.8.1)
       '@tanstack/react-query':
         specifier: ^4.35.0
         version: 4.35.0(react-dom@18.2.0)(react@18.2.0)
@@ -2891,6 +2897,7 @@ packages:
   /@mswjs/interceptors@0.17.10:
     resolution: {integrity: sha512-N8x7eSLGcmUFNWZRxT1vsHvypzIRgQYdG0rJey/rZCy6zT/30qDt8Joj7FxzGNLSwXbeZqJOMqDurp7ra4hgbw==}
     engines: {node: '>=14'}
+    requiresBuild: true
     dependencies:
       '@open-draft/until': 1.0.3
       '@types/debug': 4.1.8
@@ -10817,6 +10824,7 @@ packages:
 
   /headers-polyfill@3.2.5:
     resolution: {integrity: sha512-tUCGvt191vNSQgttSyJoibR+VO+I6+iCHIUdhzEMJKE+EAL8BwCN7fUOZlY4ofOelNHsK+gEjxB/B+9N3EWtdA==}
+    requiresBuild: true
     dev: true
     optional: true
 

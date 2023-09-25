@@ -2,11 +2,7 @@
 
 import { Modal, Button, Stack, Typography, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
-
-interface CreateModalProps {
-  open: boolean;
-  closeModal: () => void;
-}
+import { setIsOpenCategory, useIsOpenCategory } from '../../observables';
 
 interface FormValues {
   name: string;
@@ -17,7 +13,7 @@ interface FormValues {
   description: string;
 }
 
-const CreateModal = ({ open, closeModal }: CreateModalProps) => {
+const CreateModal = () => {
   //use react hook form
   const { register, handleSubmit } = useForm<FormValues>({
     defaultValues: {
@@ -34,8 +30,10 @@ const CreateModal = ({ open, closeModal }: CreateModalProps) => {
     console.log(data);
   };
 
+  const isOpen = useIsOpenCategory();
+
   return (
-    <Modal open={open} onClose={closeModal}>
+    <Modal open={!!isOpen} onClose={() => setIsOpenCategory(false)}>
       <Stack
         sx={{
           height: '100vh',

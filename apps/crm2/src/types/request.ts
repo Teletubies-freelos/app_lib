@@ -3,8 +3,8 @@ export interface PaginationParams {
   limit?: number;
 }
 
-
-export interface QueryManyOptions {
+export interface QueryManyOptions<T> {
   pagination?: PaginationParams;
-  filters?: unknown
+  filters?: T;
+  sort?: string;
 }
