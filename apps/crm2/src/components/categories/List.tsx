@@ -3,7 +3,7 @@ import { useContext, useEffect } from 'react';
 import { dataContext } from '../../context/data';
 import { useQuery } from '@tanstack/react-query';
 import CategoryAcordion from './CategoryAcordion';
-import { isRefetch$ } from '../../observables';
+import { isRefetchCategories$ } from '../../observables';
 
 const List = () => {
   const { categories } = useContext(dataContext);
@@ -13,13 +13,15 @@ const List = () => {
       await categories?.list({ limit: 10, offset: 0, orderBy: 'desc' }),
   );
 
-  useEffect(()=>{
-    const sub = isRefetch$.subscribe(()=>{
-      refetch()
-    })
+  useEffect(() => {
+    const sub = isRefetchCategories$.subscribe(() => {
+      refetch();
+    });
 
-    return ()=>{sub.unsubscribe()}
-  }, [refetch])
+    return () => {
+      sub.unsubscribe();
+    };
+  }, [refetch]);
 
   return (
     <Stack>

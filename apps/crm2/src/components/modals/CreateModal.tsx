@@ -2,7 +2,12 @@
 
 import { Button, Stack, Typography, TextField, Dialog } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { categoryId$, setIsOpenCategory, useIsOpenCategory } from '../../observables';
+import {
+  categoryId$,
+  isRefetchProducts$,
+  setIsOpenCategory,
+  useIsOpenCategory,
+} from '../../observables';
 import { useMutation } from '@tanstack/react-query';
 import { useContext, useEffect, useRef } from 'react';
 import { dataContext } from '../../context/data';
@@ -18,7 +23,7 @@ interface FormValues {
 }
 
 const CreateModal = () => {
-  const categoryIdRef = useRef<number | string | undefined>()
+  const categoryIdRef = useRef<number | string | undefined>();
 
   const { register, handleSubmit } = useForm<FormValues>({
     defaultValues: {
@@ -31,30 +36,40 @@ const CreateModal = () => {
     },
   });
 
-  const { products } = useContext(dataContext)
+  const { products } = useContext(dataContext);
 
-  const { mutateAsync } = useMutation(async ( payload: CreateGamesPayload )=> await products?.createOne(payload))
+  const { mutateAsync } = useMutation(
+    async (payload: CreateGamesPayload) => await products?.createOne(payload),
+  );
 
-  useEffect(()=>{
-    const sub = categoryId$.subscribe((next)=>{
-      categoryIdRef.current = next
-    })
+  useEffect(() => {
+    const sub = categoryId$.subscribe((next) => {
+      categoryIdRef.current = next;
+    });
 
-    return ()=> sub.unsubscribe();
-  }, [])
+    return () => sub.unsubscribe();
+  }, []);
 
-  const onSubmit = async ({description, image, name, offerPrice, price, quantity}: FormValues) => {
+  const onSubmit = async ({
+    description,
+    image,
+    name,
+    offerPrice,
+    price,
+    quantity,
+  }: FormValues) => {
     await mutateAsync({
       description,
-      imag_url: image,
+      image_url: image,
       name,
-      offer_price: offerPrice,
+      price_offer: offerPrice,
       price,
       quantity,
-      category_id: Number(categoryIdRef.current)
-    })
+      category_id: Number(categoryIdRef.current),
+    });
 
-    setIsOpenCategory(false)
+    isRefetchProducts$.next(categoryIdRef.current);
+    setIsOpenCategory(false);
   };
 
   const isOpen = useIsOpenCategory();

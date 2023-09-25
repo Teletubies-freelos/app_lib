@@ -2,7 +2,7 @@ import { type GraphQLClient, gql } from 'graphql-request';
 import { QueryManyOptions } from '../../types/request';
 
 export interface GamesResponse {
-  id: string | number;
+  product_id: string | number;
   name: string;
   description: string;
   price: number;
@@ -12,10 +12,11 @@ export interface GamesResponse {
 }
 
 export interface CreateGamesPayload {
+  product_id?: string | number;
   description?: string;
-  imag_url?: string;
+  image_url?: string;
   name?: string;
-  offer_price?: number;
+  price_offer?: number;
   quantity?: number;
   price?: number;
   category_id?: number;
@@ -41,7 +42,7 @@ export class Products {
   static CREATE_PRODUCT = gql`
     mutation CREATE_PRODUCT(
       $description: String
-      $imag_url: String
+      $image_url: String
       $name: String
       $price: float8
       $offer_price: float8
@@ -51,7 +52,7 @@ export class Products {
       insert_Products_one(
         object: {
           description: $description
-          image_url: $imag_url
+          image_url: $image_url
           name: $name
           price_offer: $offer_price
           quantity: $quantity
@@ -86,6 +87,42 @@ export class Products {
     }
   `;
 
+  static DELETE_PRODUCT = gql`
+    mutation MyMutation($productId: Int!) {
+      delete_Products_by_pk(product_id: $productId) {
+        product_id
+      }
+    }
+  `;
+
+  static UPDATE_PRODUCT = gql`
+    mutation MyMutation(
+      $product_id: Int!
+      $description: String!
+      $image_url: String!
+      $isVisible: Boolean!
+      $name: String!
+      $price: float8!
+      $price_offer: float8!
+      $quantity: Int
+    ) {
+      update_Products_by_pk(
+        pk_columns: { product_id: $product_id }
+        _set: {
+          description: $description
+          image_url: $image_url
+          is_visible: $isVisible
+          name: $name
+          price: $price
+          price_offer: $price_offer
+          quantity: $quantity
+        }
+      ) {
+        product_id
+      }
+    }
+  `;
+
   constructor(private client: GraphQLClient) {}
 
   async getList({
@@ -95,10 +132,9 @@ export class Products {
     const { limit = 20, offset = 0 } = pagination;
     const { categoryId } = filters;
 
-    const { Products : games } = await this.client.request<{ Products: GamesResponse[] }>(
-      Products.GET_PRODUCT,
-      { limit, offset, categoryId: Number(categoryId) },
-    );
+    const { Products: games } = await this.client.request<{
+      Products: GamesResponse[];
+    }>(Products.GET_PRODUCT, { limit, offset, categoryId: Number(categoryId) });
 
     return games;
   }
@@ -109,5 +145,24 @@ export class Products {
     }>(Products.CREATE_PRODUCT, { ...payload });
 
     return insert_products_one;
+  }
+
+  async deleteOne(productId: number | string) {
+    const { delete_Products_by_pk } = await this.client.request<{
+      delete_Products_by_pk: number | string;
+    }>(Products.DELETE_PRODUCT, { productId });
+
+    return delete_Products_by_pk;
+  }
+
+  async updateOne(
+    product_id: number | string,
+    payload: CreateGamesPayload,
+  ): Promise<boolean> {
+    const { update_Products_by_pk } = await this.client.request<{
+      update_Products_by_pk: boolean;
+    }>(Products.UPDATE_PRODUCT, { product_id, ...payload, isVisible: true });
+
+    return update_Products_by_pk;
   }
 }

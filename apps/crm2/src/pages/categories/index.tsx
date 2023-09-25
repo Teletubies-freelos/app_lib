@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { useContext } from 'react';
 import { dataContext } from '../../context/data';
-import { isRefetch$ } from '../../observables';
+import { isRefetchCategories$ } from '../../observables';
 import CreateModal from '../../components/modals/CreateModal';
 import List from '../../components/categories/List';
 
@@ -21,7 +21,7 @@ export default function Categories() {
 
   const onSubmit = async (data: ICategory) => {
     await mutateAsync(data.name);
-    isRefetch$.next(undefined)
+    isRefetchCategories$.next(undefined);
   };
 
   return (
@@ -32,9 +32,9 @@ export default function Categories() {
           <Button variant='contained' type='submit'>
             Agregar Categoria
           </Button>
-          <List />
         </Stack>
       </form>
+      <List />
       <Stack>
         <CreateModal />
       </Stack>
