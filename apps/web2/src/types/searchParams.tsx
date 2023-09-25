@@ -1,9 +1,9 @@
-export interface PaginatedParams{
+export interface PaginatedParams {
   limit?: number;
   offset?: number;
 }
 
-export interface Filters{
+export interface Filters {
   price?: number;
   name?: string;
   platform?: string;
@@ -11,7 +11,7 @@ export interface Filters{
   order?: string;
 }
 
-export interface SearchParams{
+export interface SearchParams {
   filters?: Filters;
   paginated?: PaginatedParams;
 }

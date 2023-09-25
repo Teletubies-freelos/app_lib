@@ -1,7 +1,10 @@
 export interface IOffer {
-  img_url?: string;
+  product_id?: string | number;
   description?: string;
-  price?: number;
-  id: number;
+  image_url?: string;
   name?: string;
+  price_offer?: number;
+  quantity?: number;
+  price?: number;
+  category_id?: number;
 }
