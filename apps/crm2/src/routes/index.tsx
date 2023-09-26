@@ -13,7 +13,7 @@ export const routes = createHashRouter([
   },
   {
     path: '/',
-    element: <Navigate to='/products' />,
+    element: <Navigate to='/categories' />,
   },
   {
     path: '/products',
