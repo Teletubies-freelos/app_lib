@@ -15,7 +15,7 @@ export const Providers = ({ children }: PropsWithChildren) => {
         <Auth0Provider
           clientId={env.AUTH0_ID}
           domain={env.AUTH0_DOMAIN}
-          authorizationParams={{ redirect_uri: window.location.origin }}
+          authorizationParams={{ redirect_uri: `${window.location.origin}/cms` }}
         >
           <AuthProvider>
             <DataProvider
