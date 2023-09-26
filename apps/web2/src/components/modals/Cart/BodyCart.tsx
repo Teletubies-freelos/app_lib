@@ -1,40 +1,44 @@
-import { Box, CircularProgress, List, Stack, Typography } from "@mui/material";
+import { Box, CircularProgress, List, Stack, Typography } from '@mui/material';
 import {
   Button,
   CardStateOrder,
   LabelStepStatus,
   Quantity,
-} from "../../../../../../packages/ui/src";
-import totalMoney from "../common/total.svg";
+} from '../../../../../../packages/ui/src';
+import totalMoney from '../common/total.svg';
 
-import { setIsCartShop, setIsPickupStore, setIsYourData } from "../../../observables";
-import { useGetIndexedDb } from "../../../hooks/useGetIndexedDb";
-import { useContext, useState } from "react";
-import { cartClient } from "../../../modules";
-import { cartContext } from "../../../context/cartContext";
+import {
+  setIsCartShop,
+  setIsPickupStore,
+  setIsYourData,
+} from '../../../observables';
+import { useGetIndexedDb } from '../../../hooks/useGetIndexedDb';
+import { useContext, useState } from 'react';
+import { cartClient } from '../../../modules';
+import { cartContext } from '../../../context/cartContext';
 
 interface ImageProps {
   url: string;
 }
 
 const Image = ({ url }: ImageProps) => (
-  <Box display="flex" height={"4.75rem"} width="4rem" alignItems={"center"}>
+  <Box display='flex' height={'4.75rem'} width='4rem' alignItems={'center'}>
     <img
       src={url}
       srcSet={url}
       alt={url}
       style={{
-        height: "80%",
-        width: "100%",
-        objectFit: "contain",
+        height: '80%',
+        width: '100%',
+        objectFit: 'contain',
       }}
-      loading="lazy"
+      loading='lazy'
     />
   </Box>
 );
 const Loading = () => (
-  <Box width={1} height={1} display="grid" sx={{ placeItems: "center" }}>
-    <CircularProgress color="info" />
+  <Box width={1} height={1} display='grid' sx={{ placeItems: 'center' }}>
+    <CircularProgress color='info' />
   </Box>
 );
 
@@ -97,20 +101,25 @@ export default function BodyCart() {
     },
   } = useGetIndexedDb();
 
+  const handleDataDelivery = () => {
+    setIsYourData(true);
+    setIsCartShop(false);
+  };
+
   return (
     <>
       <Box
-        display="flex"
-        flexDirection="column"
-        gap="1rem"
-        height={"60vh"}
-        sx={{ overflowY: "scroll" }}
+        display='flex'
+        flexDirection='column'
+        gap='1rem'
+        height={'60vh'}
+        sx={{ overflowY: 'scroll' }}
       >
         {data?.length > 0 ? (
           <List
             sx={{
-              padding: "0",
-              width: "100%",
+              padding: '0',
+              width: '100%',
             }}
           >
             {isLoading || isLoadingTotal ? (
@@ -141,52 +150,49 @@ export default function BodyCart() {
           </List>
         ) : (
           <Typography
-            textAlign="center"
-            sx={{ paddingTop: "4rem", textTransform: "uppercase" }}
+            textAlign='center'
+            sx={{ paddingTop: '4rem', textTransform: 'uppercase' }}
           >
             Tu carrito está vacío.
           </Typography>
         )}
       </Box>
       <LabelStepStatus
-        property="Total"
+        property='Total'
         value={`S/. ${total?.toFixed(2)}`}
-        icon={<img src={totalMoney} alt="money" />}
+        icon={<img src={totalMoney} alt='money' />}
         sx={{
-          fontSize: "1rem !important",
-          marginTop: "1.5rem",
+          fontSize: '1rem !important',
+          marginTop: '1.5rem',
         }}
       />
       <Stack>
         <Typography
-          textAlign="center"
-          variant="body2"
-          fontSize=".9rem"
-          padding="1rem 0 .5rem 0"
-          color="text.primary"
+          textAlign='center'
+          variant='body2'
+          fontSize='.9rem'
+          padding='1rem 0 .5rem 0'
+          color='text.primary'
         >
           Selecciona el tipo de entrega
         </Typography>
-        <Box display="flex" gap=".5rem">
+        <Box display='flex' gap='.5rem'>
           <Button
             onClick={() => {
               setIsPickupStore(true);
               setIsCartShop(false);
             }}
             fullWidth
-            label="Recojo en tienda"
-            variant="outlined"
-            sx={{ height: "2.8rem", fontSize: { xs: ".7rem !important" } }}
+            label='Recojo en tienda'
+            variant='outlined'
+            sx={{ height: '2.8rem', fontSize: { xs: '.7rem !important' } }}
           />
           <Button
-            onClick={() => {
-              setIsYourData(true);
-              setIsCartShop(false);
-            }}
+            onClick={handleDataDelivery}
             fullWidth
-            label="Entrega a domicilio"
-            variant="contained"
-            sx={{ height: "2.8rem", fontSize: { xs: ".7rem !important" } }}
+            label='Entrega a domicilio'
+            variant='contained'
+            sx={{ height: '2.8rem', fontSize: { xs: '.7rem !important' } }}
           />
         </Box>
       </Stack>

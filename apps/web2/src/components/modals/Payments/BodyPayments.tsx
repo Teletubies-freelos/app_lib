@@ -11,12 +11,13 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { setIsConfirmedOrder, setIsPaymentData } from '../../../observables';
 import { useGetIndexedDb } from '../../../hooks/useGetIndexedDb';
 import { cartClient } from '../../../modules';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import CustomAcordion from '../common/CustomAcordion';
-import { useCallback, useEffect, useState } from 'react';
-import { PAYMENT_METHODS } from '../../../utils';
-import { SelectChangeEvent } from '@mui/material';
+import { useCallback, useState } from 'react';
+import { PAYMENT_METHODS, PRICE_DELIVERY } from '../../../utils';
 import { IOffer } from '../../../types/games';
+import ShortUniqueId from 'short-unique-id';
+import { usePurchase } from '../../../hooks/usePurchase';
 
 interface IUserData {
   address: string | null;
@@ -24,8 +25,14 @@ interface IUserData {
   phone: string | null;
 }
 
+const generateCode = () => {
+  const { randomUUID } = new ShortUniqueId({ length: 10 });
+  const code = randomUUID();
+  return code;
+};
+
 export default function BodyPayments() {
-  const [userData, setUserData] = useState<IUserData>({
+  const [userData] = useState<IUserData>({
     address: sessionStorage.getItem('address') || '',
     fullName: sessionStorage.getItem('fullName') || '',
     phone: sessionStorage.getItem('phone') || '',
@@ -43,9 +50,42 @@ export default function BodyPayments() {
     queryFn: () => cartClient.getTotalCount(),
   });
 
-  const handleFinish = () => {
+  const { mutateAsync } = usePurchase();
+
+  const handleFinish = async () => {
+    const order = orderSerialize();
+    await mutateAsync({
+      address: order.address ?? '',
+      client_name: order.fullName ?? '',
+      code: order.code,
+      createDate: order.date,
+      payment_method: order.paymentMethod,
+      payment_state: order.paymentState,
+      phone: Number(order.phone),
+      products: order.products,
+      total: order.total.toString(),
+    });
     setIsConfirmedOrder(true);
     setIsPaymentData(false);
+  };
+
+  const orderSerialize = () => {
+    const codeOrder = generateCode();
+    sessionStorage.setItem('code', codeOrder);
+
+    const order = {
+      address: userData.address,
+      fullName: userData.fullName,
+      phone: userData.phone,
+      paymentMethod: selectedMethod,
+      paymentState: false,
+      products: JSON.stringify(data),
+      code: codeOrder,
+      total: (total || 0) + PRICE_DELIVERY,
+      date: new Date().toLocaleDateString(),
+    };
+
+    return order;
   };
 
   const handleChange = useCallback(

@@ -1,19 +1,15 @@
 import { GraphQLClient, gql } from 'graphql-request';
 
-interface SavePurchasePayload {
+export interface SavePurchasePayload {
   address: string;
   client_name: string;
   createDate: string;
   payment_method: string;
-  payment_state: string;
+  payment_state: boolean;
   phone: number;
   products: string;
   total: string;
   code: string;
-}
-
-interface PurchaseResponse {
-  coidde: string | number;
 }
 
 export class PurchaseGraphql {
@@ -29,29 +25,29 @@ export class PurchaseGraphql {
   private static SAVE_PURCHASE = gql`
     mutation MyMutation(
       $address: String!
-      $clientName: String!
+      $client_name: String!
       $code: String!
-      $createDate: String!
-      $paymentMethod: String!
-      $paymentState: String!
+      $createDate: date!
+      $payment_method: String!
+      $payment_state: Boolean!
       $phone: Int!
-      $products: String!
-      $total: String!
+      $products: json!
+      $total: money!
     ) {
       insert_Orders_one(
         object: {
           address: $address
-          client_name: $clientName
+          client_name: $client_name
           code: $code
           create_date: $createDate
-          payment_method: $paymentMethod
-          payment_state: $paymentState
+          payment_method: $payment_method
+          payment_state: $payment_state
           phone: $phone
           products: $products
           total: $total
         }
       ) {
-        id
+        order_id
       }
     }
   `;
@@ -59,11 +55,12 @@ export class PurchaseGraphql {
   constructor(private client: GraphQLClient) {}
 
   async savePurchase(payload: SavePurchasePayload) {
-    const { insert_Orders_one } = await this.client.request<{
+    console.log(payload);
+    await this.client.request<{
       insert_Orders_one: { id: string | number };
     }>(PurchaseGraphql.SAVE_PURCHASE, { ...payload });
 
-    return insert_Orders_one;
+    return payload.code;
   }
 
   /*   async createOne(payload: CreateGamesPayload) {

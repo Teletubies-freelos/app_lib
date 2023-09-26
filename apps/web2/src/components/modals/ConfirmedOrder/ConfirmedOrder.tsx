@@ -3,7 +3,7 @@ import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutli
 import Typography from '@mui/material/Typography';
 import { LabelStepStatus } from '../../../../../../packages/ui/src';
 import totalMoney from '../common/total.svg';
-import { setIsConfirmedOrder, usePurchaseCode } from '../../../observables';
+import { setIsConfirmedOrder } from '../../../observables';
 import { useGetIndexedDb } from '../../../hooks/useGetIndexedDb';
 import { PRICE_DELIVERY } from '../../../utils';
 
@@ -24,7 +24,7 @@ export default function ConfirmedOrder({
   stepStatus,
   sx,
 }: ConfirmedOrderProps) {
-  const code = usePurchaseCode();
+  const code = sessionStorage.getItem('code') || '';
   const {
     dataPrice: { data: total },
   } = useGetIndexedDb();
