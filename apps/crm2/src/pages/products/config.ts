@@ -4,7 +4,7 @@ import { GamesResponse } from '../../services/products';
 export const lisColumns: MRT_ColumnDef<GamesResponse>[] =[
   {
     header: 'Id',
-    accessorKey: 'id'
+    accessorKey: 'product_id'
   },
   {
     header: 'Descripcion',

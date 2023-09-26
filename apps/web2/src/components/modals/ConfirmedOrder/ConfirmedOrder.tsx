@@ -73,7 +73,7 @@ export default function ConfirmedOrder({
           <LabelStepStatus
             property='TOTAL'
             icon={<img src={totalMoney} alt='money' />}
-            value={`S/. ${(total + PRICE_DELIVERY).toFixed()}`}
+            value={`S/. ${((total ?? 0) + PRICE_DELIVERY).toFixed()}`}
             sx={{
               fontWeight: 'bold !important',
               fontSize: '1.1rem !important',

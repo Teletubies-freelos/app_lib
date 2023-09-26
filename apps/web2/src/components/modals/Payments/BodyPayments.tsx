@@ -2,6 +2,7 @@ import {
   Box,
   MenuItem,
   Select,
+  SelectChangeEvent,
   Stack,
   TextField,
   Typography,
@@ -11,7 +12,7 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { setIsConfirmedOrder, setIsPaymentData } from '../../../observables';
 import { useGetIndexedDb } from '../../../hooks/useGetIndexedDb';
 import { cartClient } from '../../../modules';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import CustomAcordion from '../common/CustomAcordion';
 import { useCallback, useState } from 'react';
 import { PAYMENT_METHODS, PRICE_DELIVERY } from '../../../utils';
@@ -89,8 +90,8 @@ export default function BodyPayments() {
   };
 
   const handleChange = useCallback(
-    (event: SelectChangeEvent) => {
-      setSelectedMethod(event.target.value);
+    (event: SelectChangeEvent<HTMLInputElement>) => {
+      setSelectedMethod(event.target.value  as any);
     },
     [setSelectedMethod],
   );
@@ -193,7 +194,7 @@ export default function BodyPayments() {
         }
       />
 
-      <Select value={selectedMethod} onChange={handleChange}>
+      <Select value={selectedMethod as any} onChange={handleChange}>
         {PAYMENT_METHODS.map(({ label, value }) => (
           <MenuItem key={value} value={label}>
             {label}

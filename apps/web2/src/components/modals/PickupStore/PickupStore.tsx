@@ -10,7 +10,6 @@ import {
   useIsPickupStoreOpen,
 } from '../../../observables';
 
-import { usePurchase } from '../../../hooks/usePurchase';
 
 interface PickupStoreProps {
   content?: JSX.Element;
@@ -19,7 +18,7 @@ interface PickupStoreProps {
 
 export default function PickupStore({ content }: PickupStoreProps) {
   const isOpen = useIsPickupStoreOpen();
-  const {isLoading, mutateAsync} = usePurchase()
+
 
   const handleBack = () => {
     setIsCartShop(true);
@@ -27,7 +26,7 @@ export default function PickupStore({ content }: PickupStoreProps) {
   };
 
   const handleConfirm = async () => {
-    await mutateAsync()
+
     setIsConfirmedStore(true);
     setIsPickupStore(false);
   };
@@ -56,21 +55,19 @@ export default function PickupStore({ content }: PickupStoreProps) {
         }
       >
         {content}
-        {
-          isLoading? 
-            <CircularProgress /> 
-            : <FooterModal
-            onClick={handleConfirm}
-              nameButton='Confirmar pedido'
-              infoMessage='No existe costo de envío por ser recojo en tienda.'
-              sx={{
-                display: 'flex',
-                flexDirection: 'column-reverse',
-                marginTop: '2rem',
-              }}
-            />
-        }
-        
+
+        <FooterModal
+          onClick={handleConfirm}
+          nameButton='Confirmar pedido'
+          infoMessage='No existe costo de envío por ser recojo en tienda.'
+          sx={{
+            display: 'flex',
+            flexDirection: 'column-reverse',
+            marginTop: '2rem',
+          }}
+        />
+
+
       </ModalLayout>
     </Modal>
   );
