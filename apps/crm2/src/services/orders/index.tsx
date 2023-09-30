@@ -1,32 +1,45 @@
-import { gql, type GraphQLClient } from "graphql-request";
-import { QueryManyOptions } from "../../types/request";
+import { gql, type GraphQLClient } from 'graphql-request';
+import { QueryManyOptions } from '../../types/request';
 
-interface OrdersResponse{
+export interface OrdersResponse {
   id: string | number;
   client_name: string;
-  client_phone: number;
-  client_address: string;
-  state_payment: string;
-  method_payment: string;
-  total: number
+  address: string;
+  phone: number;
+  code: string;
+  payment_state: string;
+  payment_method: string;
+  total: number;
+  create_date: Date;
 }
 
-export class Orders{
+export class Orders {
   static GET_ORDERS = gql`
-    insertar gql 
-  `
+    query MyQuery($limit: Int!, $offset: Int!) {
+      Orders(limit: $limit, offset: $offset, order_by: { create_date: desc }) {
+        address
+        client_name
+        code
+        create_date
+        order_id
+        payment_method
+        payment_state
+        phone
+        products
+        total
+      }
+    }
+  `;
 
-  constructor(private client: GraphQLClient){}
+  constructor(private client: GraphQLClient) {}
 
-  async getList({pagination = {}}: QueryManyOptions = {}){
-    const { limit = 20, offset = 0 } = pagination
+  async getList({ pagination = {} }: QueryManyOptions<unknown> = {}) {
+    const { limit = 10, offset = 0 } = pagination;
 
-    const { orders } = await this.client
-      .request<{orders: OrdersResponse[]}>(Orders.GET_ORDERS, {
-        limit,
-        offset
-      })
+    const { Orders: orders } = await this.client.request<{
+      Orders: OrdersResponse[];
+    }>(Orders.GET_ORDERS, { limit, offset });
 
-    return orders
+    return orders;
   }
 }

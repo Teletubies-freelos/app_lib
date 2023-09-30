@@ -5,6 +5,7 @@ import { Product } from '../components/product';
 const LazyHome = lazy(() => import('../pages/home'));
 const LazyProducts = lazy(() => import('../pages/products'));
 const LazyCategories = lazy(() => import('../pages/categories'));
+const LazyOrders = lazy(() => import('../pages/orders'));
 
 export const routes = createHashRouter([
   {
@@ -31,6 +32,10 @@ export const routes = createHashRouter([
         quantity={22}
       />
     ),
+  },
+  {
+    path: '/orders',
+    element: <LazyOrders />,
   },
   {
     path: '/categories',
