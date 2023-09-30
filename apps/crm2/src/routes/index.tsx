@@ -3,7 +3,6 @@ import { Navigate, createHashRouter } from 'react-router-dom';
 import { Product } from '../components/product';
 
 const LazyHome = lazy(() => import('../pages/home'));
-const LazyProducts = lazy(() => import('../pages/products'));
 const LazyCategories = lazy(() => import('../pages/categories'));
 const LazyOrders = lazy(() => import('../pages/orders'));
 
@@ -15,10 +14,6 @@ export const routes = createHashRouter([
   {
     path: '/',
     element: <Navigate to='/products' />,
-  },
-  {
-    path: '/products',
-    element: <LazyProducts />,
   },
   {
     path: '/teletubies',
