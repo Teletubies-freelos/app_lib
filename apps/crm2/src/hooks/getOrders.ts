@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { dataContext } from '../context/data';
 import { useQuery } from '@tanstack/react-query';
 import { MRT_PaginationState } from 'material-react-table';
+import { finalProducts } from '../utils';
 
 export const useOrders = () => {
   const { orders } = useContext(dataContext);
@@ -21,5 +22,6 @@ export const useOrders = () => {
     ...queryData,
     setPage,
     pagination: page,
+    data: finalProducts(queryData.data || []),
   };
 };
