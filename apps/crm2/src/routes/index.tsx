@@ -1,6 +1,5 @@
 import { lazy } from 'react';
 import { Navigate, createHashRouter } from 'react-router-dom';
-import { Product } from '../components/product';
 
 const LazyHome = lazy(() => import('../pages/home'));
 const LazyCategories = lazy(() => import('../pages/categories'));
@@ -13,20 +12,7 @@ export const routes = createHashRouter([
   },
   {
     path: '/',
-    element: <Navigate to='/products' />,
-  },
-  {
-    path: '/teletubies',
-    element: (
-      <Product
-        product_id={1}
-        name='nuevo'
-        price={20.99}
-        description='esta es una descripcion'
-        image_url='https://example.com'
-        quantity={22}
-      />
-    ),
+    element: <Navigate to='/categories' />,
   },
   {
     path: '/orders',
