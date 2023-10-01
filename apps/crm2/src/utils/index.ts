@@ -6,7 +6,7 @@ const deserializeProducts = (data: OrdersResponse[]) => {
       ...order,
       products: JSON.parse(order.products)?.map((product) => {
         //product name and quantity
-        return `${product.name}   x ${product.quantity}\n`;
+        return `${product.name}   x ${product.quantity}`;
       }),
     };
   });

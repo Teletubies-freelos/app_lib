@@ -1,13 +1,14 @@
 import MaterialReactTable from 'material-react-table';
-import { listColumns } from './columns';
+import { ListColumns } from './Columns';
 import { useOrders } from '../../hooks/getOrders';
 
 const ListOrders = () => {
   const { data } = useOrders();
-  console.log('%c data :', 'background-color:#048A81', data);
+  const list = ListColumns;
+
   return (
     <MaterialReactTable
-      columns={listColumns}
+      columns={list()}
       data={data ?? []}
       enableStickyHeader
       muiTableContainerProps={{
