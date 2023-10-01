@@ -4,7 +4,7 @@ import { useOrders } from '../../hooks/getOrders';
 
 const ListOrders = () => {
   const { data } = useOrders();
-
+  console.log('%c data :', 'background-color:#048A81', data);
   return (
     <MaterialReactTable
       columns={listColumns}
