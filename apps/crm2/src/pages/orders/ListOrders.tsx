@@ -1,13 +1,14 @@
 import MaterialReactTable from 'material-react-table';
-import { listColumns } from './columns';
+import { ListColumns } from './Columns';
 import { useOrders } from '../../hooks/getOrders';
 
 const ListOrders = () => {
-  const { data } = useOrders();
+  const { data, isFetching } = useOrders();
+  const list = ListColumns;
 
   return (
     <MaterialReactTable
-      columns={listColumns}
+      columns={list()}
       data={data ?? []}
       enableStickyHeader
       muiTableContainerProps={{
@@ -15,6 +16,7 @@ const ListOrders = () => {
           maxHeight: '75vh',
         },
       }}
+      state={{ isLoading: isFetching }}
     />
   );
 };
