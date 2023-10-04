@@ -1,4 +1,5 @@
 import { Box, Toolbar } from "@mui/material";
+import React from "react";
 
 interface NavBarProps {
   cartComponent?: JSX.Element;
@@ -6,6 +7,7 @@ interface NavBarProps {
   navigatorLinks?: JSX.Element;
   searchBar?: JSX.Element;
   actionsComponent?: JSX.Element;
+  menu?: React.ReactNode;
 }
 
 const sxMainBar = {
@@ -22,6 +24,7 @@ export default function NavBar({
   navigatorLinks,
   actionsComponent,
   searchBar,
+  menu
 }: NavBarProps) {
   return (
     <Toolbar
@@ -32,6 +35,7 @@ export default function NavBar({
       }}
     >
       <Box sx={sxMainBar}>
+        {menu}
         {mainLogo}
         <Box
           sx={{

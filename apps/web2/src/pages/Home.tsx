@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import {
+  Button,
   CardHero,
   ColorSwitch,
   MainLogo,
@@ -12,7 +13,7 @@ import {
 } from '../../../../packages/ui/src';
 import { GeneralLayout } from '../layout/GeneralLayout';
 import ResponsiveCarousel from '../components/ResponsiveCarousel';
-import { SxProps, Stack, Button } from '@mui/material';
+import { SxProps, Stack } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import ProductsList from '../components/ProductList';
 import NavLinks from '../components/NavLinks';
@@ -91,6 +92,7 @@ export default function Home() {
           searchBar={
             <SearchBar
               onSubmit={() => 4}
+              placeHolder='Ingresa tu búsqueda'
               buttonSearch={<Button label='buscar' variant='contained' />}
             />
           }
