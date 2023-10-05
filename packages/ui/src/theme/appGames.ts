@@ -37,6 +37,9 @@ export const darkTheme = createTheme({
     text: {
       primary: "#FFFFFF",
     },
+    action: {
+      active: "#996FFF",
+    },
   },
 });
 

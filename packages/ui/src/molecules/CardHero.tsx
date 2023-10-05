@@ -49,7 +49,10 @@ const CardHero = ({ image, alt, onClick, description }: CardHeroProps) => (
       <Button
         fullWidth
         variant="outlined"
-        sx={{ "&:hover": { background: "#7339FF", color: "#E3E9FF" } }}
+        sx={(theme) => ({ 
+          "&:hover": { background: "#7339FF", color: "#E3E9FF" }, 
+          color: theme.palette.action.active 
+        })}
         onClick={onClick}
       >
         Agregar al carrito
