@@ -65,7 +65,7 @@ export default function Terminos() {
           width: "100%",
           display: "flex",
           justifyContent: "center",
-          padding: "2rem",
+          padding: "4rem 2rem",
           backgroundColor: (theme) => theme.palette.background.paper
         }}
       >
