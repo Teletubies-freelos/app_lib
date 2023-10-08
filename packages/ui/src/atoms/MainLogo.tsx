@@ -4,7 +4,7 @@ import { UnsetSvgProps, UnsetSvg } from "../helpers/UnsetSvg";
 
   export default function MainLogo({ sx }: UnsetSvgProps) {
     const theme = useTheme();
-    const fillValue = theme.palette['mode'] === 'dark' ? '#fff' : '#444'
+    const fillValue = (theme as { palette: { [key: string]: string } }).palette['mode'] === 'dark' ? '#fff' : '#444';
 
   return (
     <UnsetSvg sx={sx}>
