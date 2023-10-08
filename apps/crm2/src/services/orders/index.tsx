@@ -9,6 +9,7 @@ export interface OrdersResponse {
   code: string;
   payment_state: string;
   payment_method: string;
+  products: string;
   total: number;
   create_date: Date;
 }

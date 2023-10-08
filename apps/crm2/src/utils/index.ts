@@ -1,12 +1,23 @@
 import { OrdersResponse } from '../services/orders';
 
+interface ProductSerialize {
+  id: number | string;
+  imageUrl: string;
+  name: string;
+  price: number | string;
+  priceDiscount: number;
+  productId: string;
+  quantity: number;
+}
+
 const deserializeProducts = (data: OrdersResponse[]) => {
   return data?.map((order) => {
+    const productsArray: ProductSerialize[] = JSON.parse(order.products);
+
     return {
       ...order,
-      products: JSON.parse(order.products)?.map((product) => {
-        //product name and quantity
-        return `${product.name}   x ${product.quantity}`;
+      products: productsArray?.map((product) => {
+        return `${product.name}   x   ${product.quantity}\n`;
       }),
     };
   });
