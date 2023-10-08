@@ -52,7 +52,7 @@ const CardHero = ({ image, alt, onClick, description }: CardHeroProps) => (
         sx={(theme) => ({ 
           "&:hover": { 
             background: theme.palette.primary.main,
-            color: theme.palette.grey["200"] 
+            color: theme.palette.text.action
           }, 
           color: theme.palette.action.active 
         })}

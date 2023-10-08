@@ -4,12 +4,10 @@ import { Menu as MenuIcon } from '@mui/icons-material';
 import { Box, IconButton, Popper, Stack, Typography } from "@mui/material";
 
 import {
-  Button,
   CartIcon,
   ColorSwitch,
   MainLogo,
   NavBar,
-  SearchBar,
   FacebookLogo,
   InstagramLogo,
   Isotype
@@ -19,6 +17,7 @@ import { GeneralLayout } from "../../layout/GeneralLayout";
 import { useToggleColor } from "../../providers/theme";
 import NavLinks from "../../components/NavLinks";
 import Menu from "../../components/Menu";
+import CustomSearchBar from "../../components/CustomSearchBar";
 
 export default function Terminos() {
   const toggleColor = useToggleColor();
@@ -46,11 +45,7 @@ export default function Terminos() {
             </Link>
           }
           searchBar={
-            <SearchBar
-              onSubmit={() => 4}
-              placeHolder="Ingresa tu busqueda"
-              buttonSearch={<Button label="Buscar" variant="outlined" />}
-            />
+            <CustomSearchBar placeHolder="Ingresa tu busqueda" />
           }
           menu={
             <IconButton onClick={_handleOpenMenu} size="small">

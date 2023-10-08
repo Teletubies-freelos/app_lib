@@ -1,4 +1,9 @@
 import { createTheme } from "@mui/material/styles";
+declare module '@mui/material/styles' {
+  interface TypeText {
+    action?: string;
+  }
+}
 
 const typography = {
   allVariants: {
@@ -56,6 +61,7 @@ export const defaultTheme = createTheme({
     text: {
       primary: "#444444",
       secondary: "#737373",
+      action: "#E3E9FF",
     },
     action: {
       active: "#7339FF",
@@ -74,7 +80,6 @@ export const defaultTheme = createTheme({
     },
     grey: {
       "100": "#D9D9D9",
-      "200": "#E3E9FF"
     },
   },
 });
