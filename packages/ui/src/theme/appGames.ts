@@ -74,6 +74,7 @@ export const defaultTheme = createTheme({
     },
     grey: {
       "100": "#D9D9D9",
+      "200": "#E3E9FF"
     },
   },
 });

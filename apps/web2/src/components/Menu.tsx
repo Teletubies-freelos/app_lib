@@ -3,33 +3,39 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, Paper, Stack, Typog
 import { ExpandMore as ExpandMoreIcon } from "@mui/icons-material";
 import { FacebookLogo, InstagramLogo } from "../../../../packages/ui/src";
 
+interface LiItemProps {
+  label: string
+}
+
+export const Label = styled(Link)`
+  text-decoration: none;
+`;
+
+function LiItem({ label }: LiItemProps) {
+  return (
+    <Typography
+      variant="h3"
+      sx={(theme) => ({ color: theme.palette.text.primary, fontSize: 18, fontWeight: 500 })}
+    >
+      {label}
+    </Typography>
+  )
+}
+
 export default function Menu() {
-
-  const Label = styled(Link)`
-    font-size: 18px;
-    font-weight: 500;
-    text-decoration: none;
-    color: #333333;
-  `;
-
-  const SubLabel = styled(Link)`
-    font-size: 1rem;
-    font-weight: 400;
-    text-decoration: none;
-    color: #333333;
-  `;
-
   return (
     <Paper sx={(theme) => ({
-      padding: "36px 120px",
+      padding: { md: "36px 120px", xs: "4rem"},
       background: theme.palette.common.white,
-      width: '667px',
+      width: { md: 667, xs: "100%" },
       borderRadius: "0 0 20px 0",
       boxShadow: "0px 8px 0px 0px rgba(0, 0, 0, 0.08), 0px 1.8px 0px 0px rgba(0, 0, 0, 0.05), 0px 0.5px 0px 0px rgba(0, 0, 0, 0.03), 0px -1px 0px 0px rgba(0, 0, 0, 0.04)" 
     })}
     >
       <Stack sx={{ gap: "1.5rem" }}>
-        <Label to="/">Categorias</Label>
+        <Label to="/">
+          <LiItem label="Categorias" />
+        </Label>
         <Accordion
           sx={{
             background: "transparent",
@@ -56,14 +62,27 @@ export default function Menu() {
           >
             <Stack sx={{ gap: "1rem" }}>
               {Array.from({ length: 5 }).map((_, i) => (
-                <SubLabel to="/" key={i}>Subcategoría 1</SubLabel>
+                <Label to="/" key={i}>
+                  <Typography
+                    variant="h3"
+                    sx={(theme) => ({
+                      fontWeight: 400,
+                      color: theme.palette.text.primary
+                    })}
+                  >
+                    Subcategoría 1
+                  </Typography>
+                </Label>
               ))}
             </Stack>
           </AccordionDetails>
         </Accordion>
-        
-        <Label to="/estado-pedido">Estado de pedido</Label>
-        <Label to="/terminos">Terminos y condiciones</Label>
+        <Label to="/estado-pedido">
+          <LiItem label="Estado de pedido" />
+        </Label>
+        <Label to="/terminos">
+          <LiItem label="Terminos y condiciones" />
+        </Label>
 
         <Box sx={{ display: "flex", justifyContent: "flex-end", gap: "1rem", alignItems: "center" }}>
           <Typography variant="body1" sx={{ fontSize: "1rem" }}>Síguenos</Typography>

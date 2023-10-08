@@ -50,7 +50,10 @@ const CardHero = ({ image, alt, onClick, description }: CardHeroProps) => (
         fullWidth
         variant="outlined"
         sx={(theme) => ({ 
-          "&:hover": { background: "#7339FF", color: "#E3E9FF" }, 
+          "&:hover": { 
+            background: theme.palette.primary.main,
+            color: theme.palette.grey["200"] 
+          }, 
           color: theme.palette.action.active 
         })}
         onClick={onClick}
