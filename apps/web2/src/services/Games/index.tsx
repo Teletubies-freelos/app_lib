@@ -2,7 +2,6 @@ import { AxiosInstance } from 'axios';
 import { type GraphQLClient, gql } from 'graphql-request';
 import { GamesPaths } from './constans';
 import { IOffer } from '../../types/games';
-import { SearchParams } from '../../types';
 
 export interface Games {
   getMainOffers(): Promise<IOffer[]>;
