@@ -15,7 +15,7 @@ function LiItem({ label }: LiItemProps) {
   return (
     <Typography
       variant="h3"
-      sx={(theme) => ({ color: theme.palette.text.primary, fontSize: 18, fontWeight: 500 })}
+      sx={{ color: "text.emphasized", fontSize: 18, fontWeight: 500 }}
     >
       {label}
     </Typography>
@@ -24,13 +24,11 @@ function LiItem({ label }: LiItemProps) {
 
 export default function Menu() {
   return (
-    <Paper sx={(theme) => ({
-      padding: { md: "36px 120px", xs: "4rem"},
-      background: theme.palette.common.white,
-      width: { md: 667, xs: "100%" },
-      borderRadius: "0 0 20px 0",
-      boxShadow: "0px 8px 0px 0px rgba(0, 0, 0, 0.08), 0px 1.8px 0px 0px rgba(0, 0, 0, 0.05), 0px 0.5px 0px 0px rgba(0, 0, 0, 0.03), 0px -1px 0px 0px rgba(0, 0, 0, 0.04)" 
-    })}
+    <Paper sx={{
+      padding: { md: "36px 120px", xs: "2.25rem 1.5rem"},
+      background: "background.subdued",
+      width: { md: 667, xs: 320 },
+    }}
     >
       <Stack sx={{ gap: "1.5rem" }}>
         <Label to="/">
@@ -45,15 +43,15 @@ export default function Menu() {
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            sx={(theme) => ({ 
+            sx={{ 
               padding: 0, margin: 0, minHeight: "0 !important",  
               "& .MuiAccordionSummary-content": {
                 margin: "0 !important"
               },
               "& .MuiAccordionSummary-expandIconWrapper": {
-                color: theme.palette.text.secondary
+                color: "text.secondary"
               }
-            })}
+            }}
           >
             <Typography variant="body1" sx={{ fontSize: "18px" }}>Categorias</Typography>
           </AccordionSummary>
@@ -65,10 +63,10 @@ export default function Menu() {
                 <Label to="/" key={i}>
                   <Typography
                     variant="h3"
-                    sx={(theme) => ({
+                    sx={{
                       fontWeight: 400,
-                      color: theme.palette.text.primary
-                    })}
+                      color: "text.primary"
+                    }}
                   >
                     Subcategoría 1
                   </Typography>
