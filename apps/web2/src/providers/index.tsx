@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { PropsWithChildren } from "react";
 import DataProvider from "../context/DataProvider";
-import { games } from "../modules";
+import { categories, games } from "../modules";
 import { ThemeProvider } from "./theme";
 import { CartProvider } from "../context/cartContext";
 
@@ -25,6 +25,7 @@ export default function Providers({ children }: PropsWithChildren) {
         <DataProvider
           // gamesClient={fakeGameClient}
           gamesClient={games}
+          categoriesClient={categories}
         >
           {children}
         </DataProvider>

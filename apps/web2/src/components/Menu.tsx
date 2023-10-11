@@ -3,6 +3,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, Paper, Popover, Sta
 import { ExpandMore as ExpandMoreIcon } from "@mui/icons-material";
 import { FacebookLogo, InstagramLogo } from "../../../../packages/ui/src";
 import { setAnchorElMenu, useAnchorElMenu } from "../observables";
+import { useCategories } from "../hooks/useCategories";
 
 interface LiItemProps {
   label: string
@@ -24,7 +25,8 @@ function LiItem({ label }: LiItemProps) {
 }
 
 export default function Menu() {
-  const anchorEl = useAnchorElMenu()
+  const anchorEl = useAnchorElMenu();
+  const { data } = useCategories();
 
   const handleClose = () => {
     setAnchorElMenu(null);
@@ -59,9 +61,7 @@ export default function Menu() {
       }}
       >
         <Stack sx={{ gap: "1.5rem" }}>
-          <Label to="/">
-            <LiItem label="Categorias" />
-          </Label>
+          <LiItem label="Categorias" />
           <Accordion
             sx={{
               background: "transparent",
@@ -87,8 +87,11 @@ export default function Menu() {
               sx={{ padding: "1rem 0 0 36px" }}
             >
               <Stack sx={{ gap: "1rem" }}>
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Label to="/" key={i}>
+                { data?.map(({ name, category_id }) => (
+                  <Box
+                    key={`category-${category_id}`}
+                    component="div"
+                  >
                     <Typography
                       variant="h3"
                       sx={{
@@ -96,9 +99,9 @@ export default function Menu() {
                         color: "text.primary"
                       }}
                     >
-                      Subcategoría 1
+                      {name || category_id}
                     </Typography>
-                  </Label>
+                  </Box>
                 ))}
               </Stack>
             </AccordionDetails>
