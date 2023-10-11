@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import {
-  Button,
   CardHero,
   ColorSwitch,
   MainLogo,
@@ -8,12 +7,11 @@ import {
   NintendoLogo,
   PlayStation4Logo,
   PlayStation5Logo,
-  SearchBar,
   XboxLogo,
 } from '../../../../packages/ui/src';
 import { GeneralLayout } from '../layout/GeneralLayout';
 import ResponsiveCarousel from '../components/ResponsiveCarousel';
-import { SxProps, Stack } from '@mui/material';
+import { SxProps, Stack, IconButton } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import ProductsList from '../components/ProductList';
 import NavLinks from '../components/NavLinks';
@@ -25,6 +23,9 @@ import CartIconReactive from '../components/CartIconReactive';
 import { cartContext } from '../context/cartContext';
 import { IOffer } from '../types/games';
 import { cartClient } from '../modules';
+import { Menu as MenuIcon } from '@mui/icons-material';
+import { setAnchorElMenu, useAnchorElMenu } from '../observables';
+import CustomSearchBar from '../components/CustomSearchBar';
 
 const CardHeroHOC = ({
   image_url = '',
@@ -67,6 +68,8 @@ export default function Home() {
   const { data } = useGames();
   const toggleColor = useToggleColor();
   const theme = useTheme();
+  const anchorEl = useAnchorElMenu();
+
   const noMargin: SxProps = useMemo(
     () => ({
       margin: '0 !important',
@@ -74,6 +77,10 @@ export default function Home() {
     }),
     [theme.palette.mode],
   );
+
+  const _handleOpenMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElMenu(anchorEl ? null : event.currentTarget);
+  }
 
   return (
     <GeneralLayout
@@ -90,11 +97,12 @@ export default function Home() {
             </Link>
           }
           searchBar={
-            <SearchBar
-              onSubmit={() => 4}
-              placeHolder='Ingresa tu búsqueda'
-              buttonSearch={<Button label='buscar' variant='contained' />}
-            />
+            <CustomSearchBar placeHolder='Ingresa tu búsqueda' />
+          }
+          menu={
+            <IconButton onClick={_handleOpenMenu} size="small">
+              <MenuIcon />
+            </IconButton>
           }
         />
       }

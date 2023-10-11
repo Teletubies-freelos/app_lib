@@ -1,7 +1,6 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { Menu as MenuIcon } from '@mui/icons-material';
-import { Box, IconButton, Popper, Stack, Typography } from "@mui/material";
+import { Box, IconButton, Stack, Typography } from "@mui/material";
 
 import {
   CartIcon,
@@ -16,16 +15,15 @@ import { GeneralLayout } from "../../layout/GeneralLayout";
 
 import { useToggleColor } from "../../providers/theme";
 import NavLinks from "../../components/NavLinks";
-import Menu from "../../components/Menu";
 import CustomSearchBar from "../../components/CustomSearchBar";
+import { setAnchorElMenu, useAnchorElMenu } from "../../observables";
 
 export default function Terminos() {
   const toggleColor = useToggleColor();
-
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const anchorEl = useAnchorElMenu();
 
   const _handleOpenMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(anchorEl ? null : event.currentTarget);
+    setAnchorElMenu(anchorEl ? null : event.currentTarget);
   }
 
   return (
@@ -108,10 +106,7 @@ export default function Terminos() {
             </Link>
           </Box>
         </Box>
-      </Stack>
-      <Popper open={Boolean(anchorEl)} anchorEl={anchorEl}>
-        <Menu />
-      </Popper>
+      </Stack>      
     </GeneralLayout>
   );
 }
