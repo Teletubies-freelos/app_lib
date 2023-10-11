@@ -6,6 +6,7 @@ import {
 } from "@mui/material";
 
 import { cartClient } from "../../modules";
+import { setIsProductDetail, setProductDetail } from "../../observables";
 
 
 interface CardProductProps {
@@ -34,8 +35,13 @@ export const itemContentRender = (handleOnClick: (price: number)=>void) =>
 
       handleOnClick(product.price)
     }
+    
+    const _handleViewMore = () => {
+      setIsProductDetail(true)
+      setProductDetail(product)
+    }
 
-    return <CardProduct {...product} onAdd={_handleOnClick} />;
+    return <CardProduct {...product} onAdd={_handleOnClick} onViewDetail={_handleViewMore} />;
   }
 
 

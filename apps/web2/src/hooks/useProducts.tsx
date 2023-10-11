@@ -13,9 +13,11 @@ const serialiceGames = ({
   description = '',
   image_url: src = '',
   price = 0,
+  price_offer = 0,
 }: IOffer) => ({
   description,
-  price,
+  price: price_offer || price,
+  previousPrice: price_offer && price,
   src,
   alt: name,
   title: name,
