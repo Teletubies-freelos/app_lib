@@ -24,3 +24,4 @@ export { default as ModalLayout } from './layout/ModalLayout';
 export { defaultTheme } from './theme/appGames';
 export { ItemContainer, ListContainer } from './atoms/ListContainers';
 export { default as LoadingPage } from './molecules/Loadingpage';
+export { default as Tag } from './atoms/Tag';
