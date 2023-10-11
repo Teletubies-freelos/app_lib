@@ -1,6 +1,8 @@
 
 import { bind } from "@react-rxjs/core"
 import { createSignal } from "@react-rxjs/utils"
+import { CardProductProps } from "../../../../packages/ui/src/molecules/CardProduct";
+import { Maybe } from "../types";
 
 export const [totalCountProducts$, setTotalCountProducts] = createSignal<number>();
 export const [useTotalCountProducts, totalCountProductsItems$] = bind(totalCountProducts$, 0);
@@ -31,3 +33,12 @@ export const [useIsConfirmedStoreOpen, isConfirmedStoreOpen$] = bind(isConfirmed
 
 export const [purchaseCode$, setPurchaseCode] = createSignal<string>();
 export const [usePurchaseCode, purchaseCodeDefault$] = bind(purchaseCode$, '');
+
+export const [isProductDetail$, setIsProductDetail] = createSignal<boolean | undefined>();
+export const [useIsProductDetailOpen, isProductDetailOpen$] = bind(isProductDetail$, false);
+
+export const [productDetail$, setProductDetail] = createSignal<Maybe<CardProductProps>>();
+export const [useProductDetail, productDetailDefault$] = bind(productDetail$, null);
+
+export const [anchorElMenu$, setAnchorElMenu] = createSignal<null | HTMLElement>();
+export const [useAnchorElMenu, anchorElMenuDefault$] = bind(anchorElMenu$, null);
