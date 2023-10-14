@@ -1,3 +1,0 @@
-# Migrations
-
-Check knex (documentation)[]
