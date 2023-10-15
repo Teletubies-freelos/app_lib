@@ -17,6 +17,8 @@ import {
   useIsConfirmedOrderOpen,
   useIsConfirmedStoreOpen,
 } from '../observables';
+import ProductDetail from '../components/modals/ProductDetail';
+import Menu from '../components/Menu';
 
 interface GeneralLayoutProps {
   navBar: JSX.Element;
@@ -125,6 +127,8 @@ export function GeneralLayout({
           />
         }
       />
+      <ProductDetail />
+      <Menu />
     </Box>
   );
 }

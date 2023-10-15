@@ -1,21 +1,30 @@
 import { Link } from "react-router-dom";
+import { Menu as MenuIcon } from '@mui/icons-material';
+import { Box, IconButton, Stack, Typography } from "@mui/material";
+
 import {
-  Button,
   CartIcon,
   ColorSwitch,
   MainLogo,
   NavBar,
-  SearchBar,
+  FacebookLogo,
+  InstagramLogo,
+  Isotype
 } from "../../../../../packages/ui/src";
 import { GeneralLayout } from "../../layout/GeneralLayout";
 
-import { Box, Stack, Typography } from "@mui/material";
-
 import { useToggleColor } from "../../providers/theme";
 import NavLinks from "../../components/NavLinks";
+import CustomSearchBar from "../../components/CustomSearchBar";
+import { setAnchorElMenu, useAnchorElMenu } from "../../observables";
 
 export default function Terminos() {
   const toggleColor = useToggleColor();
+  const anchorEl = useAnchorElMenu();
+
+  const _handleOpenMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElMenu(anchorEl ? null : event.currentTarget);
+  }
 
   return (
     <GeneralLayout
@@ -34,10 +43,12 @@ export default function Terminos() {
             </Link>
           }
           searchBar={
-            <SearchBar
-              onSubmit={() => 4}
-              buttonSearch={<Button label="buscar" variant="contained" />}
-            />
+            <CustomSearchBar placeHolder="Ingresa tu busqueda" />
+          }
+          menu={
+            <IconButton onClick={_handleOpenMenu} size="small">
+              <MenuIcon />
+            </IconButton>
           }
         />
       }
@@ -47,7 +58,8 @@ export default function Terminos() {
           width: "100%",
           display: "flex",
           justifyContent: "center",
-          padding: "0 2rem 2rem 2rem",
+          padding: "4rem 2rem",
+          backgroundColor: (theme) => theme.palette.background.paper
         }}
       >
         <Stack sx={{ maxWidth: "60rem" }}>
@@ -79,6 +91,22 @@ export default function Terminos() {
           ))}
         </Stack>
       </Box>
+
+      <Stack sx={{ padding: "50px 0" }}>
+        <Box sx={{ height: "78px", display: "flex", justifyContent: "center", alignItems: "center", gap: "37px" }}>
+          <Isotype sx={{ height: "100%", width: "fit-content" }} />
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Typography variant="body1" sx={{ fontSize: "1rem", marginRight: "1.5rem" }}>Síguenos</Typography>
+            
+            <Link to="https://www.facebook.com" target="_blank">
+              <FacebookLogo />
+            </Link>
+            <Link to="https://www.instagram.com" target="_blank">
+              <InstagramLogo />
+            </Link>
+          </Box>
+        </Box>
+      </Stack>
     </GeneralLayout>
   );
 }

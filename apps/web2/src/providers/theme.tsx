@@ -2,6 +2,18 @@ import { CssBaseline, ThemeProvider as MUIThemeProvider, type PaletteMode } from
 import { PropsWithChildren, createContext, useContext, useMemo, useState } from "react"
 import { darkTheme, defaultTheme } from "../../../../packages/ui/src/theme/appGames"
 
+declare module '@mui/material/styles' {
+  interface TypeText {
+    action?: string;
+    emphasized?: string;
+    subdued?: string;
+  }
+
+  interface TypeBackground {
+    subdued?: string;
+  }
+}
+
 export const colorModeContext = createContext({
   toggleColor(){}
 })

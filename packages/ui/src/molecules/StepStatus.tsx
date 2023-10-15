@@ -3,14 +3,14 @@ import { Box, Step, StepLabel, Stepper, SxProps } from "@mui/material";
 
 const StepIcon = () => (
   <Check
-    sx={{
+    sx={(theme) => ({
       padding: "2px",
-      background: "#fff",
-      border: "1px solid #7339FF",
-      color: "#7339FF",
+      background: theme.palette.common.white,
+      border: `1px solid ${theme.palette.primary.main}`,
+      color: theme.palette.primary.main,
       borderRadius: "1rem",
       fontSize: "1.2rem",
-    }}
+    })}
   />
 );
 

@@ -3,12 +3,12 @@ import { DataContext, IDataContext } from "./DataContext";
 
 const DataProvider = ({
   children,
-  gamesClient,
+  ...rest
 }: PropsWithChildren<IDataContext>) => {
 
   return (
       <DataContext.Provider
-        value={{ gamesClient}}
+        value={{ ...rest }}
       >
         {children}
       </DataContext.Provider>
