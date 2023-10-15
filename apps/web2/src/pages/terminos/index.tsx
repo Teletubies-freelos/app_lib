@@ -106,7 +106,7 @@ export default function Terminos() {
             </Link>
           </Box>
         </Box>
-      </Stack>      
+      </Stack>
     </GeneralLayout>
   );
 }

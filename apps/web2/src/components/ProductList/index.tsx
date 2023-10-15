@@ -1,12 +1,14 @@
-import { Box, MenuItem, Paper, type SxProps } from "@mui/material";
+import { Box, MenuItem, Paper, SelectChangeEvent, type SxProps } from "@mui/material";
 import { VirtuosoGrid } from "react-virtuoso";
 import { DropDown, Isotype } from "../../../../../packages/ui/src";
-import { useProducts } from "../../hooks/useProducts";
+import { useFiltedProducts, useProducts } from "../../hooks/useProducts";
 import { Loading } from "./Loading";
 import { ItemContainer, ListContainer, itemContentRender } from "./Containers";
 import Filters from "./Filters";
 import { useContext, useMemo } from "react";
 import { cartContext } from "../../context/cartContext";
+import { useCategories } from "../../hooks/useCategories";
+import { setCategoryIdSelected, useCategoryIdSelected } from "../../observables";
 
 const sxProductListHeader: SxProps = {
   width: "100%",
@@ -20,6 +22,9 @@ const sxProductListHeader: SxProps = {
 
 export default function ProductsList() {
   const { products, fetchNextPage } = useProducts();
+  const { products: filtered } = useFiltedProducts();
+  const { data: categories } = useCategories();
+  const categoryIdSelected = useCategoryIdSelected();
   const {handleOnClick} = useContext(cartContext)
 
   const loadMore = () => {
@@ -27,9 +32,23 @@ export default function ProductsList() {
   };
 
   const ItemContent= useMemo(()=> itemContentRender(handleOnClick), [])
+  
+  const filterdProducts = useMemo(() => {
+    if(!Number(categoryIdSelected)) return products;
+
+    return filtered
+  }, [ categoryIdSelected, products, filtered ])
+
+  const _handleChangeFilter = ({ target }: SelectChangeEvent) => {
+    if(!Number(target.value)) return
+    
+    setCategoryIdSelected(Number(target.value))
+  }
 
   return (
     <Paper
+      id="product-list"
+      component="section"
       sx={{
         padding: {
           xs: "2rem 1rem",
@@ -47,15 +66,20 @@ export default function ProductsList() {
           }}
         />
         <DropDown
+          value={String(categoryIdSelected)}
+          onChange={_handleChangeFilter}
           sxForm={{
             width: { xs: "80%", md: "30%" },
             order: { xs: "2", md: "3" },
           }}
         >
-          <MenuItem value={1}>Juegos PS4</MenuItem>
-          <MenuItem value={2}>Juegos PS5</MenuItem>
-          <MenuItem value={3}>Juegos Switch</MenuItem>
-          <MenuItem value={4}>Juegos Xbox</MenuItem>
+          <MenuItem value={0} disabled>Selecct category</MenuItem>
+          { categories?.map(({ category_id, name }) => <MenuItem
+              key={`category-${category_id}`}
+              value={category_id}
+            >
+              {name || category_id}
+            </MenuItem> )}
         </DropDown>
         <Filters />
       </Box>
@@ -65,7 +89,7 @@ export default function ProductsList() {
           Item: ItemContainer,
           List: ListContainer,
         }}
-        data={products ?? []}
+        data={filterdProducts ?? []}
         endReached={loadMore}
         itemContent={ItemContent}
         overscan={5}

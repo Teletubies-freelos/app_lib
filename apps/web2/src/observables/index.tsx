@@ -42,3 +42,6 @@ export const [useProductDetail, productDetailDefault$] = bind(productDetail$, nu
 
 export const [anchorElMenu$, setAnchorElMenu] = createSignal<null | HTMLElement>();
 export const [useAnchorElMenu, anchorElMenuDefault$] = bind(anchorElMenu$, null);
+
+export const [categoryIdSelected$, setCategoryIdSelected] = createSignal<number>();
+export const [useCategoryIdSelected, categoryIdSelectedDefault$] = bind(categoryIdSelected$, 0);

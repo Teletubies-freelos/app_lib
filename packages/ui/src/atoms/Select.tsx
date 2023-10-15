@@ -19,6 +19,8 @@ export interface SelectFilterProps<T extends IOption = IOption> {
   items?: T[];
   sxForm?: SxProps;
   sxSelect?: Record<string, unknown>;
+  value?: string;
+  defaultValue?: string;
   onChange?: (event: SelectChangeEvent) => void;
 }
 
@@ -27,6 +29,8 @@ export default function SelectFilter({
   sxForm,
   sxSelect,
   children,
+  value,
+  defaultValue = "1",
   onChange,
 }: PropsWithChildren<SelectFilterProps>) {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,7 +60,8 @@ export default function SelectFilter({
         onOpen={() => setIsOpen(true)}
         onClose={() => setIsOpen(false)}
         open={isOpen}
-        defaultValue={String(1)}
+        defaultValue={defaultValue}
+        value={value}
         IconComponent={ArrowDown}
         sx={({ palette }) => ({
           backgroundColor: palette.background.default,

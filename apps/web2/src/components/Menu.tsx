@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Accordion, AccordionDetails, AccordionSummary, Box, Paper, Popover, Stack, Typography, styled } from "@mui/material";
 import { ExpandMore as ExpandMoreIcon } from "@mui/icons-material";
 import { FacebookLogo, InstagramLogo } from "../../../../packages/ui/src";
-import { setAnchorElMenu, useAnchorElMenu } from "../observables";
+import { setAnchorElMenu, setCategoryIdSelected, useAnchorElMenu } from "../observables";
 import { useCategories } from "../hooks/useCategories";
 
 interface LiItemProps {
@@ -89,8 +89,14 @@ export default function Menu() {
               <Stack sx={{ gap: "1rem" }}>
                 { data?.map(({ name, category_id }) => (
                   <Box
+                    component="a"
                     key={`category-${category_id}`}
-                    component="div"
+                    href="#product-list"
+                    sx={{ textDecoration: "none" }}
+                    onClick={() => {
+                      setCategoryIdSelected(Number(category_id))
+                      handleClose()
+                    }}
                   >
                     <Typography
                       variant="h3"
@@ -106,10 +112,10 @@ export default function Menu() {
               </Stack>
             </AccordionDetails>
           </Accordion>
-          <Label to="/estado-pedido">
+          <Label onClick={handleClose} to="/estado-pedido">
             <LiItem label="Estado de pedido" />
           </Label>
-          <Label to="/terminos">
+          <Label onClick={handleClose} to="/terminos">
             <LiItem label="Terminos y condiciones" />
           </Label>
 

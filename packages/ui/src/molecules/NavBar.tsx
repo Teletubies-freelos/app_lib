@@ -16,6 +16,7 @@ const sxMainBar = {
   gap: { xs: "1rem", sm: "3rem" },
   justifyContent: "space-between",
   alignItems: "center",
+  maxWidth: 1200
 };
 
 export default function NavBar({
@@ -30,7 +31,7 @@ export default function NavBar({
     <Toolbar
       sx={{
         flexDirection: "column",
-        marginBottom: "3rem",
+        margin: "1.5rem 0",
         gap: { xs: "2rem", sm: "0" },
       }}
     >

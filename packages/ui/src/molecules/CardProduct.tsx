@@ -17,6 +17,7 @@ export interface CardProductProps {
   description: string;
   price: number;
   previousPrice?: number;
+  category_id?: number;
   onAdd?: MouseEventHandler<HTMLButtonElement>;
   onViewDetail?: MouseEventHandler<HTMLImageElement>;
   className?: string;

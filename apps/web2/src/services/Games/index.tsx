@@ -2,7 +2,6 @@ import { AxiosInstance } from 'axios';
 import { type GraphQLClient, gql } from 'graphql-request';
 import { GamesPaths } from './constans';
 import { IOffer } from '../../types/games';
-import { SearchParams } from '../../types';
 
 export interface Games {
   getMainOffers(): Promise<IOffer[]>;
@@ -20,6 +19,21 @@ export class GamesAxios implements Games {
 
     return data;
   }
+}
+
+export interface GetProductFilters {
+  categoryId?: number | string;
+}
+
+export interface PaginationParams {
+  offset?: number;
+  limit?: number;
+}
+
+export interface QueryManyOptions<T> {
+  pagination?: PaginationParams;
+  filters?: T;
+  sort?: string;
 }
 
 export class GamesGraphQL implements Games {
@@ -60,6 +74,27 @@ export class GamesGraphQL implements Games {
     }
   `;
 
+  static GET_PRODUCT_BY_CATEGORY = gql`
+    query GetProducts($limit: Int, $offset: Int, $categoryId: Int) {
+      Products(
+        limit: $limit
+        offset: $offset
+        order_by: { category_id: desc }
+        where: { category_id: { _eq: $categoryId } }
+      ) {
+        quantity
+        product_id
+        price_offer
+        price
+        name
+        is_visible
+        image_url
+        description
+        category_id
+      }
+    }
+  `;
+
   constructor(private client: GraphQLClient) {}
 
   async getMainOffers(limit = 10) {
@@ -78,5 +113,19 @@ export class GamesGraphQL implements Games {
     );
 
     return Products;
+  }
+
+  async getFilterdProducts({
+    pagination = {},
+    filters = {},
+  }: QueryManyOptions<GetProductFilters> = {}) {
+    const { limit = 20, offset = 0 } = pagination;
+    const { categoryId } = filters;
+
+    const { Products: games } = await this.client.request<{
+      Products: IOffer[];
+    }>(GamesGraphQL.GET_PRODUCT_BY_CATEGORY, { limit, offset, categoryId});
+
+    return games;
   }
 }
